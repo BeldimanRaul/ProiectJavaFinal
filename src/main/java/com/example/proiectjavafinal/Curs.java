@@ -19,6 +19,7 @@ public class Curs {
         this.idProfesor = idProfesor;
         this.descriere = descriere;
         this.nume = nume;
+        this.nota = new HashMap<>();
     }
 
     public int getId() {
@@ -63,7 +64,7 @@ public class Curs {
     }
 
     public void actualizeazaNota(Student student, int notaNoua) {
-        if (nota.containsKey(student)) {
+        if (!nota.containsKey(student)) {
             System.out.println("Studentul nu este înscris la acest curs.");
         }
 
@@ -76,6 +77,9 @@ public class Curs {
         return nota.keySet().stream().toList();
     }
 
+    public void addProfesor(Profesor profesor) {
+        this.profesor = profesor;
+    }
 
     @Override
     public String toString() {
@@ -90,4 +94,5 @@ public class Curs {
                 ", idProfesor=" + idProfesor +
                 '}';
     }
+
 }
