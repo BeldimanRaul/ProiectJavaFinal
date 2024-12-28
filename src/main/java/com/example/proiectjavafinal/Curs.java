@@ -14,13 +14,9 @@ public class Curs {
     int an;
     int idProfesor;
 
-    public Curs(int id, int idProfesor, int an, HashMap<Student, Integer> nota, Set<Student> studenti, Profesor profesor, String descriere, String nume) {
+    public Curs(int id, int idProfesor, String descriere, String nume) {
         this.id = id;
         this.idProfesor = idProfesor;
-        this.an = an;
-        this.nota = nota;
-        this.studenti = studenti;
-        this.profesor = profesor;
         this.descriere = descriere;
         this.nume = nume;
     }
@@ -60,6 +56,9 @@ public class Curs {
     public void adaugareStudenti(Student student) {
         nota.put(student, null);
 
+    }
+    public void stergeStudenti(Student student) {
+        nota.remove(student);
     }
 
     public void actualizeazaNota(Student student, int notaNoua) {

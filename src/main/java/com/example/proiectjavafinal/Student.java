@@ -1,20 +1,52 @@
 package com.example.proiectjavafinal;
 
-public class Student extends Persoana{
+public class Student  {
+    int id;
+    String nume;
+    String prenume;
+    String username;
+    String password;
+    String grupa;
+    int an;
 
-     String grupa;
-     int an;
-
-    public Student(int id, String password, String username, String prenume, String nume, String grupa, int an) {
-        super(id, password, username, prenume, nume);
-        this.grupa = grupa;
+    public Student(int id, String nume, String prenume, int an, String grupa, String username, String password) {
+        super();
+        this.id = id;
+        this.nume = nume;
+        this.prenume = prenume;
         this.an = an;
+        this.grupa = grupa;
+        this.username = username;
+        this.password = password;
+
     }
-    public String getGrupa() {
-            return grupa;
+
+    public int getId() {
+        return id;
     }
+
     public int getAn() {
         return an;
+    }
+
+    public String getGrupa() {
+        return grupa;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPrenume() {
+        return prenume;
+    }
+
+    public String getNume() {
+        return nume;
     }
 
     @Override

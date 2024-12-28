@@ -9,6 +9,7 @@ public class FileDisplay {
     String studentPath = "student.txt";
     String cursPath = "curs.txt";
     String profPath = "prof.txt";
+    String notePath = "note.txt";
 
     public void displayStudents(List<Student> studenti) throws IOException {
         BufferedWriter w = new BufferedWriter(new FileWriter(studentPath));
@@ -17,8 +18,8 @@ public class FileDisplay {
             w.write(student.getId() + "," +
                     student.getNume() + "," +
                     student.getPrenume() + "," +
-                    student.getGrupa() + "," +
                     student.getAn() + "," +
+                    student.getGrupa() + "," +
                     student.getUsername() + "," +
                     student.getPassword());
             w.newLine();
@@ -50,7 +51,16 @@ public class FileDisplay {
 
         }w.close();
     }
-
+public void displayNote(List<Nota> note) throws IOException {
+        BufferedWriter w= new BufferedWriter(new FileWriter(notePath));
+        for (Nota nota : note) {
+            w.write(nota.getIdCurs()+","+
+                    nota.getIdStudent()+","+
+                    nota.getNota());
+            w.newLine();
+        }
+        w.close();
+}
 
 }
 
