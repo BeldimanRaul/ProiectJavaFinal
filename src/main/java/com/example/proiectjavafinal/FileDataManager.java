@@ -1,5 +1,5 @@
 package com.example.proiectjavafinal;
-
+///CITIRE
 import java.io.*;
 import java.util.*;
 
@@ -11,7 +11,7 @@ public class FileDataManager {
     String notePath = "note.txt";
 
 
-    public List<Curs> createCourseData(String cursPath,List<Student> studenti) throws IOException {
+    public List<Curs> createCourseData(String cursPath) throws IOException {
         List<Curs> courseData = new ArrayList<>();
         BufferedReader brCurs = new BufferedReader(new FileReader(cursPath));
         String linie;

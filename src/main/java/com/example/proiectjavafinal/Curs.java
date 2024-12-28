@@ -55,6 +55,7 @@ public class Curs {
 
     public void adaugareStudenti(Student student) {
         nota.put(student, null);
+        System.out.println("Student adăugat: " + student.getNume());
 
     }
     public void stergeStudenti(Student student) {
@@ -67,6 +68,7 @@ public class Curs {
         }
 
         nota.put(student, notaNoua);
+        System.out.println("Notă actualizată pentru studentul " + student.getNume() );
 
     }
 

@@ -1,5 +1,5 @@
 package com.example.proiectjavafinal;
-///SE MODIFICA ASTA CU AIA DIN LAB 2!!!!
+///SCRIERE
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -23,6 +23,7 @@ public class FileDisplay {
                     student.getUsername() + "," +
                     student.getPassword());
             w.newLine();
+            System.out.println("succes1");
         }
         w.close();
     }
@@ -35,6 +36,7 @@ public class FileDisplay {
                     curs.getDescriere() + "," +
                     curs.getIdProfesor());
             w.newLine();
+            System.out.println("succes2");
         }
         w.close();
     }
@@ -48,6 +50,7 @@ public class FileDisplay {
                     profesor.getUsername() + "," +
                     profesor.getPassword());
             w.newLine();
+            System.out.println("succes3");
 
         }w.close();
     }
@@ -58,6 +61,7 @@ public void displayNote(List<Nota> note) throws IOException {
                     nota.getIdStudent()+","+
                     nota.getNota());
             w.newLine();
+            System.out.println("succes4");
         }
         w.close();
 }
