@@ -14,8 +14,9 @@ public class Curs {
     int an;
     int idProfesor;
 
-    public Curs(int id, int idProfesor, String descriere, String nume) {
-        this.id = id;
+    public Curs(int an, int idProfesor, String descriere, String nume) {
+        this.an = an;
+        this.id = IdGenerator.idCurs();
         this.idProfesor = idProfesor;
         this.descriere = descriere;
         this.nume = nume;

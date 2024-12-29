@@ -15,7 +15,6 @@ public class Consola {
     private static User utilizatorilogati = null;
 
     public static void main(String[] args) throws IOException {
-        /// Creare cursuri și note de test
         List<Curs> cursuri = new ArrayList<>();
         List<Nota> note = new ArrayList<>();
         FileDisplay fd = new FileDisplay();
@@ -38,8 +37,19 @@ public class Consola {
         curs.adaugareStudenti(student2);
         curs.actualizeazaNota(student, 10);
         curs.actualizeazaNota(student2, 10);
-        note.add(new Nota(curs.getId(), student2.getId(), curs.getNota().get(student2)));
-        note.add(new Nota(curs.getId(), student.getId(), curs.getNota().get(student)));
+        //note.add(new Nota(curs.getId(), student2.getId(), curs.getNota().get(student2)));
+       //note.add(new Nota(curs.getId(), student.getId(), curs.getNota().get(student)));
+
+
+        try{
+            fd.displayTeachers(profesori);
+            fd.displayStudents(studenti);
+            fd.displayCurs(cursuri);
+            fd.displayNote(note);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
 
         // Interfața principală pentru utilizator
         ///SA FAC SA SE STEARGA ECRANUL DUPA FIECARE ITERARE INTELEGI TU.....
@@ -48,6 +58,8 @@ public class Consola {
             System.out.println("1. Login");
             System.out.println("2. Register");
             System.out.println("3. Close");
+            System.out.println("4. vezi cursuri valabile");
+
 
             int optiune = sc.nextInt();
             sc.nextLine(); // Consumă newline-ul rămas
@@ -57,7 +69,7 @@ public class Consola {
                     login();
                     break;
                 case 2:
-                    register();
+                    register(cursuri);
                     try {
                         fd.displayStudents(studenti);
                         fd.displayTeachers(profesori);
@@ -69,6 +81,9 @@ public class Consola {
                 case 3:
                     System.exit(0);
                     break;
+                case 4:
+                    cursvalabil(cursuri);
+
                 default:
                     System.out.println("Optiune invalida!");
 
@@ -77,38 +92,44 @@ public class Consola {
         }
     }
 
-    // Metodă pentru generarea unui ID random/// vedem daca ramane
-    public static int generateRandomId() {
-        int BOUND = 1000000;
-        Random random = new Random();
-        return random.nextInt(BOUND);
-    }
+
 
     // Metodă pentru login
     private static void login() {
-        System.out.println("Username: ");
-        String username = sc.nextLine();
-        System.out.println("Password: ");
-        String password = sc.nextLine();
+        if (studenti == null || studenti.isEmpty()) {
+            System.out.println("Nu există utilizatori înregistrați.");
+            return;
+        }
+
+        System.out.print("Username: ");
+        String username = sc.nextLine().trim(); // Elimină spațiile albe
+        System.out.print("Password: ");
+        String password = sc.nextLine().trim();
 
         // Verificare utilizator existent
         for (User user : studenti) {
             if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
                 utilizatorilogati = user;
                 System.out.println("Login cu succes!");
+
+                // Verificare tip utilizator și apelare dashboard
                 if (user instanceof Student) {
-                    ((Student) user).dashboardSTD(mg.getCursuri());
+                    Student student = (Student) user;
+                    student.dashboardSTD(mg.getCursuri()); // Dashboard pentru studenți
                 } else if (user instanceof Profesor) {
-                    /// Metodă pentru dashboard-ul profesorului (de implementat)
+                    Profesor profesor = (Profesor) user;
+                    //profesor.dashboardProfesor(mg.getCursuri()); // Dashboard pentru profesori (de implementat)
                 }
                 return;
             }
         }
-        System.out.println("Login nereusit!");
+
+        // Mesaj în caz de date greșite
+        System.out.println("Login nereușit! Verificați username-ul și parola.");
     }
 
     // Metodă pentru înregistrare utilizator
-    private static void register() {
+    private static void register(List<Curs> cursuri) {
         System.out.println("Tip utilizator: Student/Profesor");
         String userType = sc.nextLine();
 
@@ -122,15 +143,29 @@ public class Consola {
             String nume = sc.nextLine();
             System.out.println("Prenume:");
             String prenume = sc.nextLine();
-            int id = generateRandomId();
+            int id = sc.nextInt();
             System.out.println("În ce an ești?");
             int an = sc.nextInt();
             sc.nextLine(); // Consumă newline-ul rămas
-            System.out.println("În ce grupă ești?");
-            String grupa = sc.nextLine();
 
-            Student student = new Student(id, nume, prenume, an, grupa, username, password);
+
+            System.out.println("Cursuri disponibile pentru anul " + an + ":");
+            for (Curs curs : cursuri) {
+                if (curs.getAn() == an) {
+                    System.out.println("ID: " + curs.getId() + ", Nume: " + curs.getNume() + ", Descriere: " + curs.getDescriere());
+                }
+            }
+
+            // Solicitarea ID-ului cursului la care studentul dorește să se înscrie
+            System.out.println("Introdu ID-ul cursului la care dorești să te înscrii:");
+            int cursID = sc.nextInt();
+            sc.nextLine(); // Consumă newline-ul rămas
+
+            Student student = new Student(id, nume, prenume, an, "", username, password);
             studenti.add(student);
+
+            // Înscrierea studentului la cursul selectat
+            student.inscrieLaCurs(cursuri, cursID);
 
             System.out.println("Student inregistrat cu succes!");
             System.out.println("ID-ul tau este: " + id);
@@ -144,7 +179,7 @@ public class Consola {
             String nume = sc.nextLine();
             System.out.println("Prenume:");
             String prenume = sc.nextLine();
-            int id = generateRandomId();///vedem ce mai facem cu id ul , nu stiu daca sa l tinem random
+            int id = sc.nextInt();///vedem ce mai facem cu id ul , nu stiu daca sa l tinem random
             System.out.println("În ce an predai?");
             int an = sc.nextInt();
             sc.nextLine(); // Consumă newline-ul rămas
@@ -154,5 +189,24 @@ public class Consola {
             System.out.println("Profesor inregistrat cu succes!");
             System.out.println("ID-ul tau este: " + id);
         }
+    }
+
+    private static void cursvalabil(List<Curs>cursuri){
+
+        System.out.println("Introdu anul pentru care doresti să vezi cursurile valabile:");
+        int an= sc.nextInt();
+        sc.nextLine();
+
+        boolean cursurigasite=false;
+        for(Curs curs:cursuri){
+            if(curs.getAn()==an){
+                cursurigasite=true;
+                System.out.println("ID: " + curs.getId() + ", Nume: " + curs.getNume() + ", Descriere: " + curs.getDescriere());
+
+            }
+        }
+           if(!cursurigasite){
+               System.out.println("Nu există cursuri valabile pentru anul " + an + ".");
+           }
     }
 }

@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class Student extends User {
 
-    private int id;
+    private List<Integer> id;
     private String nume;
     private String prenume;
     private String grupa;
@@ -16,7 +16,7 @@ public class Student extends User {
 
     public Student(int id, String nume, String prenume, int an, String grupa, String username, String password) {
         super(username, password);
-        this.id =id;
+        this.id =List.of(id);
         this.nume = nume;
         this.prenume = prenume;
         this.an = an;
@@ -24,7 +24,9 @@ public class Student extends User {
     }
 
     // Getteri
-    public int getId() {
+
+
+    public List<Integer> getId() {
         return id;
     }
 
@@ -85,32 +87,39 @@ public class Student extends User {
 
     }
     ///METODE PT PRIMA OPTIUNE
-    public int alegean(){
-        System.out.println("alege an pt curs");
-        Scanner scanner = new Scanner(System.in);
-        int anAles=scanner.nextInt();
-        scanner.nextLine();
-        return anAles;
-    }
-    public void vizualizeazaCursuri(List<Curs>cursuri){
-        if(cursuri!=null){
-        int anAles=alegean();
-        if (anAles!=this.an){
-            System.out.println("Nu sunteți în anul " + anAles + ". Sunteți în anul " + this.an + ".");
-            return;
 
-        }System.out.println("Cursuri înscrise pentru anul " + anAles + ":");
+    public void vizualizeazaCursuri(List<Curs> cursuri) {
+        if (cursuri == null || cursuri.isEmpty()) {
+            System.out.println("Nu sunt cursuri înregistrate.");
+            return;
+        }
+
+        boolean cursuriGasite = false;
+        System.out.println("Cursuri la care ești înscris:");
         for (Curs curs : cursuri) {
-            if(curs.getAn()==anAles&&curs.getStudenti().contains(this)){
+            if (curs.getStudenti().contains(this)) {
                 System.out.println("ID: " + curs.getId() + ", Nume: " + curs.getNume() + ", Descriere: " + curs.getDescriere());
+                cursuriGasite = true;
             }
         }
-    }
-        System.out.println("nu sunt cursuri inregistrate");
+
+        if (!cursuriGasite) {
+            System.out.println("Nu ești înscris la niciun curs.");
+        }
     }
 
     public void vizualizeazaNote(){
 
+    }
+    public void inscrieLaCurs(List<Curs> cursuri, int cursID) {
+        for (Curs curs : cursuri) {
+            if (curs.getId() == cursID) {
+                curs.adaugareStudenti(this);
+                System.out.println("Te-ai înscris cu succes la cursul: " + curs.getNume());
+                return;
+            }
+        }
+        System.out.println("Cursul cu ID-ul " + cursID + " nu a fost găsit.");
     }
 
     @Override

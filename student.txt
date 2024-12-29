@@ -1,2 +1,1 @@
-1,Ionescu,Maria,2,LF4731,maria.ionescu@gmail.com,parola
-638843,raul,beldimna,2,2,raul,caarag
+[1],Ionescu,Maria,2,LF4731,maria.ionescu@gmail.com,parola
