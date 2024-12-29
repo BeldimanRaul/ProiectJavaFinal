@@ -46,7 +46,7 @@ public class FileDataManager {
             }
         }
         br.close();
-        System.out.println("s a citit");
+
         return profesori;
     }
 

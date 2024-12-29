@@ -56,7 +56,7 @@ public class Curs {
 
     public void adaugareStudenti(Student student) {
         nota.put(student, null);
-        System.out.println("Student adăugat: " + student.getNume());
+
 
     }
 
@@ -67,11 +67,11 @@ public class Curs {
     public void actualizeazaNota(Student student, int notaNoua) {
         if (notaNoua >= 1 && notaNoua <= 10) {
             if (!nota.containsKey(student)) {
-                System.out.println("Studentul nu este înscris la acest curs.");
+
             }
 
             nota.put(student, notaNoua);
-            System.out.println("Notă actualizată pentru studentul " + student.getNume());
+
 
         }else {
             System.out.println("introdu o nota intre 1 si 10 ");

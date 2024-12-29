@@ -17,4 +17,12 @@ public class ManagerCursuri {
     public void stergereCursuri(Curs curs) {
         cursuri.remove(curs);
     }
+
+    public HashMap<Integer, ArrayList<Student>> getGrupareaStudDupaAn() {
+        return grupareaStudDupaAn;
+    }
+
+    public List<Curs> getCursuri() {
+        return cursuri;
+    }
 }
