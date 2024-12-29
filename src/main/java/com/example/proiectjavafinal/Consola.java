@@ -20,26 +20,23 @@ public class Consola {
         FileDisplay fd = new FileDisplay();
         FileDataManager cititorgen = new FileDataManager();
 
-        /// Creare obiecte de test pentru profesori și studenți
+        // Creare obiecte de test pentru profesori și studenți
         Profesor profesor = new Profesor(1, "Popescu", "Ion", "popescu.ion", "parola");
         profesori.add(profesor);
         Curs curs = new Curs(1, 1, "Curs de Matematică", "Matematică");
-        mg.adaugareCursuri(curs);
+        cursuri.add(curs);
         curs.profesor = profesor;
 
-        /// Creare studenti de test
-        Student student = new Student(1, "Ionescu", "Maria", 2, "LF4731", "maria", "parola");
+        // Creare studenti de test
+        Student student = new Student(1, "Ionescu", "Maria", 2, "LF4731", "maria.ionescu@gmail.com", "parola");
         Student student2 = new Student(1, "Ionescu", "Maria", 3, "LF4731", "maria.ionescu@gmail.com", "parola");
         studenti.add(student);
 
-        /// Adăugare studenți la curs și actualizare note de test
+        // Adăugare studenți la curs și actualizare note de test
         curs.adaugareStudenti(student);
         curs.adaugareStudenti(student2);
         curs.actualizeazaNota(student, 10);
         curs.actualizeazaNota(student2, 10);
-        //note.add(new Nota(curs.getId(), student2.getId(), curs.getNota().get(student2)));
-        //note.add(new Nota(curs.getId(), student.getId(), curs.getNota().get(student)));
-
 
         try {
             fd.displayTeachers(profesori);
@@ -69,7 +66,7 @@ public class Consola {
                     login();
                     break;
                 case 2:
-                    register(cursuri);
+                    register();
                     try {
                         fd.displayStudents(studenti);
                         fd.displayTeachers(profesori);
@@ -91,7 +88,7 @@ public class Consola {
     }
 
 
-    // Metodă pentru login
+
     private static void login() {
         if (studenti == null || studenti.isEmpty()) {
             System.out.println("Nu există utilizatori înregistrați.");
@@ -103,7 +100,7 @@ public class Consola {
         System.out.print("Password: ");
         String password = sc.nextLine().trim();
 
-        // Verificare utilizator existent
+        /// Verificare utilizator existent
         for (User user : studenti) {
             if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
                 utilizatorilogati = user;
@@ -115,7 +112,7 @@ public class Consola {
                     student.dashboardSTD(mg.getCursuri()); // Dashboard pentru studenți
                 } else if (user instanceof Profesor) {
                     Profesor profesor = (Profesor) user;
-                    //profesor.dashboardProfesor(mg.getCursuri()); // Dashboard pentru profesori (de implementat)
+                    // profesor.dashboardProfesor(mg.getCursuri()); // Dashboard pentru profesori (de implementat)
                 }
                 return;
             }
@@ -125,8 +122,7 @@ public class Consola {
         System.out.println("Login nereușit! Verificați username-ul și parola.");
     }
 
-
-    private static void register(List<Curs> cursuri) {
+    private static void register() {
         System.out.println("Tip utilizator: Student/Profesor");
         String userType = sc.nextLine();
 

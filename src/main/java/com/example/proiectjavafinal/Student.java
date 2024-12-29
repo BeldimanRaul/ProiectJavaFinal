@@ -57,7 +57,7 @@ public class Student extends User {
             System.out.println("4. Vizualizeaza Restante");
             System.out.println("5. Inscrie-te la un curs");
             System.out.println("6. Vezi cursuri valabile");
-            System.out.println("6. Logout");
+            System.out.println("7. Logout");
 
             System.out.print("Alege o opțiune: ");
             int optiune = scanner.nextInt();
@@ -77,11 +77,11 @@ public class Student extends User {
                     // vizualizeazaRestante();
                     break;
                 case 5:
-                    inscrieLaCurs(mg.getCursuri(), scanner.nextInt());
+                    inscrieLaCurs(cursuri, scanner.nextInt());
                     break;
                 case 6:
 
-                    cursvalabil(mg.getCursuri());
+                    cursvalabil(cursuri);
                     break;
                 case 7:
                     System.out.println("Te-ai delogat. La revedere!");
