@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-
+///e cam degeaba mainu ca l am mutat in consola whatever...
 //        List<Curs> cursuri = new ArrayList<>();
 //        List<Profesor> profesori = new ArrayList<>();
 //        List<Student> studenti = new ArrayList<>();
@@ -31,7 +31,7 @@ public class Main {
 //        curs.actualizeazaNota(student2, 10);
 //        note.add(new Nota(curs.getId(),student2.getId(),curs.getNota().get(student2) ));
 //        note.add(new Nota(curs.getId(), student.getId(), curs.getNota().get(student)));
-//        student.dashboardSTD(cursuri);
+//
 //        try{
 //            fd.displayTeachers(profesori);
 //            fd.displayStudents(studenti);

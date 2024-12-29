@@ -92,6 +92,7 @@ public class Student extends User {
         return anAles;
     }
     public void vizualizeazaCursuri(List<Curs>cursuri){
+        if(cursuri!=null){
         int anAles=alegean();
         if (anAles!=this.an){
             System.out.println("Nu sunteți în anul " + anAles + ". Sunteți în anul " + this.an + ".");
@@ -103,6 +104,8 @@ public class Student extends User {
                 System.out.println("ID: " + curs.getId() + ", Nume: " + curs.getNume() + ", Descriere: " + curs.getDescriere());
             }
         }
+    }
+        System.out.println("nu sunt cursuri inregistrate");
     }
 
     @Override
