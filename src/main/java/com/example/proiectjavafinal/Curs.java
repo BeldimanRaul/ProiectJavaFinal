@@ -59,21 +59,26 @@ public class Curs {
         System.out.println("Student adăugat: " + student.getNume());
 
     }
+
     public void stergeStudenti(Student student) {
         nota.remove(student);
     }
 
     public void actualizeazaNota(Student student, int notaNoua) {
-        if (!nota.containsKey(student)) {
-            System.out.println("Studentul nu este înscris la acest curs.");
+        if (notaNoua >= 1 && notaNoua <= 10) {
+            if (!nota.containsKey(student)) {
+                System.out.println("Studentul nu este înscris la acest curs.");
+            }
+
+            nota.put(student, notaNoua);
+            System.out.println("Notă actualizată pentru studentul " + student.getNume());
+
+        }else {
+            System.out.println("introdu o nota intre 1 si 10 ");
         }
-
-        nota.put(student, notaNoua);
-        System.out.println("Notă actualizată pentru studentul " + student.getNume() );
-
     }
 
-    public List<Student>getStudentiInscrisi(){
+    public List<Student> getStudentiInscrisi() {
         return nota.keySet().stream().toList();
     }
 

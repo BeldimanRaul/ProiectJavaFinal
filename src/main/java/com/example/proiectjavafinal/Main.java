@@ -7,13 +7,14 @@ import java.util.HashSet;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         List<Curs> cursuri = new ArrayList<>();
         List<Profesor> profesori = new ArrayList<>();
         List<Student> studenti = new ArrayList<>();
         List<Nota> note = new ArrayList<>();
         FileDisplay fd = new FileDisplay();
+        FileDataManager cititorgen= new FileDataManager();
 
 
         Profesor profesor = new Profesor(1, "Popescu", "Ion", "popescu.ion", "parola");
@@ -25,7 +26,7 @@ public class Main {
         studenti.add(student);
         curs.adaugareStudenti(student);
         curs.actualizeazaNota(student, 10);
-
+        note.add(new Nota(curs.getId(), student.getId(), curs.getNota().get(student)));
 
         try{
             fd.displayTeachers(profesori);

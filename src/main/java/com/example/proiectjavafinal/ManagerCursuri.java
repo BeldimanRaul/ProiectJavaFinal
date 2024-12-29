@@ -9,10 +9,7 @@ public class ManagerCursuri {
     List<Curs> cursuri;
     HashMap<Integer, ArrayList<Student>>grupareaStudDupaAn;
 
-    public ManagerCursuri(HashMap<Integer, ArrayList<Student>> grupareaStudDupaAn, List<Curs> cursuri) {
-        this.grupareaStudDupaAn = grupareaStudDupaAn;
-        this.cursuri = cursuri;
-    }
+
 
     public void adaugareCursuri(Curs curs) {
         cursuri.add(curs);
