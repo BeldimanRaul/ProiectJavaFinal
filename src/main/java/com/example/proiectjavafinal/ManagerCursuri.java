@@ -12,7 +12,7 @@ public class ManagerCursuri {
 
 
     public void adaugareCursuri(Curs curs) {
-        cursuri.add(curs);
+        this.cursuri.add(curs);
     }
     public void stergereCursuri(Curs curs) {
         cursuri.remove(curs);

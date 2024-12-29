@@ -16,7 +16,7 @@ public class Student extends User {
 
     public Student(int id, String nume, String prenume, int an, String grupa, String username, String password) {
         super(username, password);
-        this.id =List.of(id);
+        this.id = List.of(id);
         this.nume = nume;
         this.prenume = prenume;
         this.an = an;
@@ -47,7 +47,7 @@ public class Student extends User {
     }
 
     /// Metoda dashboard pentru  utilizator
-    public void dashboardSTD(List<Curs>cursuri) {
+    public void dashboardSTD(List<Curs> cursuri) {
         Scanner scanner = new Scanner(System.in); // Instanțierea scannerului
         while (true) {
             System.out.println("\nDashboard Student:");
@@ -55,7 +55,9 @@ public class Student extends User {
             System.out.println("2. Vizualizeaza Note");
             System.out.println("3. Vizualizeaza Media");
             System.out.println("4. Vizualizeaza Restante");
-            System.out.println("5. Logout");
+            System.out.println("5. Inscrie-te la un curs");
+            System.out.println("6. Vezi cursuri valabile");
+            System.out.println("6. Logout");
 
             System.out.print("Alege o opțiune: ");
             int optiune = scanner.nextInt();
@@ -66,15 +68,22 @@ public class Student extends User {
                     vizualizeazaCursuri(cursuri);
                     break;
                 case 2:
-                     vizualizeazaNote();
-                   break;
+                    //vizualizeazaNote();
+                    break;
                 case 3:
                     //vizualizeazaMedia();
-                  break;
+                    break;
                 case 4:
                     // vizualizeazaRestante();
-                 break;
+                    break;
                 case 5:
+                    inscrieLaCurs(mg.getCursuri(), scanner.nextInt());
+                    break;
+                case 6:
+
+                    cursvalabil(mg.getCursuri());
+                    break;
+                case 7:
                     System.out.println("Te-ai delogat. La revedere!");
                     scanner.close();
                     return;
@@ -84,10 +93,10 @@ public class Student extends User {
         }
 
 
-
     }
-    ///METODE PT PRIMA OPTIUNE
 
+    /// METODE PT PRIMA OPTIUNE
+ManagerCursuri mg = new ManagerCursuri();
     public void vizualizeazaCursuri(List<Curs> cursuri) {
         if (cursuri == null || cursuri.isEmpty()) {
             System.out.println("Nu sunt cursuri înregistrate.");
@@ -108,9 +117,6 @@ public class Student extends User {
         }
     }
 
-    public void vizualizeazaNote(){
-
-    }
     public void inscrieLaCurs(List<Curs> cursuri, int cursID) {
         for (Curs curs : cursuri) {
             if (curs.getId() == cursID) {
@@ -120,6 +126,25 @@ public class Student extends User {
             }
         }
         System.out.println("Cursul cu ID-ul " + cursID + " nu a fost găsit.");
+    }
+
+    private static void cursvalabil(List<Curs> cursuri) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Introdu anul pentru care doresti să vezi cursurile valabile:");
+        int an = sc.nextInt();
+        sc.nextLine();
+
+        boolean cursurigasite = false;
+        for (Curs curs : cursuri) {
+            if (curs.getAn() == an) {
+                cursurigasite = true;
+                System.out.println("ID: " + curs.getId() + ", Nume: " + curs.getNume() + ", Descriere: " + curs.getDescriere());
+
+            }
+        }
+        if (!cursurigasite) {
+            System.out.println("Nu există cursuri valabile pentru anul " + an + ".");
+        }
     }
 
     @Override
@@ -133,3 +158,6 @@ public class Student extends User {
                 '}';
     }
 }
+
+
+
