@@ -42,6 +42,7 @@ public class Consola {
         note.add(new Nota(curs.getId(), student.getId(), curs.getNota().get(student)));
 
         // Interfața principală pentru utilizator
+        ///SA FAC SA SE STEARGA ECRANUL DUPA FIECARE ITERARE INTELEGI TU.....
         while (true) {
             System.out.println("Selectati optiunea dorita:");
             System.out.println("1. Login");
@@ -59,9 +60,10 @@ public class Consola {
                     register();
                     try {
                         fd.displayStudents(studenti);
+                        fd.displayTeachers(profesori);
                     }
                     catch (IOException e) {
-                        e.printStackTrace();
+                        System.out.println("nu am scris in fisier ");
                     }
                     break;
                 case 3:
@@ -69,6 +71,8 @@ public class Consola {
                     break;
                 default:
                     System.out.println("Optiune invalida!");
+
+
             }
         }
     }

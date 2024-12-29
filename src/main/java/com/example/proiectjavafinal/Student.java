@@ -44,7 +44,7 @@ public class Student extends User {
         return nume;
     }
 
-    // Metoda dashboard pentru interacțiunea cu utilizatorul
+    /// Metoda dashboard pentru  utilizator
     public void dashboardSTD(List<Curs>cursuri) {
         Scanner scanner = new Scanner(System.in); // Instanțierea scannerului
         while (true) {
@@ -64,7 +64,7 @@ public class Student extends User {
                     vizualizeazaCursuri(cursuri);
                     break;
                 case 2:
-                    // vizualizeazaNote();
+                     vizualizeazaNote();
                    break;
                 case 3:
                     //vizualizeazaMedia();
@@ -84,6 +84,7 @@ public class Student extends User {
 
 
     }
+    ///METODE PT PRIMA OPTIUNE
     public int alegean(){
         System.out.println("alege an pt curs");
         Scanner scanner = new Scanner(System.in);
@@ -106,6 +107,10 @@ public class Student extends User {
         }
     }
         System.out.println("nu sunt cursuri inregistrate");
+    }
+
+    public void vizualizeazaNote(){
+
     }
 
     @Override
