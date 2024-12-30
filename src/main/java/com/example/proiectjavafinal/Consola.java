@@ -74,7 +74,7 @@ public class Consola {
                 case 2:
                     register();
                     try {
-                        fd.displayStudents(studentisinote.);
+                        fd.displayStudents(studentisinote.keySet());
                         fd.displayTeachers(profesori);
                     } catch (IOException e) {
                         System.out.println("nu am scris in fisier ");
@@ -150,7 +150,7 @@ public class Consola {
             sc.nextLine(); // Consumă newline-ul rămas
 
             Student student = new Student(id, nume, prenume, an, "", username, password);
-            studentisinote.add(student);
+            studentisinote.put(student,null);
 
             System.out.println("Student inregistrat cu succes!");
             System.out.println("ID-ul tau este: " + id);

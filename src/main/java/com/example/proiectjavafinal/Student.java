@@ -11,6 +11,7 @@ public class Student extends User {
     private String grupa;
     private int an;
     private Set<Integer> idinscrierecurs;
+    private List<Nota>note;
 
 
     public Student(int id, String nume, String prenume, int an, String grupa, String username, String password) {
@@ -21,6 +22,7 @@ public class Student extends User {
         this.an = an;
         this.grupa = grupa;
         this.idinscrierecurs = new HashSet<>();
+        this.note = new ArrayList<>();
 
     }
 
@@ -49,6 +51,9 @@ public class Student extends User {
 
     public String getNume() {
         return nume;
+    }
+    public void addNota(Nota nota) {
+        this.note.add(nota); // Method to add a note to the list
     }
 
     /// Metoda dashboard pentru  utilizator

@@ -1,8 +1,6 @@
 package com.example.proiectjavafinal;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Curs {
     int id;
@@ -10,7 +8,7 @@ public class Curs {
     String descriere;
     Profesor profesor;
     Set<Student> studenti;
-    HashMap<Student, Integer> nota;
+    Map<Student, List<Nota>> nota;
     int an;
     int idProfesor;
 
@@ -35,7 +33,7 @@ public class Curs {
         return an;
     }
 
-    public HashMap<Student, Integer> getNota() {
+    public Map<Student, List<Nota>> getNota() {
         return nota;
     }
 
@@ -57,7 +55,10 @@ public class Curs {
 
     /// va fi folosita de profesor in interfata
     public void adaugareStudenti(Student student) {
-        nota.put(student, null);
+        if(!studenti.contains(student)) {
+            studenti.add(student);
+            nota.put(student, new ArrayList<>());
+        }
 
 
     }
@@ -68,19 +69,8 @@ public class Curs {
     }
 
     /// si asta doar de prof
-    public void actualizeazaNota(Student student, int notaNoua) {
-        if (notaNoua >= 1 && notaNoua <= 10) {
-            if (!nota.containsKey(student)) {
-
-            }
-
-            nota.put(student, notaNoua);
 
 
-        } else {
-            System.out.println("introdu o nota intre 1 si 10 ");
-        }
-    }
 
     /// tot de prof va fi folosita
     public List<Student> getStudentiInscrisi() {
