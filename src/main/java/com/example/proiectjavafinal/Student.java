@@ -78,7 +78,7 @@ public class Student extends User {
                     vizualizeazaCursuri(cursuri);
                     break;
                 case 2:
-                    //vizualizeazaNote();
+                    vizualizeazaNote(note);
                     break;
                 case 3:
                     //vizualizeazaMedia();
@@ -105,6 +105,8 @@ public class Student extends User {
 
     }
 
+
+    public void vizualizeazaMedia(){}
 
     public void vizualizeazaNote(List<Nota> note) {
         if (!note.isEmpty()) {

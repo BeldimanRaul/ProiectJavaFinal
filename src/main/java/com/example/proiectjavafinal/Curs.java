@@ -18,7 +18,8 @@ public class Curs {
         this.idProfesor = idProfesor;
         this.descriere = descriere;
         this.nume = nume;
-        this.nota = new HashMap<>();
+        this.studenti = new HashSet<>(); // Initialize the studenti set
+        this.nota = new HashMap<>(); // Initialize the nota map
     }
 
     public int getId() {
@@ -53,37 +54,36 @@ public class Curs {
         return nume;
     }
 
-    /// va fi folosita de profesor in interfata
     public void adaugareStudenti(Student student) {
         if(!studenti.contains(student)) {
             studenti.add(student);
             nota.put(student, new ArrayList<>());
         }
-
-
     }
 
-    /// si asta la fel
     public void stergeStudenti(Student student) {
+        studenti.remove(student);
         nota.remove(student);
     }
 
-    /// si asta doar de prof
-
-
-
-    /// tot de prof va fi folosita
     public List<Student> getStudentiInscrisi() {
-        return nota.keySet().stream().toList();
+        return new ArrayList<>(nota.keySet());
     }
 
     public void addProfesor(Profesor profesor) {
         this.profesor = profesor;
     }
-    ///TREBUIE SA FAC O FUNCTIE SA VAD NUMA NOTELE GEN PT STUDENTI GEN SA BAG UN STUDENT KEY SI SA VAD NOTA VALUE...
-    ///
-    ///
 
+    public void actualizeazaNota(Student student, Integer notaNoua) {
+        if (nota.containsKey(student)) {
+            List<Nota> listaNote = nota.get(student);
+            Nota newNota = new Nota(this.id, student.getId(), notaNoua);
+            listaNote.add(newNota); // Add the new grade to the student's list of grades
+            student.addNota(newNota); // Also add the grade to the student's own list
+        } else {
+            System.out.println("Studentul nu este inscris la acest curs.");
+        }
+    }
 
     @Override
     public String toString() {
@@ -98,5 +98,4 @@ public class Curs {
                 ", idProfesor=" + idProfesor +
                 '}';
     }
-
 }

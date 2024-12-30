@@ -3,6 +3,7 @@ package com.example.proiectjavafinal;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -55,17 +56,18 @@ public class FileDisplay {
 
         }w.close();
     }
-public void displayNote(List<Nota> note) throws IOException {
-        BufferedWriter w= new BufferedWriter(new FileWriter(notePath));
-        for (Nota nota : note) {
-            w.write(nota.getIdCurs()+","+
-                    nota.getIdStudent()+","+
-                    nota.getNota());
-            w.newLine();
-
+    public void displayNote(Collection<List<Nota>> noteCollection) throws IOException {
+        BufferedWriter w = new BufferedWriter(new FileWriter(notePath));
+        for (List<Nota> noteList : noteCollection) {
+            for (Nota nota : noteList) {
+                w.write(nota.getIdCurs() + "," +
+                        nota.getIdStudent() + "," +
+                        nota.getNota());
+                w.newLine();
+            }
         }
         w.close();
-}
+    }
 
 }
 

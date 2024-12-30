@@ -7,8 +7,7 @@ public class Consola {
 
     private static Scanner sc = new Scanner(System.in);
     private static ManagerCursuri mg = new ManagerCursuri();
-    private static HashMap<Student,List<Integer>> studentisinote = new HashMap<>();
-    private static List<Integer>note= new ArrayList<>();
+    private static HashMap<Student,List<Nota>> studentisinote = new HashMap<>();
     private static List<Profesor> profesori = new ArrayList<>();
     private static User utilizatorilogati = null;
 
@@ -40,15 +39,16 @@ public class Consola {
         curs2.adaugareStudenti(student);
         curs.adaugareStudenti(student2);
         curs.actualizeazaNota(student, 10);
-        curs.actualizeazaNota(student2, 10);
-        studentisinote.put(student,);
+        curs.actualizeazaNota(student, 9);
+        studentisinote.put(student, curs.getNota().get(student));
+        studentisinote.put(student, curs.getNota().get(student));
 
 
         try {
             fd.displayTeachers(profesori);
             fd.displayStudents(studentisinote.keySet());
             fd.displayCurs(mg.getCursuri());
-            fd.displayNote(note);
+            fd.displayNote(studentisinote.values());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -76,6 +76,7 @@ public class Consola {
                     try {
                         fd.displayStudents(studentisinote.keySet());
                         fd.displayTeachers(profesori);
+                        fd.displayNote(studentisinote.values());
                     } catch (IOException e) {
                         System.out.println("nu am scris in fisier ");
                     }
