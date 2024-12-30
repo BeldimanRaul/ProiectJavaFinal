@@ -9,6 +9,7 @@ public class FileDataManager {
     String cursPath = "curs.txt";
     String profPath = "prof.txt";
     String notePath = "note.txt";
+    int test;
 
 
     public List<Curs> createCourseData(String cursPath) throws IOException {
@@ -67,4 +68,5 @@ public class FileDataManager {
         br.close();
         return noteData;
     }
+
 }

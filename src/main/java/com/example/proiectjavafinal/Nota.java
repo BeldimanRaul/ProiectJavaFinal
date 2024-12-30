@@ -30,5 +30,9 @@ public class Nota {
         return nota;
     }
 
+    public void setIdCurs(int idCurs) {
+        this.idCurs = idCurs;
+    }
+
 
 }

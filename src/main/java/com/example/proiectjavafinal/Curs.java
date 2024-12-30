@@ -11,6 +11,7 @@ public class Curs {
     Map<Student, List<Nota>> nota;
     int an;
     int idProfesor;
+    int twest;
 
     public Curs(int an, int idProfesor, String descriere, String nume) {
         this.an = an;

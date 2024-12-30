@@ -12,6 +12,7 @@ public class FileDisplay {
     String cursPath = "curs.txt";
     String profPath = "prof.txt";
     String notePath = "note.txt";
+    int test;
 
     public void displayStudents(Set<Student> studenti) throws IOException {
         BufferedWriter w = new BufferedWriter(new FileWriter(studentPath));

@@ -111,7 +111,7 @@ public class Student extends User {
     public void vizualizeazaNote(List<Nota> note) {
         if (!note.isEmpty()) {
             for (Nota nota : note) {
-                System.out.println("nota ta este" + nota.getNota() + "la cursul" + nota.getIdCurs());
+                System.out.println("nota taa este" + nota.getNota() + "la cursul" + nota.getIdCurs());
             }
         }
         System.out.println("nu ai inca note");

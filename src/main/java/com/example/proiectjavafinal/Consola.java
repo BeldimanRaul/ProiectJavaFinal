@@ -98,7 +98,7 @@ public class Consola {
 
     private static void login() {
         if (studentisinote.keySet() == null || studentisinote.keySet().isEmpty()) {
-            System.out.println("Nu există utilizatori înregistrați.");
+            System.out.println("Nu există useri înregistrați.");
             return;
         }
 
