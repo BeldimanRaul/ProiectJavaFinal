@@ -1,6 +1,7 @@
 package com.example.proiectjavafinal;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Random;
@@ -65,7 +66,7 @@ public class Student extends User {
 
             switch (optiune) {
                 case 1:
-                    vizualizeazaCursuri(cursuri);
+                    //vizualizeazaCursuri(cursuri);
                     break;
                 case 2:
                     //vizualizeazaNote();
@@ -96,26 +97,8 @@ public class Student extends User {
     }
 
     /// METODE PT PRIMA OPTIUNE
-ManagerCursuri mg = new ManagerCursuri();
-    public void vizualizeazaCursuri(List<Curs> cursuri) {
-        if (cursuri == null || cursuri.isEmpty()) {
-            System.out.println("Nu sunt cursuri înregistrate.");
-            return;
-        }
 
-        boolean cursuriGasite = false;
-        System.out.println("Cursuri la care ești înscris:");
-        for (Curs curs : cursuri) {
-            if (curs.getStudenti().contains(this)) {
-                System.out.println("ID: " + curs.getId() + ", Nume: " + curs.getNume() + ", Descriere: " + curs.getDescriere());
-                cursuriGasite = true;
-            }
-        }
 
-        if (!cursuriGasite) {
-            System.out.println("Nu ești înscris la niciun curs.");
-        }
-    }
 
     public void inscrieLaCurs(List<Curs> cursuri, int cursID) {
         for (Curs curs : cursuri) {
@@ -128,7 +111,7 @@ ManagerCursuri mg = new ManagerCursuri();
         System.out.println("Cursul cu ID-ul " + cursID + " nu a fost găsit.");
     }
 
-    private static void cursvalabil(List<Curs> cursuri) {
+    private  void cursvalabil(List<Curs> cursuri) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Introdu anul pentru care doresti să vezi cursurile valabile:");
         int an = sc.nextInt();

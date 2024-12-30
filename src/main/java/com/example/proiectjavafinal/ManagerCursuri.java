@@ -6,18 +6,18 @@ import java.util.List;
 import java.util.Set;
 
 public class ManagerCursuri {
-    List<Curs> cursuri;
+    List<Curs> cursurii;
     HashMap<Integer, ArrayList<Student>>grupareaStudDupaAn;
 
     public ManagerCursuri() {
-        this.cursuri = new ArrayList<>();
+        this.cursurii = new ArrayList<>();
     }
 
     public void adaugareCursuri(Curs curs) {
-        this.cursuri.add(curs);
+        this.cursurii.add(curs);
     }
     public void stergereCursuri(Curs curs) {
-        cursuri.remove(curs);
+        cursurii.remove(curs);
     }
 
     public HashMap<Integer, ArrayList<Student>> getGrupareaStudDupaAn() {
@@ -25,6 +25,6 @@ public class ManagerCursuri {
     }
 
     public List<Curs> getCursuri() {
-        return cursuri;
+        return cursurii;
     }
 }

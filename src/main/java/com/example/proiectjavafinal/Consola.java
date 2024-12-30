@@ -7,7 +7,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Consola {
-    // Instanțe de obiecte necesare
+
     private static Scanner sc = new Scanner(System.in);
     private static ManagerCursuri mg = new ManagerCursuri();
     private static List<Student> studenti = new ArrayList<>();
@@ -24,7 +24,10 @@ public class Consola {
         Profesor profesor = new Profesor(1, "Popescu", "Ion", "popescu.ion", "parola");
         profesori.add(profesor);
         Curs curs = new Curs(1, 1, "Curs de Matematică", "Matematică");
-        cursuri.add(curs);
+        Curs curs2=new Curs (1,1,"peul;ala","mamsmsnjdsnbdbd");
+
+        mg.adaugareCursuri(curs);
+        mg.adaugareCursuri(curs2);
         curs.profesor = profesor;
 
         // Creare studenti de test
@@ -34,6 +37,7 @@ public class Consola {
 
         // Adăugare studenți la curs și actualizare note de test
         curs.adaugareStudenti(student);
+        curs2.adaugareStudenti(student);
         curs.adaugareStudenti(student2);
         curs.actualizeazaNota(student, 10);
         curs.actualizeazaNota(student2, 10);
