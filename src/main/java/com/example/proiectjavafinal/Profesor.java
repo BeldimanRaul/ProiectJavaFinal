@@ -1,5 +1,7 @@
 package com.example.proiectjavafinal;
 
+import java.util.List;
+
 public class Profesor extends User {
     int id;
     String nume;
@@ -26,6 +28,12 @@ public class Profesor extends User {
     public String getNume() {
         return nume;
     }
+
+    public void dashboardProfesor(List<Curs> cursuri){
+
+    }
+
+
 
     @Override
     public String toString() {

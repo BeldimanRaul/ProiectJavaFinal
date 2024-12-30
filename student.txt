@@ -1,1 +1,1 @@
-[1],Ionescu,Maria,2,LF4731,maria.ionescu@gmail.com,parola
+1,Ionescu,Maria,2,LF4731,maria.ionescu@gmail.com,parola

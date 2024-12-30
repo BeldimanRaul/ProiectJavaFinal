@@ -20,6 +20,7 @@ public class Consola {
         FileDisplay fd = new FileDisplay();
         FileDataManager cititorgen = new FileDataManager();
 
+
         // Creare obiecte de test pentru profesori și studenți
         Profesor profesor = new Profesor(1, "Popescu", "Ion", "popescu.ion", "parola");
         profesori.add(profesor);
@@ -45,7 +46,7 @@ public class Consola {
         try {
             fd.displayTeachers(profesori);
             fd.displayStudents(studenti);
-            fd.displayCurs(cursuri);
+            fd.displayCurs(mg.getCursuri());
             fd.displayNote(note);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -113,10 +114,10 @@ public class Consola {
                 // Verificare tip utilizator și apelare dashboard
                 if (user instanceof Student) {
                     Student student = (Student) user;
-                    student.dashboardSTD(mg.getCursuri()); // Dashboard pentru studenți
+                    student.dashboardSTD(mg.getCursuri()); /// Dashboard pentru studenți
                 } else if (user instanceof Profesor) {
                     Profesor profesor = (Profesor) user;
-                    // profesor.dashboardProfesor(mg.getCursuri()); // Dashboard pentru profesori (de implementat)
+                     profesor.dashboardProfesor(mg.getCursuri()); /// Dashboard pentru profesori (de implementat)
                 }
                 return;
             }
