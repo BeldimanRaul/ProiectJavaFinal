@@ -9,4 +9,8 @@ public class IdGenerator {
         Random random = new Random();
         return random.nextInt(marginesus-marginejos)+marginesus;
     }
+
+
+
+
 }

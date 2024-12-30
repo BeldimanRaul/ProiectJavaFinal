@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
+import java.util.Set;
 
 public class FileDisplay {
     String studentPath = "student.txt";
@@ -11,7 +12,7 @@ public class FileDisplay {
     String profPath = "prof.txt";
     String notePath = "note.txt";
 
-    public void displayStudents(List<Student> studenti) throws IOException {
+    public void displayStudents(Set<Student> studenti) throws IOException {
         BufferedWriter w = new BufferedWriter(new FileWriter(studentPath));
 
         for (Student student : studenti) {

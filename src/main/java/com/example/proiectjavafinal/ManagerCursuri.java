@@ -27,4 +27,5 @@ public class ManagerCursuri {
     public List<Curs> getCursuri() {
         return cursurii;
     }
+
 }

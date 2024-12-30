@@ -1,16 +1,14 @@
 package com.example.proiectjavafinal;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class Consola {
 
     private static Scanner sc = new Scanner(System.in);
     private static ManagerCursuri mg = new ManagerCursuri();
-    private static List<Student> studenti = new ArrayList<>();
+    private static HashMap<Student,List<Integer>> studentisinote = new HashMap<>();
+    private static List<Integer>note= new ArrayList<>();
     private static List<Profesor> profesori = new ArrayList<>();
     private static User utilizatorilogati = null;
 
@@ -25,6 +23,7 @@ public class Consola {
         Profesor profesor = new Profesor(1, "Popescu", "Ion", "popescu.ion", "parola");
         profesori.add(profesor);
         Curs curs = new Curs(1, 1, "Curs de Matematică", "Matematică");
+
         Curs curs2=new Curs (1,1,"peul;ala","mamsmsnjdsnbdbd");
 
         mg.adaugareCursuri(curs);
@@ -34,18 +33,20 @@ public class Consola {
         // Creare studenti de test
         Student student = new Student(1, "Ionescu", "Maria", 2, "LF4731", "maria.ionescu@gmail.com", "parola");
         Student student2 = new Student(1, "Ionescu", "Maria", 3, "LF4731", "maria.ionescu@gmail.com", "parola");
-        studenti.add(student);
 
-        // Adăugare studenți la curs și actualizare note de test
+
+        /// Adăugare studenți la curs și actualizare note de test///MOMENTAN NU MERG
         curs.adaugareStudenti(student);
         curs2.adaugareStudenti(student);
         curs.adaugareStudenti(student2);
         curs.actualizeazaNota(student, 10);
         curs.actualizeazaNota(student2, 10);
+        studentisinote.put(student,);
+
 
         try {
             fd.displayTeachers(profesori);
-            fd.displayStudents(studenti);
+            fd.displayStudents(studentisinote.keySet());
             fd.displayCurs(mg.getCursuri());
             fd.displayNote(note);
         } catch (IOException e) {
@@ -73,7 +74,7 @@ public class Consola {
                 case 2:
                     register();
                     try {
-                        fd.displayStudents(studenti);
+                        fd.displayStudents(studentisinote.);
                         fd.displayTeachers(profesori);
                     } catch (IOException e) {
                         System.out.println("nu am scris in fisier ");
@@ -95,7 +96,7 @@ public class Consola {
 
 
     private static void login() {
-        if (studenti == null || studenti.isEmpty()) {
+        if (studentisinote.keySet() == null || studentisinote.keySet().isEmpty()) {
             System.out.println("Nu există utilizatori înregistrați.");
             return;
         }
@@ -106,7 +107,7 @@ public class Consola {
         String password = sc.nextLine().trim();
 
         /// Verificare utilizator existent
-        for (User user : studenti) {
+        for (User user : studentisinote.keySet()) {
             if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
                 utilizatorilogati = user;
                 System.out.println("Login cu succes!");
@@ -149,7 +150,7 @@ public class Consola {
             sc.nextLine(); // Consumă newline-ul rămas
 
             Student student = new Student(id, nume, prenume, an, "", username, password);
-            studenti.add(student);
+            studentisinote.add(student);
 
             System.out.println("Student inregistrat cu succes!");
             System.out.println("ID-ul tau este: " + id);
