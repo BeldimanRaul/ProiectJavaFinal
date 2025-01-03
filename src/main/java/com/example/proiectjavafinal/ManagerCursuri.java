@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 public class ManagerCursuri {
-    List<Curs> cursurii;
+   private static List<Curs> cursurii=new ArrayList<>();
     HashMap<Integer, ArrayList<Student>>grupareaStudDupaAn;
 
     public ManagerCursuri() {

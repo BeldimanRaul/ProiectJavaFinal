@@ -7,13 +7,13 @@ public class Consola {
 
     private static Scanner sc = new Scanner(System.in);
     private static ManagerCursuri mg = new ManagerCursuri();
-    private static HashMap<Student,List<Nota>> studentisinote = new HashMap<>();
+    private static Map<Student, List<Nota>> studentisinote = new HashMap<>();
     private static List<Profesor> profesori = new ArrayList<>();
     private static User utilizatorilogati = null;
 
     public static void main(String[] args) throws IOException {
-        List<Curs> cursuri = new ArrayList<>();
-        List<Nota> note = new ArrayList<>();
+
+
         FileDisplay fd = new FileDisplay();
         FileDataManager cititorgen = new FileDataManager();
 
@@ -21,27 +21,27 @@ public class Consola {
         // Creare obiecte de test pentru profesori și studenți
         Profesor profesor = new Profesor(1, "Popescu", "Ion", "popescu.ion", "parola");
         profesori.add(profesor);
-        Curs curs = new Curs(1, 1, "Curs de Matematică", "Matematică");
+        Curs curs = new Curs(1, 1, "Curs de Matematică", "Matematica");
+        Curs curs2 = new Curs(1, 1, "peul;ala", "mamsmsnjdsnbdbd");
 
-        Curs curs2=new Curs (1,1,"peul;ala","mamsmsnjdsnbdbd");
 
-        mg.adaugareCursuri(curs);
-        mg.adaugareCursuri(curs2);
         curs.profesor = profesor;
 
         // Creare studenti de test
-        Student student = new Student(1, "Ionescu", "Maria", 2, "LF4731", "maria.ionescu@gmail.com", "parola");
+        Student student = new Student(1, "Ionescu", "Maria", 2, "LF4731", "maraproba", "parola");
         Student student2 = new Student(1, "Ionescu", "Maria", 3, "LF4731", "maria.ionescu@gmail.com", "parola");
 
 
         /// Adăugare studenți la curs și actualizare note de test///MOMENTAN NU MERG
         curs.adaugareStudenti(student);
-        curs2.adaugareStudenti(student);
+        curs2.adaugareStudenti(student2);
         curs.adaugareStudenti(student2);
         curs.actualizeazaNota(student, 10);
         curs.actualizeazaNota(student, 9);
         studentisinote.put(student, curs.getNota().get(student));
         studentisinote.put(student, curs.getNota().get(student));
+        mg.adaugareCursuri(curs);
+        mg.adaugareCursuri(curs2);
 
 
         try {
@@ -95,7 +95,6 @@ public class Consola {
     }
 
 
-
     private static void login() {
         if (studentisinote.keySet() == null || studentisinote.keySet().isEmpty()) {
             System.out.println("Nu există useri înregistrați.");
@@ -103,7 +102,7 @@ public class Consola {
         }
 
         System.out.print("Username: ");
-        String username = sc.nextLine().trim(); // Elimină spațiile albe
+        String username = sc.nextLine().trim();
         System.out.print("Password: ");
         String password = sc.nextLine().trim();
 
@@ -119,7 +118,7 @@ public class Consola {
                     student.dashboardSTD(mg.getCursuri()); /// Dashboard pentru studenți
                 } else if (user instanceof Profesor) {
                     Profesor profesor = (Profesor) user;
-                     profesor.dashboardProfesor(mg.getCursuri()); /// Dashboard pentru profesori (de implementat)
+                    profesor.dashboardProfesor(mg.getCursuri()); /// Dashboard pentru profesori (de implementat)
                 }
                 return;
             }
@@ -151,26 +150,26 @@ public class Consola {
             sc.nextLine(); // Consumă newline-ul rămas
 
             Student student = new Student(id, nume, prenume, an, "", username, password);
-            studentisinote.put(student,null);
+            studentisinote.put(student, new ArrayList<>());
 
             System.out.println("Student inregistrat cu succes!");
-            System.out.println("ID-ul tau este: " + id);
+            System.out.println("ID-ul tau este: " + id);///fa ceva cu id ul
         } else if (userType.equalsIgnoreCase("Profesor")) {
             // Înregistrare profesor
             System.out.println("Username: ");
             String username = sc.nextLine();
-            System.out.println("Password:"); // parola trebuie hashuita
+            System.out.println("Password:"); /// parola trebuie hashuita ( . Y . )
             String password = sc.nextLine();
             System.out.println("Nume:");
             String nume = sc.nextLine();
             System.out.println("Prenume:");
             String prenume = sc.nextLine();
             System.out.println("Introdu ID-ul: ");
-            int id = sc.nextInt(); // Solicită introducerea ID-ului
-            sc.nextLine(); // Consumă newline-ul rămas
+            int id = sc.nextInt();
+            sc.nextLine();
             System.out.println("În ce an predai?");
             int an = sc.nextInt();
-            sc.nextLine(); // Consumă newline-ul rămas
+            sc.nextLine();
             Profesor profesor = new Profesor(id, nume, prenume, username, password);
             profesori.add(profesor);
 

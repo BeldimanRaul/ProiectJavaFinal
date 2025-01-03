@@ -2,6 +2,7 @@ package com.example.proiectjavafinal;
 
 
 import java.util.*;
+import java.util.Scanner;
 
 public class Student extends User {
 
@@ -11,7 +12,9 @@ public class Student extends User {
     private String grupa;
     private int an;
     private Set<Integer> idinscrierecurs;
-    private List<Nota>note;
+    private List<Nota> note;
+    ManagerCursuri mg=new ManagerCursuri();
+    List<Curs>cursurii=mg.getCursuri();
 
 
     public Student(int id, String nume, String prenume, int an, String grupa, String username, String password) {
@@ -52,8 +55,9 @@ public class Student extends User {
     public String getNume() {
         return nume;
     }
+
     public void addNota(Nota nota) {
-        this.note.add(nota); // Method to add a note to the list
+        this.note.add(nota);
     }
 
     /// Metoda dashboard pentru  utilizator
@@ -75,10 +79,10 @@ public class Student extends User {
 
             switch (optiune) {
                 case 1:
-                    vizualizeazaCursuri(cursuri);
+                    vizualizeazaCursuri();
                     break;
                 case 2:
-                    vizualizeazaNote(note);
+                    vizualizeazaNote(note,cursurii);
                     break;
                 case 3:
                     //vizualizeazaMedia();
@@ -106,30 +110,46 @@ public class Student extends User {
     }
 
 
-    public void vizualizeazaMedia(){}
+    public void vizualizeazaMedia() {
+    }
 
-    public void vizualizeazaNote(List<Nota> note) {
-        if (!note.isEmpty()) {
-            for (Nota nota : note) {
-                System.out.println("nota taa este" + nota.getNota() + "la cursul" + nota.getIdCurs());
+    public void vizualizeazaNote(List<Nota> note, List<Curs> cursurii) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("La ce curs vrei sa it vezi nota?");
+        String curscautat = scanner.nextLine();
+        boolean cursgasit = false;
+        for (Curs curs : cursurii) {
+            if (curscautat.equalsIgnoreCase(String.valueOf(curs))) {
+                cursgasit = true;
+                boolean notagasita = false;
+
+                for (Nota nota : note) {
+                    if (nota.getIdCurs() == curs.getId()) {
+                        notagasita = true;
+                        System.out.println("Nota ta este " + nota.getNota() + " la cursul " + curs.getNume());
+                    }
+                    if(!notagasita){
+                        System.out.println("Nu ai inca note la acest curs.");
+                    }
+                }
             }
+            System.out.println("Cursul cautat nu exista!");
         }
-        System.out.println("nu ai inca note");
     }
 
     public void inscrielacurs(int cursId) {
         idinscrierecurs.add(cursId);
     }
 
-    public void vizualizeazaCursuri(List<Curs> cursuri) {
-        if (cursuri == null || cursuri.isEmpty()) {
+    public void vizualizeazaCursuri() {
+        if (cursurii == null || cursurii.isEmpty()) {
             System.out.println("Nu sunt cursuri înregistrate.");
             return;
         }
 
         System.out.println("Cursuri la care ești înscris:");
         boolean cursuriGasite = false;
-        for (Curs curs : cursuri) {
+        for (Curs curs : cursurii) {
             if (idinscrierecurs.contains(curs.getId())) {
                 System.out.println("ID: " + curs.getId() + ", Nume: " + curs.getNume() + ", Descriere: " + curs.getDescriere());
                 cursuriGasite = true;
@@ -142,8 +162,8 @@ public class Student extends User {
     }
 
 
-    public void inscrieLaCurs(List<Curs> cursuri, int cursID) {
-        for (Curs curs : cursuri) {
+    public void inscrieLaCurs(List<Curs> cursurii, int cursID) {
+        for (Curs curs : cursurii) {
             if (curs.getId() == cursID) {
                 curs.adaugareStudenti(this);
                 System.out.println("Te-ai înscris cu succes la cursul: " + curs.getNume());
@@ -155,14 +175,14 @@ public class Student extends User {
         System.out.println("Cursul cu ID-ul " + cursID + " nu a fost găsit.");
     }
 
-    private void cursvalabil(List<Curs> cursuri) {
+    private void cursvalabil(List<Curs> cursurii) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Introdu anul pentru care doresti să vezi cursurile valabile:");
         int an = sc.nextInt();
         sc.nextLine();
 
         boolean cursurigasite = false;
-        for (Curs curs : cursuri) {
+        for (Curs curs : cursurii) {
             if (curs.getAn() == an) {
                 cursurigasite = true;
                 System.out.println("ID: " + curs.getId() + ", Nume: " + curs.getNume() + ", Descriere: " + curs.getDescriere());

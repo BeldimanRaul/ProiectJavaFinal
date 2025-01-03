@@ -79,8 +79,8 @@ public class Curs {
         if (nota.containsKey(student)) {
             List<Nota> listaNote = nota.get(student);
             Nota newNota = new Nota(this.id, student.getId(), notaNoua);
-            listaNote.add(newNota); // Add the new grade to the student's list of grades
-            student.addNota(newNota); // Also add the grade to the student's own list
+            listaNote.add(newNota);
+            student.addNota(newNota);
         } else {
             System.out.println("Studentul nu este inscris la acest curs.");
         }
