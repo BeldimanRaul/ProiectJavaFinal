@@ -30,7 +30,10 @@ public class Consola {
         // Creare studenti de test
         Student student = new Student(1, "Ionescu", "Maria", 2, "LF4731", "maraproba", "parola");
         Student student2 = new Student(1, "Ionescu", "Maria", 3, "LF4731", "maria.ionescu@gmail.com", "parola");
-
+        mg.adaugareCursuri(curs);
+        student.inscrieLaCurs(curs.getId());
+        mg.adaugareCursuri(curs2);
+        student2.inscrieLaCurs(curs2.getId());
 
         /// Adăugare studenți la curs și actualizare note de test///MOMENTAN NU MERG
         curs.adaugareStudenti(student);
@@ -40,8 +43,7 @@ public class Consola {
         curs.actualizeazaNota(student, 9);
         studentisinote.put(student, curs.getNota().get(student));
         studentisinote.put(student, curs.getNota().get(student));
-        mg.adaugareCursuri(curs);
-        mg.adaugareCursuri(curs2);
+
 
 
         try {
@@ -65,7 +67,7 @@ public class Consola {
 
 
             int optiune = sc.nextInt();
-            sc.nextLine(); // Consumă newline-ul rămas
+            sc.nextLine();
 
             switch (optiune) {
                 case 1:
@@ -112,7 +114,7 @@ public class Consola {
                 utilizatorilogati = user;
                 System.out.println("Login cu succes!");
 
-                // Verificare tip utilizator și apelare dashboard
+
                 if (user instanceof Student) {
                     Student student = (Student) user;
                     student.dashboardSTD(mg.getCursuri()); /// Dashboard pentru studenți

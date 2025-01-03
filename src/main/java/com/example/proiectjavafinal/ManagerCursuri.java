@@ -24,7 +24,7 @@ public class ManagerCursuri {
         return grupareaStudDupaAn;
     }
 
-    public List<Curs> getCursuri() {
+    public static List<Curs> getCursuri() {
         return cursurii;
     }
 

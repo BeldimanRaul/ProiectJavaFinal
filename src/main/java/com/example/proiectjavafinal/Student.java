@@ -13,8 +13,6 @@ public class Student extends User {
     private int an;
     private Set<Integer> idinscrierecurs;
     private List<Nota> note;
-    ManagerCursuri mg=new ManagerCursuri();
-    List<Curs>cursurii=mg.getCursuri();
 
 
     public Student(int id, String nume, String prenume, int an, String grupa, String username, String password) {
@@ -60,6 +58,7 @@ public class Student extends User {
         this.note.add(nota);
     }
 
+
     /// Metoda dashboard pentru  utilizator
     public void dashboardSTD(List<Curs> cursuri) {
         Scanner scanner = new Scanner(System.in); // Instanțierea scannerului
@@ -82,20 +81,20 @@ public class Student extends User {
                     vizualizeazaCursuri();
                     break;
                 case 2:
-                    vizualizeazaNote(note,cursurii);
+                    vizualizeazaNote(note);
                     break;
                 case 3:
-                    //vizualizeazaMedia();
+                    vizualizeazaMedia(note);
                     break;
                 case 4:
-                    // vizualizeazaRestante();
+                     vizualizeazaRestante(note);
                     break;
                 case 5:
-                    inscrieLaCurs(cursuri, scanner.nextInt());
+                    inscrieLaCurs(scanner.nextInt());
                     break;
                 case 6:
 
-                    cursvalabil(cursuri);
+                    cursvalabil(ManagerCursuri.getCursuri());
                     break;
                 case 7:
                     System.out.println("Te-ai delogat. La revedere!");
@@ -110,16 +109,61 @@ public class Student extends User {
     }
 
 
-    public void vizualizeazaMedia() {
+    public double calculeazaMedia(List<Nota> note) {
+        double suma = 0;
+        for (Nota nota : note) {
+            suma += nota.getNota();
+        }
+        return suma / note.size();
     }
 
-    public void vizualizeazaNote(List<Nota> note, List<Curs> cursurii) {
+
+    public void vizualizeazaRestante(List<Nota> note) {
+
+    }
+    public void vizualizeazaMedia(List<Nota> note) {
+        List<Curs> cursurii = ManagerCursuri.getCursuri();
         Scanner scanner = new Scanner(System.in);
-        System.out.println("La ce curs vrei sa it vezi nota?");
         String curscautat = scanner.nextLine();
         boolean cursgasit = false;
+        List<Nota> noteCurs = new ArrayList<>();
         for (Curs curs : cursurii) {
-            if (curscautat.equalsIgnoreCase(String.valueOf(curs))) {
+            if (curscautat.equalsIgnoreCase(curs.getNume())) {
+                cursgasit = true;
+                double suma = 0;
+                for (Nota nota : note) {
+                    if (nota.getIdCurs() == curs.getId()) {
+                       noteCurs.add(nota);
+                    }
+
+                }
+                if(!noteCurs.isEmpty()){
+                    double medie= calculeazaMedia(noteCurs);
+                    System.out.println("Media ta la cursul"+curs.getNume()+"este"+medie);
+                }else{
+                    System.out.println("Nu ai nota la cursul"+curs.getNume());
+                }
+
+                break;
+            }
+
+        }
+        if (!cursgasit) {
+            System.out.println("nu ai note");
+        }
+
+    }
+
+
+    public void vizualizeazaNote(List<Nota> note) {
+        List<Curs> cursurii = ManagerCursuri.getCursuri();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("La ce curs vrei să îți vezi nota?");
+        String curscautat = scanner.nextLine();
+        boolean cursgasit = false;
+
+        for (Curs curs : cursurii) {
+            if (curscautat.equalsIgnoreCase(curs.getNume())) {
                 cursgasit = true;
                 boolean notagasita = false;
 
@@ -128,12 +172,17 @@ public class Student extends User {
                         notagasita = true;
                         System.out.println("Nota ta este " + nota.getNota() + " la cursul " + curs.getNume());
                     }
-                    if(!notagasita){
-                        System.out.println("Nu ai inca note la acest curs.");
-                    }
                 }
+
+                if (!notagasita) {
+                    System.out.println("Nu ai încă note la acest curs.");
+                }
+                break;
             }
-            System.out.println("Cursul cautat nu exista!");
+        }
+
+        if (!cursgasit) {
+            System.out.println("Cursul căutat nu există!");
         }
     }
 
@@ -142,6 +191,7 @@ public class Student extends User {
     }
 
     public void vizualizeazaCursuri() {
+        List<Curs> cursurii = ManagerCursuri.getCursuri();
         if (cursurii == null || cursurii.isEmpty()) {
             System.out.println("Nu sunt cursuri înregistrate.");
             return;
@@ -161,28 +211,28 @@ public class Student extends User {
         }
     }
 
-
-    public void inscrieLaCurs(List<Curs> cursurii, int cursID) {
+    public void inscrieLaCurs(int cursID) {
+        List<Curs> cursurii = ManagerCursuri.getCursuri();
         for (Curs curs : cursurii) {
             if (curs.getId() == cursID) {
                 curs.adaugareStudenti(this);
-                System.out.println("Te-ai înscris cu succes la cursul: " + curs.getNume());
+                /// System.out.println("Te-ai înscris cu succes la cursul: " + curs.getNume());
                 idinscrierecurs.add(curs.getId());
-                System.out.println("id bagat in lista");
+                ///System.out.println("id bagat in lista");
                 return;
             }
         }
         System.out.println("Cursul cu ID-ul " + cursID + " nu a fost găsit.");
     }
 
-    private void cursvalabil(List<Curs> cursurii) {
+    private void cursvalabil(List<Curs> cursuri) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Introdu anul pentru care doresti să vezi cursurile valabile:");
         int an = sc.nextInt();
         sc.nextLine();
 
         boolean cursurigasite = false;
-        for (Curs curs : cursurii) {
+        for (Curs curs : cursuri) {
             if (curs.getAn() == an) {
                 cursurigasite = true;
                 System.out.println("ID: " + curs.getId() + ", Nume: " + curs.getNume() + ", Descriere: " + curs.getDescriere());
