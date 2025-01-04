@@ -23,8 +23,9 @@ public class Consola {
         profesori.add(profesor);
         Curs curs = new Curs(1, 1, "Curs de Matematică", "Matematica");
         Curs curs2 = new Curs(1, 1, "peul;ala", "mamsmsnjdsnbdbd");
+        Curs curs3 = new Curs(1, 1, "Curs de Matematică22222", "Matematica22");
 
-
+        curs3.profesor=profesor;
         curs.profesor = profesor;
 
         // Creare studenti de test
@@ -33,16 +34,22 @@ public class Consola {
         mg.adaugareCursuri(curs);
         student.inscrieLaCurs(curs.getId());
         mg.adaugareCursuri(curs2);
-        student2.inscrieLaCurs(curs2.getId());
+        student.inscrieLaCurs(curs2.getId());
+        mg.adaugareCursuri(curs3);
+        student.inscrieLaCurs(curs3.getId());
 
         /// Adăugare studenți la curs și actualizare note de test///MOMENTAN NU MERG
         curs.adaugareStudenti(student);
         curs2.adaugareStudenti(student2);
         curs.adaugareStudenti(student2);
+        curs3.adaugareStudenti(student);
         curs.actualizeazaNota(student, 10);
-        curs.actualizeazaNota(student, 9);
+        curs.actualizeazaNota(student, 6);
+        curs3.actualizeazaNota(student, 4);
+        curs3.actualizeazaNota(student, 2);
         studentisinote.put(student, curs.getNota().get(student));
-        studentisinote.put(student, curs.getNota().get(student));
+        //studentisinote.put(student, curs.getNota().get(student));
+        studentisinote.put(student,curs3.getNota().get(student));
 
 
 

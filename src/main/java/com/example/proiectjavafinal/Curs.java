@@ -39,7 +39,7 @@ public class Curs {
         return nota;
     }
 
-    public Set<Student> getStudenti() {
+    public  Set<Student> getStudenti() {
         return studenti;
     }
 
@@ -67,7 +67,7 @@ public class Curs {
         nota.remove(student);
     }
 
-    public List<Student> getStudentiInscrisi() {
+    public  List<Student> getStudentiInscrisi() {
         return new ArrayList<>(nota.keySet());
     }
 

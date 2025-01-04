@@ -87,7 +87,7 @@ public class Student extends User {
                     vizualizeazaMedia(note);
                     break;
                 case 4:
-                     vizualizeazaRestante(note);
+                    vizualizeazaRestante(note);
                     break;
                 case 5:
                     inscrieLaCurs(scanner.nextInt());
@@ -119,8 +119,12 @@ public class Student extends User {
 
 
     public void vizualizeazaRestante(List<Nota> note) {
+        List<Curs> cursurii = ManagerCursuri.getCursuri();
+        boolean restantegasite = false;
+
 
     }
+
     public void vizualizeazaMedia(List<Nota> note) {
         List<Curs> cursurii = ManagerCursuri.getCursuri();
         Scanner scanner = new Scanner(System.in);
@@ -133,15 +137,15 @@ public class Student extends User {
                 double suma = 0;
                 for (Nota nota : note) {
                     if (nota.getIdCurs() == curs.getId()) {
-                       noteCurs.add(nota);
+                        noteCurs.add(nota);
                     }
 
                 }
-                if(!noteCurs.isEmpty()){
-                    double medie= calculeazaMedia(noteCurs);
-                    System.out.println("Media ta la cursul"+curs.getNume()+"este"+medie);
-                }else{
-                    System.out.println("Nu ai nota la cursul"+curs.getNume());
+                if (!noteCurs.isEmpty()) {
+                    double medie = calculeazaMedia(noteCurs);
+                    System.out.println("Media ta la cursul" + curs.getNume() + "este" + medie);
+                } else {
+                    System.out.println("Nu ai nota la cursul" + curs.getNume());
                 }
 
                 break;
