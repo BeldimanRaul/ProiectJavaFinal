@@ -75,17 +75,29 @@ public class Curs {
         this.profesor = profesor;
     }
 
+
+
+    ///metoda temporara sa vad daca merg celelalte func de la student
     public void actualizeazaNota(Student student, Integer notaNoua) {
-        if (nota.containsKey(student)) {
-            List<Nota> listaNote = nota.get(student);
-            Nota newNota = new Nota(this.id, student.getId(), notaNoua);
-            listaNote.add(newNota);
-            student.addNota(newNota);
-        } else {
-            System.out.println("Studentul nu este inscris la acest curs.");
+
+        if (notaNoua < 10||notaNoua==null) {
+            if (nota.containsKey(student)) {
+                List<Nota> listaNote = nota.get(student);
+                Nota newNota = new Nota(this.id, student.getId(), notaNoua);
+                listaNote.add(newNota);
+                student.addNota(newNota);
+                adaugaNotaInColectie(student, newNota);
+            } else {
+                System.out.println("Studentul nu este înscris la acest curs.");
+            }
+        }
+        else{
+            System.out.println("Pune o nota normala");
         }
     }
-
+    private void adaugaNotaInColectie(Student student, Nota nota) {
+        Consola.studentisinote.computeIfAbsent(student, k -> new ArrayList<>()).add(nota);
+    }
     @Override
     public String toString() {
         return "Curs{" +

@@ -6,9 +6,9 @@ import java.util.*;
 public class Consola {
 
     private static Scanner sc = new Scanner(System.in);
-    private static ManagerCursuri mg = new ManagerCursuri();
-    private static Map<Student, List<Nota>> studentisinote = new HashMap<>();
-    private static List<Profesor> profesori = new ArrayList<>();
+    public static ManagerCursuri mg = new ManagerCursuri();
+    public static Map<Student, List<Nota>> studentisinote = new HashMap<>();
+    public static List<Profesor> profesori = new ArrayList<>();
     private static User utilizatorilogati = null;
 
     public static void main(String[] args) throws IOException {
@@ -18,6 +18,7 @@ public class Consola {
         FileDataManager cititorgen = new FileDataManager();
 
 
+
         // Creare obiecte de test pentru profesori și studenți
         Profesor profesor = new Profesor(1, "Popescu", "Ion", "popescu.ion", "parola");
         profesori.add(profesor);
@@ -25,31 +26,31 @@ public class Consola {
         Curs curs2 = new Curs(1, 1, "peul;ala", "mamsmsnjdsnbdbd");
         Curs curs3 = new Curs(1, 1, "Curs de Matematică22222", "Matematica22");
 
-        curs3.profesor=profesor;
+        curs3.profesor = profesor;
         curs.profesor = profesor;
 
-        // Creare studenti de test
-        Student student = new Student(1, "Ionescu", "Maria", 2, "LF4731", "maraproba", "parola");
-        Student student2 = new Student(1, "Ionescu", "Maria", 3, "LF4731", "maria.ionescu@gmail.com", "parola");
-        mg.adaugareCursuri(curs);
-        student.inscrieLaCurs(curs.getId());
-        mg.adaugareCursuri(curs2);
-        student.inscrieLaCurs(curs2.getId());
-        mg.adaugareCursuri(curs3);
-        student.inscrieLaCurs(curs3.getId());
+        // Creare studenți de test
+        Student student1 = new Student(1, "Ionescu", "Maria", 2, "LF4731", "pipi", "parola");
+        Student student2 = new Student(2, "Popescu", "George", 3, "LF4731", "caca", "parola");
 
-        /// Adăugare studenți la curs și actualizare note de test///MOMENTAN NU MERG
-        curs.adaugareStudenti(student);
-        curs2.adaugareStudenti(student2);
-        curs.adaugareStudenti(student2);
-        curs3.adaugareStudenti(student);
-        curs.actualizeazaNota(student, 10);
-        curs.actualizeazaNota(student, 6);
-        curs3.actualizeazaNota(student, 4);
-        curs3.actualizeazaNota(student, 2);
-        studentisinote.put(student, curs.getNota().get(student));
-        //studentisinote.put(student, curs.getNota().get(student));
-        studentisinote.put(student,curs3.getNota().get(student));
+        mg.adaugareCursuri(curs);
+        student1.inscrieLaCurs(curs.getId());
+        mg.adaugareCursuri(curs2);
+        mg.adaugareCursuri(curs3);
+        student1.inscrieLaCurs(curs3.getId());
+        student2.inscrieLaCurs(curs3.getId());
+
+        // Adăugare studenți la cursuri
+        curs.adaugareStudenti(student1);
+        curs3.adaugareStudenti(student1);
+        curs3.adaugareStudenti(student2);
+
+        // Adăugare note pentru studenți
+        curs.actualizeazaNota(student1, 8);
+        curs.actualizeazaNota(student1, 4);
+        curs3.actualizeazaNota(student1, 3);
+        curs3.actualizeazaNota(student2, 4);
+
 
 
 
@@ -59,8 +60,10 @@ public class Consola {
             fd.displayCurs(mg.getCursuri());
             fd.displayNote(studentisinote.values());
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.err.println("Eroare la scrierea în fișierul de note: " + e.getMessage());
         }
+
+
 
 
         // Interfața principală pentru utilizator

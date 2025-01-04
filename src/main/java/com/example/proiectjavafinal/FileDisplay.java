@@ -61,6 +61,7 @@ public class FileDisplay {
         BufferedWriter w = new BufferedWriter(new FileWriter(notePath));
         for (List<Nota> noteList : noteCollection) {
             for (Nota nota : noteList) {
+
                 w.write(nota.getIdCurs() + "," +
                         nota.getIdStudent() + "," +
                         nota.getNota());

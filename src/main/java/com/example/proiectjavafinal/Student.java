@@ -4,12 +4,14 @@ package com.example.proiectjavafinal;
 import java.util.*;
 import java.util.Scanner;
 
+import static com.example.proiectjavafinal.Consola.studentisinote;
+
 public class Student extends User {
 
     private int id;
     private String nume;
     private String prenume;
-    private String grupa;
+    private  String grupa;
     private int an;
     private Set<Integer> idinscrierecurs;
     private List<Nota> note;
@@ -107,8 +109,6 @@ public class Student extends User {
 
 
     }
-
-
     public double calculeazaMedia(List<Nota> note) {
         double suma = 0;
         for (Nota nota : note) {
@@ -116,15 +116,9 @@ public class Student extends User {
         }
         return suma / note.size();
     }
-
-
     public void vizualizeazaRestante(List<Nota> note) {
-        List<Curs> cursurii = ManagerCursuri.getCursuri();
-        boolean restantegasite = false;
-
 
     }
-
     public void vizualizeazaMedia(List<Nota> note) {
         List<Curs> cursurii = ManagerCursuri.getCursuri();
         Scanner scanner = new Scanner(System.in);
@@ -143,7 +137,11 @@ public class Student extends User {
                 }
                 if (!noteCurs.isEmpty()) {
                     double medie = calculeazaMedia(noteCurs);
-                    System.out.println("Media ta la cursul" + curs.getNume() + "este" + medie);
+                    if(medie<5){
+                        System.out.println("Ai restanta puiule, media ta este "+medie);
+                    }
+                    else if (medie>=5){
+                    System.out.println("Media ta la cursul" + curs.getNume() + "este" + medie);}
                 } else {
                     System.out.println("Nu ai nota la cursul" + curs.getNume());
                 }
@@ -157,8 +155,6 @@ public class Student extends User {
         }
 
     }
-
-
     public void vizualizeazaNote(List<Nota> note) {
         List<Curs> cursurii = ManagerCursuri.getCursuri();
         Scanner scanner = new Scanner(System.in);
@@ -189,11 +185,9 @@ public class Student extends User {
             System.out.println("Cursul căutat nu există!");
         }
     }
-
     public void inscrielacurs(int cursId) {
         idinscrierecurs.add(cursId);
     }
-
     public void vizualizeazaCursuri() {
         List<Curs> cursurii = ManagerCursuri.getCursuri();
         if (cursurii == null || cursurii.isEmpty()) {
@@ -214,7 +208,6 @@ public class Student extends User {
             System.out.println("Nu ești înscris la niciun curs.");
         }
     }
-
     public void inscrieLaCurs(int cursID) {
         List<Curs> cursurii = ManagerCursuri.getCursuri();
         for (Curs curs : cursurii) {
@@ -228,7 +221,6 @@ public class Student extends User {
         }
         System.out.println("Cursul cu ID-ul " + cursID + " nu a fost găsit.");
     }
-
     private void cursvalabil(List<Curs> cursuri) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Introdu anul pentru care doresti să vezi cursurile valabile:");
