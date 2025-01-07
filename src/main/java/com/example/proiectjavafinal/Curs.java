@@ -19,8 +19,8 @@ public class Curs {
         this.idProfesor = idProfesor;
         this.descriere = descriere;
         this.nume = nume;
-        this.studenti = new HashSet<>(); // Initialize the studenti set
-        this.nota = new HashMap<>(); // Initialize the nota map
+        this.studenti = new HashSet<>();
+        this.nota = new HashMap<>();
     }
 
     public int getId() {
