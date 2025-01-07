@@ -46,10 +46,10 @@ public class Consola {
         curs3.adaugareStudenti(student2);
 
         // Adăugare note pentru studenți
-        curs.actualizeazaNota(student1, 8);
-        curs.actualizeazaNota(student1, 4);
-        curs3.actualizeazaNota(student1, 3);
-        curs3.actualizeazaNota(student2, 4);
+        curs.actualizeazaNota(student1, 10);
+        curs.actualizeazaNota(student1, 10);
+        curs3.actualizeazaNota(student1, 9);
+        curs3.actualizeazaNota(student1, 7);
 
 
 
@@ -69,15 +69,13 @@ public class Consola {
         // Interfața principală pentru utilizator
         ///SA FAC SA SE STEARGA ECRANUL DUPA FIECARE ITERARE INTELEGI TU.....
         while (true) {
-            System.out.println("Selectati optiunea dorita:");
+
             System.out.println("1. Login");
             System.out.println("2. Register");
             System.out.println("3. Close");
-
-
-
-            int optiune = sc.nextInt();
-            sc.nextLine();
+            System.out.println("Selectati optiunea dorita:");
+           int optiune = sc.nextInt();
+           sc.nextLine();
 
             switch (optiune) {
                 case 1:
@@ -149,6 +147,10 @@ public class Consola {
             System.out.println("Username: ");
             String username = sc.nextLine();
             System.out.println("Password:");
+            if(!ManagerUtilizatori.verificaUnicitateUsername(username)) {
+                System.out.println("User existent , alege altul");
+                return;
+            }
             String password = sc.nextLine();
             System.out.println("Nume:");
             String nume = sc.nextLine();

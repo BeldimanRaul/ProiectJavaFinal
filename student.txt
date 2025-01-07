@@ -1,2 +1,4 @@
-2,Popescu,George,3,LF4731,caca,parola
+11,ss,sss,1,,caca,parola
 1,Ionescu,Maria,2,LF4731,pipi,parola
+11,pulea,franaru,1,,vergil,mobexpert
+22,dd,dd,1,,caca,pipi

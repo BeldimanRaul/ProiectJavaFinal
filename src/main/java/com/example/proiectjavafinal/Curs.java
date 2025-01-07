@@ -80,7 +80,7 @@ public class Curs {
     ///metoda temporara sa vad daca merg celelalte func de la student
     public void actualizeazaNota(Student student, Integer notaNoua) {
 
-        if (notaNoua < 10||notaNoua==null) {
+        if (notaNoua < 11||notaNoua==null) {
             if (nota.containsKey(student)) {
                 List<Nota> listaNote = nota.get(student);
                 Nota newNota = new Nota(this.id, student.getId(), notaNoua);

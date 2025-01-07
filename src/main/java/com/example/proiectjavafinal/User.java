@@ -1,7 +1,7 @@
 package com.example.proiectjavafinal;
 
 public abstract class User {
-    private String username;
+    private  String username;
     private String password;
 
     public User(String username, String password) {
@@ -10,7 +10,7 @@ public abstract class User {
     }
 
 
-    public String getUsername() {
+    public  String getUsername() {
         return username;
     }
 

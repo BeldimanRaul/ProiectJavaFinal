@@ -11,7 +11,7 @@ public class Student extends User {
     private int id;
     private String nume;
     private String prenume;
-    private  String grupa;
+    private String grupa;
     private int an;
     private Set<Integer> idinscrierecurs;
     private List<Nota> note;
@@ -100,7 +100,7 @@ public class Student extends User {
                     break;
                 case 7:
                     System.out.println("Te-ai delogat. La revedere!");
-                    scanner.close();
+
                     return;
                 default:
                     System.out.println("Opțiune invalidă! Te rog să alegi din nou.");
@@ -109,6 +109,7 @@ public class Student extends User {
 
 
     }
+
     public double calculeazaMedia(List<Nota> note) {
         double suma = 0;
         for (Nota nota : note) {
@@ -116,9 +117,32 @@ public class Student extends User {
         }
         return suma / note.size();
     }
-    public void vizualizeazaRestante(List<Nota> note) {
 
+    public void vizualizeazaRestante(List<Nota> note) {
+        List<Curs> cursuri = ManagerCursuri.getCursuri();
+        boolean cursurigasite = false;
+        for (Curs curs:cursuri){
+            if(idinscrierecurs.contains(curs.getId())) {
+                List<Nota>notecurs=new ArrayList<>();
+                for(Nota nota: note){
+                    if(nota.getIdCurs()==curs.getId()){
+                        notecurs.add(nota);
+                    }
+                }
+                if(!notecurs.isEmpty()){
+                    double media = calculeazaMedia(notecurs);
+                    if(media<5){
+                        System.out.println("Esti restant la cursul "+ curs.getNume()+"media ta este "+media);
+                        cursurigasite = true;
+                    }
+                }
+            }
+        }
+        if(!cursurigasite){
+            System.out.println("Nu ai restante...inca");
+        }
     }
+
     public void vizualizeazaMedia(List<Nota> note) {
         List<Curs> cursurii = ManagerCursuri.getCursuri();
         Scanner scanner = new Scanner(System.in);
@@ -137,11 +161,11 @@ public class Student extends User {
                 }
                 if (!noteCurs.isEmpty()) {
                     double medie = calculeazaMedia(noteCurs);
-                    if(medie<5){
-                        System.out.println("Ai restanta puiule, media ta este "+medie);
+                    if (medie < 5) {
+                        System.out.println("Ai restanta puiule, media ta este " + medie);
+                    } else if (medie >= 5) {
+                        System.out.println("Media ta la cursul" + curs.getNume() + "este" + medie);
                     }
-                    else if (medie>=5){
-                    System.out.println("Media ta la cursul" + curs.getNume() + "este" + medie);}
                 } else {
                     System.out.println("Nu ai nota la cursul" + curs.getNume());
                 }
@@ -155,6 +179,7 @@ public class Student extends User {
         }
 
     }
+
     public void vizualizeazaNote(List<Nota> note) {
         List<Curs> cursurii = ManagerCursuri.getCursuri();
         Scanner scanner = new Scanner(System.in);
@@ -185,9 +210,9 @@ public class Student extends User {
             System.out.println("Cursul căutat nu există!");
         }
     }
-    public void inscrielacurs(int cursId) {
-        idinscrierecurs.add(cursId);
-    }
+
+
+
     public void vizualizeazaCursuri() {
         List<Curs> cursurii = ManagerCursuri.getCursuri();
         if (cursurii == null || cursurii.isEmpty()) {
@@ -208,6 +233,7 @@ public class Student extends User {
             System.out.println("Nu ești înscris la niciun curs.");
         }
     }
+
     public void inscrieLaCurs(int cursID) {
         List<Curs> cursurii = ManagerCursuri.getCursuri();
         for (Curs curs : cursurii) {
@@ -221,6 +247,7 @@ public class Student extends User {
         }
         System.out.println("Cursul cu ID-ul " + cursID + " nu a fost găsit.");
     }
+
     private void cursvalabil(List<Curs> cursuri) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Introdu anul pentru care doresti să vezi cursurile valabile:");
