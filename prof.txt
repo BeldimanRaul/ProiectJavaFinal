@@ -1,1 +1,1 @@
-1,parola,popescu.ion,Ion,Popescu
+1,Popescu,Ion,iongm,parola
