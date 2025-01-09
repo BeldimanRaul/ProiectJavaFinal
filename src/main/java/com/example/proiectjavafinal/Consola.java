@@ -23,17 +23,17 @@ public class Consola {
         profesori.add(profesor);
         Curs curs = new Curs(1, 1, "Curs introductiv în algebră și geometrie", "Matematică");
         Curs curs2 = new Curs(1, 2, "Noțiuni de bază despre programare în Java", "Programare Java");
-        Curs curs3 = new Curs(2, 3, "Istoria artei în perioada Renașterii", "Istoria Artei");
-        Curs curs4 = new Curs(2, 4, "Bazele chimiei organice", "Chimie");
-        Curs curs5 = new Curs(3, 5, "Introducere în psihologia comportamentală", "Psihologie");
-        Curs curs6 = new Curs(4, 6, "Fizică aplicată pentru inginerie", "Fizică Aplicată");
+        Curs curs3 = new Curs(1, 3, "Istoria artei în perioada Renașterii", "Istoria Artei");
+        Curs curs4 = new Curs(1, 4, "Bazele chimiei organice", "Chimie");
+        Curs curs5 = new Curs(1, 5, "Introducere în psihologia comportamentală", "Psihologie");
+        Curs curs6 = new Curs(1, 6, "Fizică aplicată pentru inginerie", "Fizică Aplicată");
 
 
         curs3.profesor = profesor;
         curs.profesor = profesor;
 
         /// Creare studenți de test
-        Student student1 = new Student(1, "Ionescu", "Maria", 2, "LF4731", "pipi", "parola");
+        Student student1 = new Student(1, "Ionescu", "Maria", 1, "LF4731", "pipi", "parola");
         Student student2 = new Student(2, "Popescu", "George", 3, "LF4731", "caca", "parola");
 ///CURSUL 1
         mg.adaugareCursuri(curs);

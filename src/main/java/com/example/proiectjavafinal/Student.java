@@ -121,24 +121,24 @@ public class Student extends User {
     public void vizualizeazaRestante(List<Nota> note) {
         List<Curs> cursuri = ManagerCursuri.getCursuri();
         boolean cursurigasite = false;
-        for (Curs curs:cursuri){
-            if(idinscrierecurs.contains(curs.getId())) {
-                List<Nota>notecurs=new ArrayList<>();
-                for(Nota nota: note){
-                    if(nota.getIdCurs()==curs.getId()){
+        for (Curs curs : cursuri) {
+            if (idinscrierecurs.contains(curs.getId())) {
+                List<Nota> notecurs = new ArrayList<>();
+                for (Nota nota : note) {
+                    if (nota.getIdCurs() == curs.getId()) {
                         notecurs.add(nota);
                     }
                 }
-                if(!notecurs.isEmpty()){
+                if (!notecurs.isEmpty()) {
                     double media = calculeazaMedia(notecurs);
-                    if(media<5){
-                        System.out.println("Esti restant la cursul "+ curs.getNume()+"media ta este "+media);
+                    if (media < 5) {
+                        System.out.println("Esti restant la cursul " + curs.getNume() + "media ta este " + media);
                         cursurigasite = true;
                     }
                 }
             }
         }
-        if(!cursurigasite){
+        if (!cursurigasite) {
             System.out.println("Nu ai restante...inca");
         }
     }
@@ -212,7 +212,6 @@ public class Student extends User {
     }
 
 
-
     public void vizualizeazaCursuri() {
         List<Curs> cursurii = ManagerCursuri.getCursuri();
         if (cursurii == null || cursurii.isEmpty()) {
@@ -238,10 +237,15 @@ public class Student extends User {
         List<Curs> cursurii = ManagerCursuri.getCursuri();
         for (Curs curs : cursurii) {
             if (curs.getId() == cursID) {
-                curs.adaugareStudenti(this);
-                /// System.out.println("Te-ai înscris cu succes la cursul: " + curs.getNume());
-                idinscrierecurs.add(curs.getId());
-                ///System.out.println("id bagat in lista");
+                if (curs.getAn() == this.getAn()) {
+                    curs.adaugareStudenti(this);
+
+                    idinscrierecurs.add(curs.getId());
+                }
+                else{
+                    System.out.println("nu te poti inscrie la cursuri din alti ani");
+                }
+
                 return;
             }
         }
