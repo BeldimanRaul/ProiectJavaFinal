@@ -39,7 +39,7 @@ public class Consola {
 ///CURSUL 1
         mg.adaugareCursuri(curs);
         student1.inscrieLaCurs(curs.getId());
-         student2.inscrieLaCurs(curs.getId());
+        student2.inscrieLaCurs(curs.getId());
         ///CURSUL 2
         mg.adaugareCursuri(curs2);
 
@@ -113,8 +113,6 @@ public class Consola {
     }
 
 
-
-
     private static void login() throws IOException {
         System.out.println("Selectati tipul de utilizator");
         System.out.println("1.Student");
@@ -127,8 +125,8 @@ public class Consola {
         System.out.print("Password: ");
         String password = sc.nextLine().trim();
         String parolahash = SecuritateParole.parolahashuita(password);
-        if(optiune==3){
-            return ;
+        if (optiune == 3) {
+            return;
         }
         if (optiune == 1) {
             for (User user : studentisinote.keySet()) {
@@ -181,17 +179,17 @@ public class Consola {
             System.out.println("Prenume:");
             String prenume = sc.nextLine();
             //System.out.println("Introdu ID-ul: ");
-            //int id = sc.nextInt();
+            int id = IdGenerator.idElev();
             //sc.nextLine();
             System.out.println("În ce an ești?");
             int an = sc.nextInt();
             sc.nextLine();
 
-            Student student = new Student(IdGenerator.idElev(), nume, prenume, an, "", username, password);
+            Student student = new Student(id, nume, prenume, an, "", username, password);
             ManagerUtilizatori.adaugaUtilizatori(student);//verific si eu unicitatea
             studentisinote.put(student, new ArrayList<>());
             System.out.println("Student inregistrat cu succes!");
-            System.out.println("ID-ul tau este: " + IdGenerator.idElev());
+            System.out.println("ID-ul tau este: " + id);
         } else if (userType.equalsIgnoreCase("Profesor")) {
             // Înregistrare profesor
             System.out.println("Username: ");

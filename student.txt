@@ -1,4 +1,4 @@
-7,ionut,ionut,1,,ionutdm,parola
-4,beldiman,raul,1,,raulgm,parola
+6,ee,ee,1,,ugm,ugm
+4,raul,beld,1,,raulgm,parola
 2,Popescu,George,3,LF4731,stud2,parola
 1,Ionescu,Maria,1,LF4731,stud1,parola

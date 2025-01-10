@@ -12,7 +12,7 @@ public class IdGenerator {
         return random.nextInt(marginesus-marginejos)+marginesus;
     }
 public static synchronized int idElev(){
-    currentID++; // Increment the ID
+    currentID++;
     return currentID;
 
 }
