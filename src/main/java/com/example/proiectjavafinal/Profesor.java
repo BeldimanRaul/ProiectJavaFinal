@@ -33,7 +33,8 @@ FileDisplay fd=new FileDisplay();
         return nume;
     }
 
-    public void dashboardProfesor(List<Curs> cursuri) throws IOException {
+    public void dashboardProfesor() throws IOException {
+        List<Curs> cursuri = ManagerCursuri.getCursuri();
         Scanner sc = new Scanner(System.in);
         while (true) {
             System.out.println("1. Afișează cursurile predate");

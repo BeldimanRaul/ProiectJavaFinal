@@ -20,7 +20,7 @@ public class Student extends User {
 
     public Student(int id, String nume, String prenume, int an, String grupa, String username, String password) {
         super(username, password);
-        this.id = id;
+        this.id = IdGenerator.idElev();
         this.nume = nume;
         this.prenume = prenume;
         this.an = an;
@@ -63,7 +63,8 @@ public class Student extends User {
 
 
     /// Metoda dashboard pentru  utilizator
-    public void dashboardSTD(List<Curs> cursuri) {
+    public void dashboardSTD() {
+        List<Curs> cursuri = ManagerCursuri.getCursuri();
         Scanner scanner = new Scanner(System.in); // Instanțierea scannerului
         while (true) {
             System.out.println("\nDashboard Student:");
@@ -166,7 +167,7 @@ public class Student extends User {
                 if (!noteCurs.isEmpty()) {
                     double medie = calculeazaMedia(noteCurs);
                     if (medie < 5) {
-                        System.out.println("Ai restanta puiule, media ta este " + medie);
+                        System.out.println("Ai restanta , media ta este " + medie);
                     } else if (medie >= 5) {
                         System.out.println("Media ta la cursul" + curs.getNume() + "este" + medie);
                     }

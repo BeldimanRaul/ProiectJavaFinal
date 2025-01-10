@@ -137,7 +137,7 @@ public class Consola {
                     System.out.println("Spor la invatat Studentule");
                     if (user instanceof Student) {
                         Student student = (Student) user;
-                        student.dashboardSTD(mg.getCursuri());
+                        student.dashboardSTD();
                     }
                     return;
                 }
@@ -147,7 +147,7 @@ public class Consola {
                 if (profesor.getUsername().equals(username) && profesor.getPassword().equals(password)) {
                     utilizatorilogati = profesor;
                     System.out.println("Bun venit domn Profesor");
-                    profesor.dashboardProfesor(mg.getCursuri());
+                    profesor.dashboardProfesor();
                     return;
                 }
             }
@@ -180,18 +180,18 @@ public class Consola {
             String nume = sc.nextLine();
             System.out.println("Prenume:");
             String prenume = sc.nextLine();
-            System.out.println("Introdu ID-ul: ");
-            int id = sc.nextInt();
-            sc.nextLine();
+            //System.out.println("Introdu ID-ul: ");
+            //int id = sc.nextInt();
+            //sc.nextLine();
             System.out.println("În ce an ești?");
             int an = sc.nextInt();
             sc.nextLine();
 
-            Student student = new Student(id, nume, prenume, an, "", username, password);
+            Student student = new Student(IdGenerator.idElev(), nume, prenume, an, "", username, password);
             ManagerUtilizatori.adaugaUtilizatori(student);//verific si eu unicitatea
             studentisinote.put(student, new ArrayList<>());
             System.out.println("Student inregistrat cu succes!");
-            System.out.println("ID-ul tau este: " + id);///fa ceva cu id ul
+            System.out.println("ID-ul tau este: " + IdGenerator.idElev());
         } else if (userType.equalsIgnoreCase("Profesor")) {
             // Înregistrare profesor
             System.out.println("Username: ");
