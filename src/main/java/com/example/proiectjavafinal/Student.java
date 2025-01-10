@@ -15,6 +15,7 @@ public class Student extends User {
     private int an;
     private Set<Integer> idinscrierecurs;
     private List<Nota> note;
+    int test;
 
 
     public Student(int id, String nume, String prenume, int an, String grupa, String username, String password) {
@@ -29,7 +30,7 @@ public class Student extends User {
 
     }
 
-    // Getteri
+
 
 
     public Set<Integer> getIdinscrierecurs() {

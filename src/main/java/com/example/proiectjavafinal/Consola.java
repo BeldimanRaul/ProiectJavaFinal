@@ -10,6 +10,7 @@ public class Consola {
     public static Map<Student, List<Nota>> studentisinote = new HashMap<>();
     public static List<Profesor> profesori = new ArrayList<>();
     private static User utilizatorilogati = null;
+    int test;
 
     public static void main(String[] args) throws IOException {
 
