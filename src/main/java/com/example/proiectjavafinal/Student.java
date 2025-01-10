@@ -83,20 +83,20 @@ public class Student extends User {
                     vizualizeazaCursuri();
                     break;
                 case 2:
-                    vizualizeazaNote(note);
+                    vizualizeazaNote();
                     break;
                 case 3:
-                    vizualizeazaMedia(note);
+                    vizualizeazaMedia();
                     break;
                 case 4:
-                    vizualizeazaRestante(note);
+                    vizualizeazaRestante();
                     break;
                 case 5:
                     inscrieLaCurs(scanner.nextInt());
                     break;
                 case 6:
 
-                    cursvalabil(ManagerCursuri.getCursuri());
+                    cursvalabil();
                     break;
                 case 7:
                     System.out.println("Te-ai delogat. La revedere!");
@@ -111,6 +111,7 @@ public class Student extends User {
     }
 
     public double calculeazaMedia(List<Nota> note) {
+
         double suma = 0;
         for (Nota nota : note) {
             suma += nota.getNota();
@@ -118,8 +119,9 @@ public class Student extends User {
         return suma / note.size();
     }
 
-    public void vizualizeazaRestante(List<Nota> note) {
+    public void vizualizeazaRestante() {
         List<Curs> cursuri = ManagerCursuri.getCursuri();
+        List<Nota> note=this.note;
         boolean cursurigasite = false;
         for (Curs curs : cursuri) {
             if (idinscrierecurs.contains(curs.getId())) {
@@ -143,8 +145,9 @@ public class Student extends User {
         }
     }
 
-    public void vizualizeazaMedia(List<Nota> note) {
+    public void vizualizeazaMedia() {
         List<Curs> cursurii = ManagerCursuri.getCursuri();
+        List<Nota> note=this.note;
         Scanner scanner = new Scanner(System.in);
         String curscautat = scanner.nextLine();
         boolean cursgasit = false;
@@ -180,8 +183,9 @@ public class Student extends User {
 
     }
 
-    public void vizualizeazaNote(List<Nota> note) {
+    public void vizualizeazaNote() {
         List<Curs> cursurii = ManagerCursuri.getCursuri();
+        List<Nota> note=this.note;
         Scanner scanner = new Scanner(System.in);
         System.out.println("La ce curs vrei să îți vezi nota?");
         String curscautat = scanner.nextLine();
@@ -252,14 +256,15 @@ public class Student extends User {
         System.out.println("Cursul cu ID-ul " + cursID + " nu a fost găsit.");
     }
 
-    private void cursvalabil(List<Curs> cursuri) {
+    private void cursvalabil() {
+        List<Curs> cursurii = ManagerCursuri.getCursuri();
         Scanner sc = new Scanner(System.in);
         System.out.println("Introdu anul pentru care doresti să vezi cursurile valabile:");
         int an = sc.nextInt();
         sc.nextLine();
 
         boolean cursurigasite = false;
-        for (Curs curs : cursuri) {
+        for (Curs curs : cursurii) {
             if (curs.getAn() == an) {
                 cursurigasite = true;
                 System.out.println("ID: " + curs.getId() + ", Nume: " + curs.getNume() + ", Descriere: " + curs.getDescriere());

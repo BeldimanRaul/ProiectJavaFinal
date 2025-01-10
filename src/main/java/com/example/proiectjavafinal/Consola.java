@@ -33,8 +33,8 @@ public class Consola {
         curs.profesor = profesor;
 
         /// Creare studenți de test
-        Student student1 = new Student(1, "Ionescu", "Maria", 1, "LF4731", "pipi", "parola");
-        Student student2 = new Student(2, "Popescu", "George", 3, "LF4731", "caca", "parola");
+        Student student1 = new Student(1, "Ionescu", "Maria", 1, "LF4731", "stud1", "parola");
+        Student student2 = new Student(2, "Popescu", "George", 3, "LF4731", "stud2", "parola");
 ///CURSUL 1
         mg.adaugareCursuri(curs);
         student1.inscrieLaCurs(curs.getId());
@@ -55,9 +55,9 @@ public class Consola {
         /// Adăugare note pentru studenți
         curs.actualizeazaNota(student1, 10);
         curs.actualizeazaNota(student1, 10);
-        curs3.actualizeazaNota(student1, 9);
-        curs3.actualizeazaNota(student1, 7);
-        curs3.actualizeazaNota(student2, 9);
+        curs3.actualizeazaNota(student1, 4);
+        curs3.actualizeazaNota(student1, 4);
+        curs3.actualizeazaNota(student2, 4);
         curs3.actualizeazaNota(student2, 7);
 
 
@@ -127,7 +127,7 @@ public class Consola {
         String password = sc.nextLine().trim();
         String parolahash = SecuritateParole.parolahashuita(password);
         if(optiune==3){
-            return;
+            return ;
         }
         if (optiune == 1) {
             for (User user : studentisinote.keySet()) {

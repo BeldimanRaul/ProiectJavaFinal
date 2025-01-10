@@ -1,46 +1,27 @@
 package com.example.proiectjavafinal;
 
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
+
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
-public class Main {
-    public static void main(String[] args) throws IOException {
-///e cam degeaba mainu ca l am mutat in consola whatever...
-//        List<Curs> cursuri = new ArrayList<>();
-//        List<Profesor> profesori = new ArrayList<>();
-//        List<Student> studenti = new ArrayList<>();
-//        List<Nota> note = new ArrayList<>();
-//        FileDisplay fd = new FileDisplay();
-//        FileDataManager cititorgen= new FileDataManager();
-//
-//
-//        Profesor profesor = new Profesor(1, "Popescu", "Ion", "popescu.ion", "parola");
-//        profesori.add(profesor);
-//        Curs curs = new Curs(1, 1, "Curs de Matematică", "Matematică");
-//        cursuri.add(curs);
-//        curs.profesor = profesor;
-//        Student student = new Student(1, "Ionescu", "Maria", 2, "LF4731", "maria.ionescu@gmail.com", "parola");
-//        Student student2 = new Student(1, "Ionescu", "Maria", 3, "LF4731", "maria.ionescu@gmail.com", "parola");
-//        studenti.add(student);
-//        curs.adaugareStudenti(student);
-//        curs.adaugareStudenti(student2);
-//        curs.actualizeazaNota(student, 10);
-//        curs.actualizeazaNota(student2, 10);
-//        note.add(new Nota(curs.getId(),student2.getId(),curs.getNota().get(student2) ));
-//        note.add(new Nota(curs.getId(), student.getId(), curs.getNota().get(student)));
-//
-//        try{
-//            fd.displayTeachers(profesori);
-//            fd.displayStudents(studenti);
-//            fd.displayCurs(cursuri);
-//            fd.displayNote(note);
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//
+public class Main extends Application {
+    public static void main (String[] args) throws IOException {
+        launch(args);
 
+    }
+
+    @Override
+    public void start(Stage fereastra) throws Exception {
+        StackPane root = new StackPane();
+        Scene scene = new Scene(root,300,200);
+        fereastra.setTitle("test");
+        fereastra.setScene(scene);
+        fereastra.show();
     }
 }

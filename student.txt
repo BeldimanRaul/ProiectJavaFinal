@@ -1,2 +1,3 @@
-2,Popescu,George,3,LF4731,caca,parola
-1,Ionescu,Maria,1,LF4731,pipi,parola
+4,studentnou1,sn1,1,,studentnou,parolanoua
+2,Popescu,George,3,LF4731,stud2,parola
+1,Ionescu,Maria,1,LF4731,stud1,parola
