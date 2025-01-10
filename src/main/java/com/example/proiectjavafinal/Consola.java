@@ -34,8 +34,8 @@ public class Consola {
         curs.profesor = profesor;
 
         /// Creare studenți de test
-        Student student1 = new Student(1, "Ionescu", "Maria", 1, "LF4731", "stud1", "parola");
-        Student student2 = new Student(2, "Popescu", "George", 3, "LF4731", "stud2", "parola");
+        Student student1 = new Student(1111, "Ionescu", "Maria", 1, "LF4731", "stud1", "parola");
+        Student student2 = new Student(2111, "Popescu", "George", 1, "LF4731", "stud2", "parola");
 ///CURSUL 1
         mg.adaugareCursuri(curs);
         student1.inscrieLaCurs(curs.getId());
@@ -53,7 +53,7 @@ public class Consola {
         curs3.adaugareStudenti(student1);
         curs3.adaugareStudenti(student2);
 
-        /// Adăugare note pentru studenți
+        /// Adăugare note pentru studenți TEST
         curs.actualizeazaNota(student1, 10);
         curs.actualizeazaNota(student1, 10);
         curs3.actualizeazaNota(student1, 4);
@@ -61,18 +61,19 @@ public class Consola {
         curs3.actualizeazaNota(student2, 4);
         curs3.actualizeazaNota(student2, 7);
 
-
+///SCRIE IN FISIER STUDENTII DE TEST
         try {
             fd.displayTeachers(profesori);
             fd.displayStudents(studentisinote.keySet());
-            fd.displayCurs(mg.getCursuri());
+            fd.displayCurs();
             fd.displayNote(studentisinote.values());
         } catch (IOException e) {
             System.err.println("Eroare la scrierea în fișierul de note: " + e.getMessage());
         }
 
 
-        // Interfața principală pentru utilizator
+        // Interfața principală pentru utilizator in consola
+
 
         while (true) {
 
@@ -115,107 +116,134 @@ public class Consola {
 
     private static void login() throws IOException {
         System.out.println("Selectati tipul de utilizator");
-        System.out.println("1.Student");
-        System.out.println("2.Profesor");
-        System.out.println("3.Close");
+        System.out.println("1. Student");
+        System.out.println("2. Profesor");
+        System.out.println("3. Close");
+
         int optiune = sc.nextInt();
         sc.nextLine();
+
+        if (optiune == 3) {
+            return;
+        }
+
         System.out.print("Username: ");
         String username = sc.nextLine().trim();
         System.out.print("Password: ");
         String password = sc.nextLine().trim();
-        String parolahash = SecuritateParole.parolahashuita(password);
-        if (optiune == 3) {
-            return;
-        }
-        if (optiune == 1) {
-            for (User user : studentisinote.keySet()) {
-                if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
-                    utilizatorilogati = user;
-                    System.out.println("Spor la invatat Studentule");
-                    if (user instanceof Student) {
-                        Student student = (Student) user;
-                        student.dashboardSTD();
-                    }
-                    return;
-                }
-            }
-        } else if (optiune == 2) {
-            for (Profesor profesor : profesori) {
-                if (profesor.getUsername().equals(username) && profesor.getPassword().equals(password)) {
-                    utilizatorilogati = profesor;
-                    System.out.println("Bun venit domn Profesor");
-                    profesor.dashboardProfesor();
-                    return;
-                }
-            }
-
-
+        String parolahaz = SecuritateParole.parolahashuita(password);
+        if (autentificareUser(optiune, username, parolahaz)) {
+            System.out.println("Autentificare reușită!");
         } else {
-            System.out.println("Optiune invalida!");
-            return;
+            System.out.println("Login nereușit! Verificați username-ul și parola.");
         }
-        System.out.println("Login nereușit! Verificați username-ul și parola.");
     }
 
+    private static boolean autentificareUser(int optiune, String username, String password) throws IOException {
+        if (optiune == 1) {
+            return autentificareStudent(username, password);
+        } else if (optiune == 2) {
+            return autentificareProfesor(username, password);
+        } else {
+            System.out.println("Optiune invalida!");
+            return false;
+        }
+    }
+
+    private static boolean autentificareStudent(String username, String password) {
+        for (User user : studentisinote.keySet()) {
+            if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
+                utilizatorilogati = user;
+                System.out.println("Spor la invatat Studentule");
+                if (user instanceof Student) {
+                    Student student = (Student) user;
+                    student.dashboardSTD();
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean autentificareProfesor(String username, String password) throws IOException {
+        for (Profesor profesor : profesori) {
+            if (profesor.getUsername().equals(username) && profesor.getPassword().equals(password)) {
+                utilizatorilogati = profesor;
+                System.out.println("Bun venit domn Profesor");
+                profesor.dashboardProfesor();
+                return true;
+            }
+        }
+        return false;
+    }
     private static void register() {
         System.out.println("Tip utilizator: Student/Profesor");
-        String userType = sc.nextLine();
+        String userType = sc.nextLine().trim();
 
         if (userType.equalsIgnoreCase("Student")) {
-            // Înregistrare student
-            System.out.println("Username: ");
-            String username = sc.nextLine();
-            System.out.println("Password:");
-            if (!ManagerUtilizatori.verificaUnicitateUsername(username)) {
-                System.out.println("User existent , alege altul");
-                return;
-            }
-
-            String password = sc.nextLine();
-            String parolahaz = SecuritateParole.parolahashuita(password);
-            System.out.println("Nume:");
-            String nume = sc.nextLine();
-            System.out.println("Prenume:");
-            String prenume = sc.nextLine();
-            //System.out.println("Introdu ID-ul: ");
-            int id = IdGenerator.idElev();
-            //sc.nextLine();
-            System.out.println("În ce an ești?");
-            int an = sc.nextInt();
-            sc.nextLine();
-
-            Student student = new Student(id, nume, prenume, an, "", username, password);
-            ManagerUtilizatori.adaugaUtilizatori(student);//verific si eu unicitatea
-            studentisinote.put(student, new ArrayList<>());
-            System.out.println("Student inregistrat cu succes!");
-            System.out.println("ID-ul tau este: " + id);
+            registerStudent();
         } else if (userType.equalsIgnoreCase("Profesor")) {
-            // Înregistrare profesor
-            System.out.println("Username: ");
-            String username = sc.nextLine();
-            System.out.println("Password:");
-
-            String password = sc.nextLine();
-            String parolahaz = SecuritateParole.parolahashuita(password);
-            System.out.println("Nume:");
-            String nume = sc.nextLine();
-            System.out.println("Prenume:");
-            String prenume = sc.nextLine();
-            System.out.println("Introdu ID-ul: ");
-            int id = sc.nextInt();
-            sc.nextLine();
-            System.out.println("În ce an predai?");
-            int an = sc.nextInt();
-            sc.nextLine();
-            Profesor profesor = new Profesor(id, nume, prenume, username, password);
-            profesori.add(profesor);
-            ManagerUtilizatori.adaugaUtilizatori(profesor);
-            System.out.println("Profesor inregistrat cu succes!");
-            System.out.println("ID-ul tau este: " + id);
+            registerProfesor();
         } else {
             System.out.println("Tip de utilizator invalid. Încercați din nou.");
         }
+    }
+
+    private static void registerStudent() {
+        System.out.println("=== Inregistrare Student ===");
+
+        String username = promptForInput("Username: ");
+        if (!ManagerUtilizatori.verificaUnicitateUsername(username)) {
+            System.out.println("Username-ul este deja folosit. Incercați altul.");
+            return;
+        }
+
+        String password = promptForInput("Password: ");
+        String parolahaz = SecuritateParole.parolahashuita(password);
+        String nume = promptForInput("Nume: ");
+        String prenume = promptForInput("Prenume: ");
+        int an = promptForIntInput("În ce an ești? ");
+
+        int id = IdGenerator.idElev();
+        Student student = new Student(id, nume, prenume, an, "", username, parolahaz);
+        ManagerUtilizatori.adaugaUtilizatori(student);
+        studentisinote.put(student, new ArrayList<>());
+        int iddoizeze=id+1;
+        System.out.println("Student înregistrat cu succes! ID-ul tau este: " + iddoizeze);
+    }
+
+    private static void registerProfesor() {
+        System.out.println("=== Inregistrare Profesor ===");
+
+        String username = promptForInput("Username: ");
+        String password = promptForInput("Password: ");
+        String parolahaz = SecuritateParole.parolahashuita(password);
+        String nume = promptForInput("Nume: ");
+        String prenume = promptForInput("Prenume: ");
+        int an = promptForIntInput("În ce an predai? ");
+
+        int id = IdGenerator.idProfesor();
+        Profesor profesor = new Profesor(id, nume, prenume, username, parolahaz);
+        profesori.add(profesor);
+        ManagerUtilizatori.adaugaUtilizatori(profesor);
+        System.out.println("Profesor înregistrat cu succes! ID-ul tau este: " + id);
+    }
+
+    private static String promptForInput(String prompt) {
+        System.out.print(prompt);
+        return sc.nextLine().trim();
+    }
+
+    private static int promptForIntInput(String prompt) {
+        System.out.print(prompt);
+        while (!sc.hasNextInt()) {
+            System.out.println("Introduceți un număr valid.");
+            sc.next();
+            System.out.print(prompt);
+        }
+        int value = sc.nextInt();
+        sc.nextLine();
+        return value;
     }
 }
 

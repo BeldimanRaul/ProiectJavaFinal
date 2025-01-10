@@ -74,6 +74,7 @@ FileDisplay fd=new FileDisplay();
 
     private void afiseazatotistudentii() {
         List<Curs> cursurii = ManagerCursuri.getCursuri();
+        System.out.println("specifica id ul cursului");
         Scanner sc = new Scanner(System.in);
         int idCurs = sc.nextInt();
         sc.nextLine();

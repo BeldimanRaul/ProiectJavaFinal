@@ -1,4 +1,3 @@
-6,ee,ee,1,,ugm,ugm
-4,raul,beld,1,,raulgm,parola
-2,Popescu,George,3,LF4731,stud2,parola
 1,Ionescu,Maria,1,LF4731,stud1,parola
+2,Popescu,George,1,LF4731,stud2,parola
+4,rr,rr,1,,raulgmail,a80b568a237f50391d2f1f97beaf99564e33d2e1c8a2e5cac21ceda701570312

@@ -15,6 +15,7 @@ public class FileDisplay {
     int test;
 
     public void displayStudents(Set<Student> studenti) throws IOException {
+
         BufferedWriter w = new BufferedWriter(new FileWriter(studentPath));
 
         for (Student student : studenti) {
@@ -31,7 +32,8 @@ public class FileDisplay {
         w.close();
     }
 
-    public void displayCurs(List<Curs> cursuri) throws IOException {
+    public void displayCurs() throws IOException {
+        List<Curs> cursuri = ManagerCursuri.getCursuri();
         BufferedWriter w = new BufferedWriter(new FileWriter(cursPath));
         for (Curs curs : cursuri) {
             w.write(curs.getId() + "," +
@@ -45,6 +47,7 @@ public class FileDisplay {
     }
 
     public void displayTeachers(List<Profesor> profesori) throws IOException {
+
         BufferedWriter w = new BufferedWriter(new FileWriter(profPath));
         for (Profesor profesor : profesori) {
             w.write(profesor.getId() + "," +

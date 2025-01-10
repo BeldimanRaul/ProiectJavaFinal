@@ -1,3 +1,3 @@
-1894,Matematică,Curs introductiv în algebră și geometrie,1
-1565,Programare Java,Noțiuni de bază despre programare în Java,2
-1698,Istoria Artei,Istoria artei în perioada Renașterii,3
+1034,Matematică,Curs introductiv în algebră și geometrie,1
+1925,Programare Java,Noțiuni de bază despre programare în Java,2
+1739,Istoria Artei,Istoria artei în perioada Renașterii,3

@@ -2,7 +2,7 @@ package com.example.proiectjavafinal;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-///SE VA INTRODUCE MAI INCOLO CA SA MAI POT TESTA CHIESTII CU STUDENTI BAGATI DIN MAIN
+
 
 public class SecuritateParole {
     public static String parolahashuita(String password) {
