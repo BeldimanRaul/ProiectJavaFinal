@@ -14,9 +14,9 @@
    <left>
       <AnchorPane prefHeight="389.0" prefWidth="303.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="400.0" fitWidth="408.0" layoutX="-95.0" pickOnBounds="true">
+            <ImageView fitHeight="400.0" fitWidth="330.0" layoutX="-18.0" layoutY="1.0">
                <image>
-                  <Image url="@../../../../../imagini/Depositphotos_122104490_S.jpg" />
+                  <Image url="@shutterstock_2187470255.jpg" />
                </image>
             </ImageView>
          </children></AnchorPane>
@@ -36,12 +36,12 @@
             </Label>
             <TextField fx:id="username" layoutX="113.0" layoutY="140.0" promptText="Username or Email" />
             <PasswordField fx:id="password" layoutX="114.0" layoutY="188.0" promptText="Password" />
-            <Button fx:id="login" layoutX="25.0" layoutY="297.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="85.0" style="-fx-background-color: #ADD8E6;" text="Log in" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS" wrapText="true">
+            <Button fx:id="login" layoutX="25.0" layoutY="297.0" mnemonicParsing="false" onAction="#logingui" prefHeight="50.0" prefWidth="85.0" style="-fx-background-color: #ADD8E6;" text="Log in" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS" wrapText="true">
                <font>
                   <Font name="System Bold Italic" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="register" layoutX="188.0" layoutY="297.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="85.0" style="-fx-background-color: #ADD8E6;" text="Sign up" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS" wrapText="true">
+            <Button fx:id="register" layoutX="188.0" layoutY="297.0" mnemonicParsing="false" onAction="#registergui" prefHeight="50.0" prefWidth="85.0" style="-fx-background-color: #ADD8E6;" text="Sign up" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS" wrapText="true">
                <font>
                   <Font name="System Bold Italic" size="15.0" />
                </font>
