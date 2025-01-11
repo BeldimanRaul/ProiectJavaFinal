@@ -18,10 +18,11 @@ public class Main extends Application {
 
     @Override
     public void start(Stage fereastra) throws Exception {
-        StackPane root = new StackPane();
-        Scene scene = new Scene(root,300,200);
-        fereastra.setTitle("test");
-        fereastra.setScene(scene);
-        fereastra.show();
+       Parent root=FXMLLoader.load(getClass().getResource("hello-view.fxml"));
+       fereastra.setScene(new Scene(root,600,400));
+       fereastra.setTitle("APLICATIE");
+       fereastra.show();
+
+
     }
 }

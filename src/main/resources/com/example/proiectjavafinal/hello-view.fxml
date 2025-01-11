@@ -1,16 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.proiectjavafinal.HelloController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
-</VBox>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #F6FCFC;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proiectjavafinal.LoginControler">
+   <left>
+      <AnchorPane prefHeight="389.0" prefWidth="303.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="400.0" fitWidth="408.0" layoutX="-95.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../../../../../imagini/Depositphotos_122104490_S.jpg" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
+   </left>
+   <center>
+      <AnchorPane prefHeight="429.0" prefWidth="310.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="14.0" layoutY="138.0" prefHeight="28.0" prefWidth="98.0" text="Username">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="186.0" prefHeight="28.0" prefWidth="98.0" text="Password">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font>
+            </Label>
+            <TextField fx:id="username" layoutX="113.0" layoutY="140.0" promptText="Username or Email" />
+            <PasswordField fx:id="password" layoutX="114.0" layoutY="188.0" promptText="Password" />
+            <Button fx:id="login" layoutX="25.0" layoutY="297.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="85.0" style="-fx-background-color: #ADD8E6;" text="Log in" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS" wrapText="true">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="register" layoutX="188.0" layoutY="297.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="85.0" style="-fx-background-color: #ADD8E6;" text="Sign up" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS" wrapText="true">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+            </Button>
+            <Label fx:id="loginGresit" layoutX="143.0" layoutY="96.0" textFill="RED" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>
