@@ -1,5 +1,6 @@
 package com.example.proiectjavafinal;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -16,7 +17,6 @@ public class LoginControler {
     @FXML
     private Button registerButton;
 
-    public void logingui() {
 
-    }
+
 }
