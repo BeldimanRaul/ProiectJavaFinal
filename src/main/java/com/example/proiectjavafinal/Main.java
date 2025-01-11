@@ -29,8 +29,8 @@ public class Main extends Application {
     @Override
     public void start(Stage fereastraprincipala) throws Exception {
         stg = fereastraprincipala;
-        fereastraprincipala.setResizable(false);
-       Parent root=FXMLLoader.load(getClass().getResource("hello-view.fxml"));
+
+       Parent root=FXMLLoader.load(getClass().getResource("prima-pagina.fxml"));
         fereastraprincipala.setScene(new Scene(root,600,400));
         fereastraprincipala.setTitle("APLICATIE");
         fereastraprincipala.show();

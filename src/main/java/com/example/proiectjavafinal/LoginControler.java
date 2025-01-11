@@ -8,8 +8,17 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class LoginControler {
+
+    private static Map<Student, List<Nota>> studentisinote = new HashMap<>();
+    private static List<Profesor> profesori = new ArrayList<>();
+    private static User utilizatorilogati = null;
+
 
     @FXML
     private TextField username;
@@ -19,9 +28,18 @@ public class LoginControler {
     private Button loginButton;
     @FXML
     private Button registerButton;
-
     @FXML
     private Label loginGresit;
+    @FXML
+    private void handleBackButton(ActionEvent event) {
+        try {
+            Main main = new Main();
+            main.schimba("prima-pagina.fxml"); // Navigate back to the initial page
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
 
@@ -30,13 +48,9 @@ public class LoginControler {
           verificalogin();
     }
 
-    private void verificalogin() throws IOException {
-        Main main = new Main();
-        if (username.getText().toString().equals("") || password.getText().equals("")) {
-            loginGresit.setText("Succes");
-            main.schimba("");
-        }
+    private void verificalogin() {
     }
+
 
     public void registergui(ActionEvent actionEvent) {
     }

@@ -1,2 +1,2 @@
-2,Popescu,George,1,LF4731,stud2,parola
 1,Ionescu,Maria,1,LF4731,stud1,parola
+2,Popescu,George,1,LF4731,stud2,parola
