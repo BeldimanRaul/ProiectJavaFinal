@@ -16,8 +16,8 @@ import java.util.Map;
 public class LoginControler {
 
     private static Map<Student, List<Nota>> studentisinote = new HashMap<>();
-    private static List<Profesor> profesori = new ArrayList<>();
     private static User utilizatorilogati = null;
+
 
 
     @FXML
@@ -39,19 +39,37 @@ public class LoginControler {
             e.printStackTrace();
         }
     }
-
-
-
-
-
+    @FXML
     public void logingui(ActionEvent actionEvent) throws IOException {
           verificalogin();
     }
 
     private void verificalogin() {
+        String user=username.getText();
+        String pass=password.getText();
+        if(user.isEmpty() || pass.isEmpty()) {
+            loginGresit.setText("Nu ai introdus date !");
+            return;
+        }
+        String parolahaz=SecuritateParole.parolahashuita(pass);
+        if(studentautentificat(user,pass)) {
+            loginGresit.setText("Autentificare reusita!");
+        }
+        else {
+            loginGresit.setText("Autentificare nereusita,username sau parola gresita!");
+        }
+
+
     }
 
-
+    private boolean studentautentificat(String username, String password) {
+        for (User user : studentisinote.keySet()) {
+            if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
+               return true;
+            }
+        }
+        return false;
+    }
     public void registergui(ActionEvent actionEvent) {
     }
 }

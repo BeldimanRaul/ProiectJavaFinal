@@ -14,6 +14,6 @@
             <Font name="System Bold Italic" size="20.0" />
          </font>
       </Label>
-      <Button layoutX="265.0" layoutY="312.0" mnemonicParsing="false" text="Register" />
+      <Button layoutX="265.0" layoutY="312.0" mnemonicParsing="false" onAction="#handleRegisterButton" text="Register" />
    </children>
 </AnchorPane>

@@ -72,7 +72,7 @@ public class Consola {
         }
 
 
-        // Interfața principală pentru utilizator in consola
+        /// Interfața principală pentru utilizator in consola
 
 
         while (true) {
@@ -132,7 +132,7 @@ public class Consola {
         System.out.print("Password: ");
         String password = sc.nextLine().trim();
         String parolahaz = SecuritateParole.parolahashuita(password);
-        if (autentificareUser(optiune, username, parolahaz)) {
+        if (autentificareUser(optiune, username, password)) {
             System.out.println("Autentificare reușită!");
         } else {
             System.out.println("Login nereușit! Verificați username-ul și parola.");
