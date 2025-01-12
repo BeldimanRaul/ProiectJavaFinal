@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.GridPane?>
+
+<GridPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.proiectjavafinal.ProfesorDashboardController"
+          hgap="10" vgap="10" >
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+    <Button text="Afișează cursurile predate" GridPane.rowIndex="0" GridPane.columnIndex="0" onAction="#afiseazaCursPredat"/>
+    <Button text="Afișează lista de studenți pentru un curs" GridPane.rowIndex="1" GridPane.columnIndex="0" onAction="#afiseazaTotiStudentii"/>
+    <Button text="Notează un student la un curs" GridPane.rowIndex="2" GridPane.columnIndex="0" onAction="#noteazaStudent"/>
+    <Button text="Preda la un curs" GridPane.rowIndex="3" GridPane.columnIndex="0" onAction="#inscrieLaCursProfesor"/>
+
+</GridPane>
