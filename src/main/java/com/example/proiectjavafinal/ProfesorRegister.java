@@ -36,6 +36,7 @@ public class ProfesorRegister {
 
         String password = passwordField.getText();
         String parolahaz = SecuritateParole.parolahashuita(password);
+
         String nume = numeField.getText();
         String prenume = prenumeField.getText();
         int an;
@@ -45,19 +46,23 @@ public class ProfesorRegister {
             messageLabel.setText("Introduceți un an valid.");
             return;
         }
-        int id=IdGenerator.idProfesor();
-        Profesor profesor = new Profesor(id, nume, prenume, username, parolahaz);
+
+        int id = IdGenerator.idProfesor();
+        Profesor profesor = new Profesor(id, parolahaz, username, prenume, nume);
         Consola.profesori.add(profesor);
         ManagerUtilizatori.adaugaUtilizatori(profesor);
         int iddoizeze = id + 1;
         messageLabel.setText("Profesor înregistrat cu succes! ID-ul tau este: " + iddoizeze);
+
+        // Debug statement
+
+
         try {
             fileDisplay.displayTeachers(Consola.profesori);
         } catch (IOException e) {
             e.printStackTrace();
             messageLabel.setText("Eroare la scrierea în fișier.");
         }
-
     }
     @FXML
     private void handleBackButton(ActionEvent event) {

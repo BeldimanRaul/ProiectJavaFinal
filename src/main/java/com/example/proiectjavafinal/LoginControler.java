@@ -44,7 +44,7 @@ public class LoginControler {
           verificalogin();
     }
 
-    private void verificalogin() {
+    private void verificalogin() throws IOException {
         String user=username.getText();
         String pass=password.getText();
         if(user.isEmpty() || pass.isEmpty()) {
@@ -54,9 +54,12 @@ public class LoginControler {
         String parolahaz=SecuritateParole.parolahashuita(pass);
         if(studentautentificat(user,parolahaz)) {
             loginGresit.setText("Autentificare reusita!");
+            Main main=new Main();
+           main.schimba("student-dashboard.fxml");
         }
         else {
             loginGresit.setText("Autentificare nereusita,username sau parola gresita!");
+
         }
 
 
@@ -70,4 +73,5 @@ public class LoginControler {
         }
         return false;
     }
+
 }

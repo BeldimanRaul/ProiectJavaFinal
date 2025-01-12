@@ -288,6 +288,11 @@ public class Student extends User {
                 ", an=" + an +
                 '}';
     }
+
+
+    public List<Nota> getNote() {
+        return note;
+    }
 }
 
 

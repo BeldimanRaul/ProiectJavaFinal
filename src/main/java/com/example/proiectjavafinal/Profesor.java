@@ -1,24 +1,29 @@
 package com.example.proiectjavafinal;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class Profesor extends User {
     int id;
     String nume;
     String prenume;
-FileDisplay fd=new FileDisplay();
+    private Set<Integer> idinscrierecursprof;
+    FileDisplay fd=new FileDisplay();
+
+
 
     public Profesor(int id, String password, String username, String prenume, String nume) {
         super(username, password);
         this.id = id;
         this.prenume = prenume;
         this.nume = nume;
+        this.idinscrierecursprof = new HashSet<>();
 
 
+    }
+
+    public Set<Integer> getIdinscrierecursprof() {
+        return idinscrierecursprof;
     }
 
     public int getId() {

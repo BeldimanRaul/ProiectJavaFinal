@@ -37,7 +37,7 @@
                </font>
             </Label>
             <TextField fx:id="username" layoutX="130.0" layoutY="136.0" promptText="Username or Email" />
-            <Button fx:id="loginButton" layoutX="101.0" layoutY="295.0" mnemonicParsing="false" onAction="#logingui" prefHeight="48.0" prefWidth="98.0" text="Log In">
+            <Button fx:id="loginButton" layoutX="101.0" layoutY="295.0" mnemonicParsing="false" onAction="#logingui1" prefHeight="48.0" prefWidth="98.0" text="Log In">
                <font>
                   <Font name="System Bold" size="19.0" />
                </font>
