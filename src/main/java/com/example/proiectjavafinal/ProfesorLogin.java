@@ -25,7 +25,7 @@ public class ProfesorLogin {
     private void handleBackButton(ActionEvent event) {
         try {
             Main main = new Main();
-            main.schimba("prima-pagina.fxml"); // Navigate back to the initial page
+            main.schimba("prima-pagina.fxml");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -51,8 +51,8 @@ public class ProfesorLogin {
         }
 
 
-    }private boolean profautentificat(String username,String password){
-        for (Profesor profesor : ProfesorRegister.profesori) {
+    }private static boolean profautentificat(String username,String password){
+        for (Profesor profesor : Consola.profesori) {
             if (profesor.getUsername().equals(username) && profesor.getPassword().equals(password)) {
                 utilizatorilogati = profesor;
                 return true;

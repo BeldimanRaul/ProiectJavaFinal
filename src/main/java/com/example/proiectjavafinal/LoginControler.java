@@ -62,7 +62,7 @@ public class LoginControler {
 
     }
 
-    private boolean studentautentificat(String username, String password) {
+    private static boolean studentautentificat(String username, String password) {
         for (User user : Consola.studentisinote.keySet()) {
             if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
                return true;
