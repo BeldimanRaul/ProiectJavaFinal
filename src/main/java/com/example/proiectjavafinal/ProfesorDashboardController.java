@@ -15,16 +15,21 @@ public class ProfesorDashboardController {
     private Profesor profesor;
     private ManagerCursuri managerCursuri;
 
-
+    // Metodă pentru a seta managerul de cursuri
+    public void setManagerCursuri(ManagerCursuri managerCursuri) {
+        this.managerCursuri = managerCursuri;
+    }
 
     @FXML
     public void initialize() {
-        Profesor profesorCurent = ProfesorSession.getProfesorCurent();
-        if (profesorCurent != null) {
-
-
+        if (managerCursuri == null) {
+            managerCursuri = Main.getManagerCursuri(); // Preia managerul din clasa principală
         }
     }
+
+
+
+
     @FXML
     private void afiseazaCursuriSalvate() {
         List<Curs> cursurii = managerCursuri.getCursuri();

@@ -11,6 +11,19 @@ import java.util.ArrayList;
 public class StudentDashboardController {
 
     private Student student;
+    private ManagerCursuri managerCursuri;
+
+    // Metodă pentru a seta managerul de cursuri
+    public void setManagerCursuri(ManagerCursuri managerCursuri) {
+        this.managerCursuri = managerCursuri;
+    }
+
+    @FXML
+    public void initialize() {
+        if (managerCursuri == null) {
+            managerCursuri = Main.getManagerCursuri();
+        }
+    }
 
     @FXML
     private TextField cursIdField;
@@ -36,10 +49,10 @@ public class StudentDashboardController {
     @FXML
     private Button cursuriValabileButton;
 
-    @FXML
-    public void initialize() {
-        this.student = StudentSession.getStudentCurent();
-    }
+//    @FXML
+//    public void initialize() {
+//        this.student = StudentSession.getStudentCurent();
+//    }
 
     @FXML
     private void vizualizeazaCursuri() {

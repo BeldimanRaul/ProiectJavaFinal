@@ -1,5 +1,5 @@
 package com.example.proiectjavafinal;
-
+import com.example.proiectjavafinal.ManagerCursuri;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,6 +16,13 @@ public class Main extends Application {
 
     private static Stage stg;
     private static ManagerCursuri managerCursuri;
+
+    public static ManagerCursuri getManagerCursuri() {
+        if (managerCursuri == null) {
+            managerCursuri = new ManagerCursuri();
+        }
+        return managerCursuri;
+    }
 
     public void schimba(String fxml) throws IOException {
         Parent pane = FXMLLoader.load(getClass().getResource(fxml));
@@ -62,7 +69,7 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) throws IOException {
-
+        managerCursuri = new ManagerCursuri();
         test_cursuri();
         launch(args);
 
