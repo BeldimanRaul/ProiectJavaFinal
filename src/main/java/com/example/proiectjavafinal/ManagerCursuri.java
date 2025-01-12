@@ -13,8 +13,8 @@ public class ManagerCursuri {
         this.cursurii = new ArrayList<>();
     }
 
-    public void adaugareCursuri(Curs curs) {
-        this.cursurii.add(curs);
+    public static void adaugareCursuri(Curs curs) {
+        cursurii.add(curs);
     }
     public void stergereCursuri(Curs curs) {
         cursurii.remove(curs);

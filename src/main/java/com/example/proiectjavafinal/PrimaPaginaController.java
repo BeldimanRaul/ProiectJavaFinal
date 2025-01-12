@@ -16,9 +16,10 @@ public class PrimaPaginaController {
 
     @FXML
     private Button profesorButton;
+    private ManagerCursuri managerCursuri;
 
     @FXML
-    ///pt login
+   
     public void handleStudentButton(ActionEvent event) throws IOException {
 
         Main main = new Main();
@@ -42,5 +43,8 @@ public class PrimaPaginaController {
 
         Main main = new Main();
         main.schimba("profesor-login.fxml");
+    }
+    public void setManagerCursuri(ManagerCursuri managerCursuri) {
+        this.managerCursuri = managerCursuri;
     }
 }

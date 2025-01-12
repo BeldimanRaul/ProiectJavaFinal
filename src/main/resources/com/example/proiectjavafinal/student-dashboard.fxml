@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proiectjavafinal.StudentDashboardController">
+    <top>
+        <AnchorPane prefHeight="76.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
+    </top>
+    <center>
+        <AnchorPane prefHeight="354.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+            <children>
+                <Button fx:id="vizualizeazaCursuriButton" layoutX="220.0" layoutY="39.0" mnemonicParsing="false" onAction="#vizualizeazaCursuri" prefHeight="26.0" prefWidth="160.0" text="Vizualizeaza Cursuri" />
+                <Button fx:id="vizualizeazaNoteButton" layoutX="219.0" layoutY="78.0" mnemonicParsing="false" onAction="#vizualizeazaNote" prefHeight="26.0" prefWidth="161.0" text="Vizualizeaza Note" />
+                <Button fx:id="vizualizeazaMediaButton" layoutX="219.0" layoutY="115.0" mnemonicParsing="false" onAction="#vizualizeazaMedia" prefHeight="26.0" prefWidth="162.0" text="Vizualizeaza Media" />
+                <Button fx:id="vizualizeazaRestanteButton" layoutX="218.0" layoutY="155.0" mnemonicParsing="false" onAction="#vizualizeazaRestante" prefHeight="26.0" prefWidth="163.0" text="Vizualizeaza Restante" />
+                <Button fx:id="inscrieLaCursButton" layoutX="218.0" layoutY="197.0" mnemonicParsing="false" onAction="#inscrieLaCurs" prefHeight="26.0" prefWidth="163.0" text="Inscrie-te la un curs" />
+                <Button fx:id="cursuriValabileButton" layoutX="218.0" layoutY="247.0" mnemonicParsing="false" onAction="#cursuriValabile" prefHeight="26.0" prefWidth="163.0" text="Vizualizeaza toate Cursurile" />
+                <TextField fx:id="cursIdField" layoutX="218.0" layoutY="287.0" prefHeight="26.0" prefWidth="163.0" promptText="Introdu ID-ul cursului" />
+                <TextArea fx:id="outputArea" layoutX="50.0" layoutY="330.0" prefHeight="100.0" prefWidth="500.0" />
+            </children>
+        </AnchorPane>
+    </center>
+</BorderPane>

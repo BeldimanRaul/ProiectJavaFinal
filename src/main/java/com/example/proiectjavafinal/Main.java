@@ -15,20 +15,13 @@ import java.util.*;
 public class Main extends Application {
 
     private static Stage stg;
-    static ManagerCursuri mg = new ManagerCursuri();
+    private static ManagerCursuri managerCursuri;
 
     public void schimba(String fxml) throws IOException {
         Parent pane = FXMLLoader.load(getClass().getResource(fxml));
         stg.getScene().setRoot(pane);
     }
 
-    public static void main(String[] args) throws IOException {
-
-        test_cursuri();
-        launch(args);
-
-
-    }
 
     public static void test_cursuri() {
         Curs curs = new Curs(1, 133, "Curs introductiv în algebră și geometrie", "Matematică");
@@ -37,23 +30,41 @@ public class Main extends Application {
         Curs curs4 = new Curs(1, 41, "Bazele chimiei organice", "Chimie");
         Curs curs5 = new Curs(1, 51, "Introducere în psihologia comportamentală", "Psihologie");
         Curs curs6 = new Curs(1, 61, "Fizică aplicată pentru inginerie", "Fizică Aplicată");
-        mg.adaugareCursuri(curs);
-        mg.adaugareCursuri(curs2);
-        mg.adaugareCursuri(curs3);
-        mg.adaugareCursuri(curs4);
-        mg.adaugareCursuri(curs5);
-        mg.adaugareCursuri(curs6);
+        managerCursuri.adaugareCursuri(curs);
+        managerCursuri.adaugareCursuri(curs2);
+        managerCursuri.adaugareCursuri(curs3);
+        managerCursuri.adaugareCursuri(curs4);
+        managerCursuri.adaugareCursuri(curs5);
+        managerCursuri.adaugareCursuri(curs6);
+
     }
 
 
     @Override
     public void start(Stage fereastraprincipala) throws Exception {
+        // Salvează referința la Stage pentru utilizări viitoare
         stg = fereastraprincipala;
 
-        Parent root = FXMLLoader.load(getClass().getResource("prima-pagina.fxml"));
+        // Încarcă fișierul FXML folosind FXMLLoader
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("prima-pagina.fxml"));
+        Parent root = loader.load();
+
+        // Obține controller-ul asociat fișierului FXML
+        PrimaPaginaController controller = loader.getController();
+
+        // Dacă e nevoie, inițializează obiecte sau configurări pentru controller
+        controller.setManagerCursuri(managerCursuri);
+
+        // Configurează scena principală
         fereastraprincipala.setScene(new Scene(root, 600, 400));
         fereastraprincipala.setTitle("APLICATIE");
         fereastraprincipala.show();
+    }
+
+    public static void main(String[] args) throws IOException {
+
+        test_cursuri();
+        launch(args);
 
 
     }

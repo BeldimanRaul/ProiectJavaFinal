@@ -21,6 +21,7 @@ public class ProfesorLogin {
     private Button registerButton;
     @FXML
     private Label labelGresit;
+
     @FXML
     private void handleBackButton(ActionEvent event) {
         try {
@@ -30,11 +31,12 @@ public class ProfesorLogin {
             e.printStackTrace();
         }
     }
+
     @FXML
     public void logingui1(ActionEvent actionEvent) throws IOException {
         verificalogin1();
     }
-    private static User utilizatorilogati = null;
+
     private void verificalogin1() throws IOException {
         Main main = new Main();
 
@@ -46,7 +48,9 @@ public class ProfesorLogin {
         }
         String parolahaz = SecuritateParole.parolahashuita(pass);
 
-        if (profautentificat1(user, parolahaz)) {
+        Profesor profesor = autentificaProfesor(user, parolahaz);
+        if (profesor != null) {
+            ProfesorSession.setProfesorCurent(profesor);
             labelGresit.setText("Autentificare reusita!");
             main.schimba("profesor-dashboard.fxml");
         } else {
@@ -54,16 +58,12 @@ public class ProfesorLogin {
         }
     }
 
-    private static boolean profautentificat1(String username, String password) {
+    private Profesor autentificaProfesor(String username, String password) {
         for (Profesor profesor : Consola.profesori) {
-
             if (profesor.getUsername().equals(username) && profesor.getPassword().equals(password)) {
-                utilizatorilogati = profesor;
-
-                return true;
+                return profesor;
             }
         }
-        return false;
+        return null;
     }
 }
-

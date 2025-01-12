@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextInputDialog;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
@@ -12,11 +13,37 @@ import java.util.Scanner;
 public class ProfesorDashboardController {
 
     private Profesor profesor;
+    private ManagerCursuri managerCursuri;
+
 
 
     @FXML
+    public void initialize() {
+        Profesor profesorCurent = ProfesorSession.getProfesorCurent();
+        if (profesorCurent != null) {
+
+
+        }
+    }
+    @FXML
+    private void afiseazaCursuriSalvate() {
+        List<Curs> cursurii = managerCursuri.getCursuri();
+        StringBuilder message = new StringBuilder("Cursurile salvate sunt:\n");
+
+        for (Curs curs : cursurii) {
+            message.append("- ").append(curs.getNume()).append("\n");
+        }
+
+        if (cursurii.isEmpty()) {
+            message.append("Nu există cursuri salvate.");
+        }
+
+        showAlert(Alert.AlertType.INFORMATION, "Cursuri Salvate", message.toString());
+    }
+
+    @FXML
     private void afiseazaCursPredat() {
-        List<Curs> cursuri = ManagerCursuri.getCursuri();
+        List<Curs> cursuri = managerCursuri.getCursuri();
         StringBuilder message = new StringBuilder("Cursurile predate de dumneavoastră sunt:\n");
         boolean existaCursuri = false;
 
@@ -44,7 +71,7 @@ public class ProfesorDashboardController {
         dialog.showAndWait().ifPresent(idCursString -> {
             try {
                 int idCurs = Integer.parseInt(idCursString);
-                List<Curs> cursuri = ManagerCursuri.getCursuri();
+                List<Curs> cursuri = managerCursuri.getCursuri();
                 StringBuilder message = new StringBuilder();
 
                 for (Curs curs : cursuri) {
@@ -74,7 +101,7 @@ public class ProfesorDashboardController {
         dialog.showAndWait().ifPresent(idCursString -> {
             try {
                 int idCurs = Integer.parseInt(idCursString);
-                List<Curs> cursuri = ManagerCursuri.getCursuri();
+                List<Curs> cursuri = managerCursuri.getCursuri();
 
                 for (Curs curs : cursuri) {
                     if (curs.getId() == idCurs && curs.getProfesor() != null && curs.getProfesor().getId() == profesor.getId()) {
@@ -128,7 +155,7 @@ public class ProfesorDashboardController {
         dialog.showAndWait().ifPresent(idCursString -> {
             try {
                 int cursID = Integer.parseInt(idCursString);
-                List<Curs> cursuri = ManagerCursuri.getCursuri();
+                List<Curs> cursuri = managerCursuri.getCursuri();
 
                 for (Curs curs : cursuri) {
                     if (curs.getId() == cursID) {
@@ -161,6 +188,7 @@ public class ProfesorDashboardController {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
 
 
 }
