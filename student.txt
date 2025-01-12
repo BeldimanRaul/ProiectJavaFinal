@@ -1,1 +1,2 @@
-2,rr,rr,1,,rr,597c28c381ef1feee61f3e9677a628b4cbd41cfb2539c8938062e1df2a882d39
+1,Ionescu,Maria,1,LF4731,stud1,parola
+2,Popescu,George,1,LF4731,stud2,parola

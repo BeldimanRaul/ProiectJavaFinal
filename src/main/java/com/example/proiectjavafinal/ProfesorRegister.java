@@ -12,7 +12,7 @@ import java.util.List;
 public class ProfesorRegister {
 
     private FileDisplay fileDisplay = new FileDisplay();
-    public static List<Profesor> profesori = new ArrayList<>();
+
     @FXML
     private TextField usernameField;
     @FXML
@@ -47,12 +47,12 @@ public class ProfesorRegister {
         }
         int id=IdGenerator.idProfesor();
         Profesor profesor = new Profesor(id, nume, prenume, username, parolahaz);
-        profesori.add(profesor);
+        Consola.profesori.add(profesor);
         ManagerUtilizatori.adaugaUtilizatori(profesor);
         int iddoizeze = id + 1;
         messageLabel.setText("Profesor înregistrat cu succes! ID-ul tau este: " + iddoizeze);
         try {
-            fileDisplay.displayTeachers(profesori);
+            fileDisplay.displayTeachers(Consola.profesori);
         } catch (IOException e) {
             e.printStackTrace();
             messageLabel.setText("Eroare la scrierea în fișier.");

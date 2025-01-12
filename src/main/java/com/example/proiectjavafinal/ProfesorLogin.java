@@ -36,29 +36,29 @@ public class ProfesorLogin {
     }
     private static User utilizatorilogati = null;
     private void verificalogin() {
-        String user=username.getText();
-        String pass=password.getText();
-        if(user.isEmpty() || pass.isEmpty()) {
-            labelGresit.setText("Nu ai introdus date !");
+        String user = username.getText();
+        String pass = password.getText();
+        if (user.isEmpty() || pass.isEmpty()) {
+            labelGresit.setText("Nu ai introdus date!");
             return;
         }
-        String parolahaz=SecuritateParole.parolahashuita(pass);
-        if(profautentificat(user,parolahaz)) {
+        String parolahaz = SecuritateParole.parolahashuita(pass);
+        if (profautentificat(user, parolahaz)) {
             labelGresit.setText("Autentificare reusita!");
+        } else {
+            labelGresit.setText("Autentificare nereusita, username sau parola gresita!");
         }
-        else {
-            labelGresit.setText("Autentificare nereusita,username sau parola gresita!");
-        }
+    }
 
-
-    }private static boolean profautentificat(String username,String password){
+    private static boolean profautentificat(String username, String password) {
         for (Profesor profesor : Consola.profesori) {
             if (profesor.getUsername().equals(username) && profesor.getPassword().equals(password)) {
                 utilizatorilogati = profesor;
+                System.out.println("Bun venit domn Profesor");
                 return true;
             }
         }
         return false;
     }
-    }
+}
 

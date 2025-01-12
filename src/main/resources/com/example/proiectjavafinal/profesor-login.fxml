@@ -44,7 +44,6 @@
             </Button>
             <Label fx:id="labelGresit" layoutX="18.0" layoutY="81.0" prefHeight="18.0" prefWidth="269.0" textFill="#f40000" wrapText="true" />
             <PasswordField fx:id="password" layoutX="131.0" layoutY="188.0" promptText="Password" />
-            <Label layoutX="5.0" layoutY="46.0" prefHeight="54.0" prefWidth="288.0" textFill="RED" />
          </children></AnchorPane>
    </center>
 </BorderPane>
