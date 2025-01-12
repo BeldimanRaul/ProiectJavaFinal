@@ -1,6 +1,6 @@
-1194,Chimie,Bazele chimiei organice,41
-1825,Psihologie,Introducere în psihologia comportamentală,51
-1884,Fizică Aplicată,Fizică aplicată pentru inginerie,61
-1927,Matematică,Curs introductiv în algebră și geometrie,133
-1057,Programare Java,Noțiuni de bază despre programare în Java,21
-1916,Istoria Artei,Istoria artei în perioada Renașterii,31
+1065,Chimie,Bazele chimiei organice,41
+1525,Psihologie,Introducere în psihologia comportamentală,51
+1718,Fizică Aplicată,Fizică aplicată pentru inginerie,61
+1900,Matematică,Curs introductiv în algebră și geometrie,133
+1344,Programare Java,Noțiuni de bază despre programare în Java,21
+1097,Istoria Artei,Istoria artei în perioada Renașterii,31

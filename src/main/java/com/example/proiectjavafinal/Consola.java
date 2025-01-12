@@ -20,7 +20,7 @@ public class Consola {
 
 
         // Creare obiecte de test pentru profesori și studenți
-        Profesor profesor = new Profesor(11111, "parola", "iongm", "Ion", "Popescu", 1);
+        Profesor profesor = new Profesor("username", "parola", "iongm", "Ion", 1);
         profesori.add(profesor);
         Curs curs = new Curs(1, 133, "Curs introductiv în algebră și geometrie", "Matematică");
         Curs curs2 = new Curs(1, 21, "Noțiuni de bază despre programare în Java", "Programare Java");
@@ -231,10 +231,11 @@ public class Consola {
         int an = promptForIntInput("În ce an predai? ");
 
         int id = IdGenerator.idProfesor();
-        Profesor profesor = new Profesor(id, parolahaz, username, prenume, nume, an);
+        Profesor profesor = new Profesor(username, parolahaz, nume, prenume, an);
         profesori.add(profesor);
         ManagerUtilizatori.adaugaUtilizatori(profesor);
-        System.out.println("Profesor înregistrat cu succes! ID-ul tau este: " + id);
+        int idn=id+1;
+        System.out.println("Profesor înregistrat cu succes! ID-ul tau este: " + idn);
     }
 
     private static String promptForInput(String prompt) {

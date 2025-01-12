@@ -3,27 +3,16 @@ package com.example.proiectjavafinal;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.scene.control.TextArea;
-import java.util.List;
+import javafx.scene.control.TextField;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class StudentDashboardController {
 
     private Student student;
     private ManagerCursuri managerCursuri;
-
-    // Metodă pentru a seta managerul de cursuri
-    public void setManagerCursuri(ManagerCursuri managerCursuri) {
-        this.managerCursuri = managerCursuri;
-    }
-
-    @FXML
-    public void initialize() {
-        if (managerCursuri == null) {
-            managerCursuri = Main.getManagerCursuri();
-        }
-    }
 
     @FXML
     private TextField cursIdField;
@@ -49,15 +38,19 @@ public class StudentDashboardController {
     @FXML
     private Button cursuriValabileButton;
 
-//    @FXML
-//    public void initialize() {
-//        this.student = StudentSession.getStudentCurent();
-//    }
+    @FXML
+    public void initialize() {
+        student = StudentSession.getStudentCurent();
+        managerCursuri = ManagerCursuri.getInstance();
+
+        System.out.println("Student curent: " + (student != null ? student.getId() : "null"));
+        System.out.println("Cursuri disponibile: " + managerCursuri.getCursuri());
+    }
 
     @FXML
     private void vizualizeazaCursuri() {
         outputArea.clear();
-        List<Curs> cursuri = ManagerCursuri.getCursuri();
+        List<Curs> cursuri = managerCursuri.getCursuri();
         if (cursuri == null || cursuri.isEmpty()) {
             outputArea.setText("Nu sunt cursuri înregistrate.");
             return;
@@ -65,6 +58,7 @@ public class StudentDashboardController {
 
         StringBuilder output = new StringBuilder("Cursuri la care ești înscris:\n");
         boolean cursuriGasite = false;
+
         for (Curs curs : cursuri) {
             if (student.getIdinscrierecurs().contains(curs.getId())) {
                 output.append("ID: ").append(curs.getId())
@@ -87,7 +81,7 @@ public class StudentDashboardController {
         String curscautat = cursIdField.getText();
         boolean cursgasit = false;
 
-        List<Curs> cursuri = ManagerCursuri.getCursuri();
+        List<Curs> cursuri = managerCursuri.getCursuri();
         List<Nota> note = student.getNote();
 
         for (Curs curs : cursuri) {
@@ -122,7 +116,7 @@ public class StudentDashboardController {
         List<Nota> noteCurs = new ArrayList<>();
         List<Nota> note = student.getNote();
 
-        List<Curs> cursuri = ManagerCursuri.getCursuri();
+        List<Curs> cursuri = managerCursuri.getCursuri();
         for (Curs curs : cursuri) {
             if (curscautat.equalsIgnoreCase(curs.getNume())) {
                 cursgasit = true;
@@ -135,7 +129,7 @@ public class StudentDashboardController {
                 if (!noteCurs.isEmpty()) {
                     double medie = student.calculeazaMedia(noteCurs);
                     if (medie < 5) {
-                        outputArea.setText("Ai restanta, media ta este " + medie + " la cursul " + curs.getNume());
+                        outputArea.setText("Ai restanță, media ta este " + medie + " la cursul " + curs.getNume());
                     } else {
                         outputArea.setText("Media ta la cursul " + curs.getNume() + " este " + medie);
                     }
@@ -154,7 +148,7 @@ public class StudentDashboardController {
     @FXML
     private void vizualizeazaRestante() {
         outputArea.clear();
-        List<Curs> cursuri = ManagerCursuri.getCursuri();
+        List<Curs> cursuri = managerCursuri.getCursuri();
         List<Nota> note = student.getNote();
         boolean cursurigasite = false;
         StringBuilder output = new StringBuilder();
@@ -170,7 +164,8 @@ public class StudentDashboardController {
                 if (!notecurs.isEmpty()) {
                     double media = student.calculeazaMedia(notecurs);
                     if (media < 5) {
-                        output.append("Esti restant la cursul ").append(curs.getNume()).append(", media ta este ").append(media).append("\n");
+                        output.append("Ești restant la cursul ").append(curs.getNume())
+                                .append(", media ta este ").append(media).append("\n");
                         cursurigasite = true;
                     }
                 }
@@ -178,7 +173,7 @@ public class StudentDashboardController {
         }
 
         if (!cursurigasite) {
-            output.append("Nu ai restante... încă");
+            output.append("Nu ai restante... încă.");
         }
 
         outputArea.setText(output.toString());
@@ -186,27 +181,31 @@ public class StudentDashboardController {
 
     @FXML
     private void inscrieLaCurs() {
-        int cursID = Integer.parseInt(cursIdField.getText());
-        List<Curs> cursuri = ManagerCursuri.getCursuri();
-        for (Curs curs : cursuri) {
-            if (curs.getId() == cursID) {
-                if (curs.getAn() == student.getAn()) {
-                    curs.adaugareStudenti(student);
-                    student.getIdinscrierecurs().add(curs.getId());
-                    outputArea.setText("Te-ai înscris cu succes la cursul " + curs.getNume());
-                } else {
-                    outputArea.setText("Nu te poți înscrie la cursuri din alți ani.");
+        try {
+            int cursID = Integer.parseInt(cursIdField.getText());
+            List<Curs> cursuri = managerCursuri.getCursuri();
+            for (Curs curs : cursuri) {
+                if (curs.getId() == cursID) {
+                    if (curs.getAn() == student.getAn()) {
+                        curs.adaugareStudenti(student);
+                        student.getIdinscrierecurs().add(curs.getId());
+                        outputArea.setText("Te-ai înscris cu succes la cursul " + curs.getNume());
+                    } else {
+                        outputArea.setText("Nu te poți înscrie la cursuri din alți ani.");
+                    }
+                    return;
                 }
-                return;
             }
+            outputArea.setText("Cursul cu ID-ul " + cursID + " nu a fost găsit.");
+        } catch (NumberFormatException e) {
+            outputArea.setText("Introduceți un ID valid.");
         }
-        outputArea.setText("Cursul cu ID-ul " + cursID + " nu a fost găsit.");
     }
 
     @FXML
     private void cursuriValabile() {
         outputArea.clear();
-        List<Curs> cursuri = ManagerCursuri.getCursuri();
+        List<Curs> cursuri = managerCursuri.getCursuri();
         int an = student.getAn();
         boolean cursurigasite = false;
         StringBuilder output = new StringBuilder("Cursuri valabile pentru anul " + an + ":\n");

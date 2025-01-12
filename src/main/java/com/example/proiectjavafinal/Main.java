@@ -1,16 +1,10 @@
 package com.example.proiectjavafinal;
-import com.example.proiectjavafinal.ManagerCursuri;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.*;
 
 public class Main extends Application {
 
@@ -19,61 +13,69 @@ public class Main extends Application {
 
     public static ManagerCursuri getManagerCursuri() {
         if (managerCursuri == null) {
-            managerCursuri = new ManagerCursuri();
+            managerCursuri = ManagerCursuri.getInstance();
         }
         return managerCursuri;
     }
 
-    public void schimba(String fxml) throws IOException {
-        Parent pane = FXMLLoader.load(getClass().getResource(fxml));
+    public void schimba(String fxml) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+        Parent pane = loader.load();
         stg.getScene().setRoot(pane);
     }
 
-
     public static void test_cursuri() {
-        Curs curs = new Curs(1, 133, "Curs introductiv în algebră și geometrie", "Matematică");
+        // Obține instanța ManagerCursuri
+        managerCursuri = ManagerCursuri.getInstance();
+
+        // Inițializează datele de test
+        Curs curs1 = new Curs(1, 133, "Curs introductiv în algebră și geometrie", "Matematică");
         Curs curs2 = new Curs(1, 21, "Noțiuni de bază despre programare în Java", "Programare Java");
         Curs curs3 = new Curs(2, 31, "Istoria artei în perioada Renașterii", "Istoria Artei");
         Curs curs4 = new Curs(1, 41, "Bazele chimiei organice", "Chimie");
         Curs curs5 = new Curs(1, 51, "Introducere în psihologia comportamentală", "Psihologie");
         Curs curs6 = new Curs(1, 61, "Fizică aplicată pentru inginerie", "Fizică Aplicată");
-        managerCursuri.adaugareCursuri(curs);
+
+        managerCursuri.adaugareCursuri(curs1);
         managerCursuri.adaugareCursuri(curs2);
         managerCursuri.adaugareCursuri(curs3);
         managerCursuri.adaugareCursuri(curs4);
         managerCursuri.adaugareCursuri(curs5);
         managerCursuri.adaugareCursuri(curs6);
 
+        Profesor profesor = new Profesor("p1", "hashedPassword", "usernameProf", "Nume", 1);
+
+        // Asociază profesorul la curs
+        curs1.setProfesor(profesor);
+        curs2.setProfesor(profesor);
+
+        System.out.println("Cursuri de test adăugate: " + managerCursuri.getCursuri());
     }
 
-
     @Override
-    public void start(Stage fereastraprincipala) throws Exception {
-        // Salvează referința la Stage pentru utilizări viitoare
-        stg = fereastraprincipala;
+    public void start(Stage primaryStage) throws Exception {
+        // Salvează referința la stage pentru utilizări ulterioare
+        stg = primaryStage;
 
-        // Încarcă fișierul FXML folosind FXMLLoader
+        // Încarcă prima pagină (FXML)
         FXMLLoader loader = new FXMLLoader(getClass().getResource("prima-pagina.fxml"));
         Parent root = loader.load();
 
-        // Obține controller-ul asociat fișierului FXML
-        PrimaPaginaController controller = loader.getController();
-
-        // Dacă e nevoie, inițializează obiecte sau configurări pentru controller
-        controller.setManagerCursuri(managerCursuri);
-
         // Configurează scena principală
-        fereastraprincipala.setScene(new Scene(root, 600, 400));
-        fereastraprincipala.setTitle("APLICATIE");
-        fereastraprincipala.show();
+        primaryStage.setTitle("Aplicație Educațională");
+        primaryStage.setScene(new Scene(root, 600, 400));
+        primaryStage.show();
+
+        // Configurează controller-ul
+        PrimaPaginaController controller = loader.getController();
+        controller.setManagerCursuri(managerCursuri);
     }
 
-    public static void main(String[] args) throws IOException {
-        managerCursuri = new ManagerCursuri();
+    public static void main(String[] args) {
+        // Inițializează datele de test
         test_cursuri();
+
+        // Lansează aplicația
         launch(args);
-
-
     }
 }
-

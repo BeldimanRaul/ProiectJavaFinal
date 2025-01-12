@@ -61,7 +61,7 @@ public class StudentRegister {
         try {
             Main main = new Main();
             main.schimba("register-view.fxml");
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

@@ -7,18 +7,20 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-import java.io.IOException;
-
 public class ProfesorLogin {
 
     @FXML
     private TextField username;
+
     @FXML
     private PasswordField password;
+
     @FXML
     private Button loginButton;
+
     @FXML
     private Button registerButton;
+
     @FXML
     private Label labelGresit;
 
@@ -27,34 +29,41 @@ public class ProfesorLogin {
         try {
             Main main = new Main();
             main.schimba("prima-pagina.fxml");
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     @FXML
-    public void logingui1(ActionEvent actionEvent) throws IOException {
-        verificalogin1();
+    public void logingui1(ActionEvent actionEvent) {
+        try {
+            verificalogin1();
+        } catch (Exception e) {
+            e.printStackTrace();
+            labelGresit.setText("Eroare în procesul de autentificare.");
+        }
     }
 
-    private void verificalogin1() throws IOException {
+    private void verificalogin1() throws Exception {
         Main main = new Main();
 
-        String user = username.getText();
-        String pass = password.getText();
+        String user = username.getText().trim();
+        String pass = password.getText().trim();
+
         if (user.isEmpty() || pass.isEmpty()) {
             labelGresit.setText("Nu ai introdus date!");
             return;
         }
-        String parolahaz = SecuritateParole.parolahashuita(pass);
 
-        Profesor profesor = autentificaProfesor(user, parolahaz);
+        String parolahash = SecuritateParole.parolahashuita(pass);
+        Profesor profesor = autentificaProfesor(user, parolahash);
+
         if (profesor != null) {
             ProfesorSession.setProfesorCurent(profesor);
-            labelGresit.setText("Autentificare reusita!");
+            labelGresit.setText("Autentificare reușită!");
             main.schimba("profesor-dashboard.fxml");
         } else {
-            labelGresit.setText("Autentificare nereusita, username sau parola gresita!");
+            labelGresit.setText("Autentificare eșuată! Username sau parola greșită.");
         }
     }
 

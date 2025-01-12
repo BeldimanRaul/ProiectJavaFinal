@@ -5,6 +5,7 @@ public class StudentSession {
 
     public static void setStudentCurent(Student student) {
         studentCurent = student;
+        System.out.println("Student curent setat: " + student.getId() + " - " + student.getNume());
     }
 
     public static Student getStudentCurent() {

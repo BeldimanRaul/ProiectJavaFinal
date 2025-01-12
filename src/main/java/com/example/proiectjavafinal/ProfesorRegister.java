@@ -48,7 +48,7 @@ public class ProfesorRegister {
         }
 
         int id = IdGenerator.idProfesor();
-        Profesor profesor = new Profesor(id, parolahaz, username, prenume, nume,an);
+        Profesor profesor = new Profesor(username, parolahaz, nume, prenume,an);
         Consola.profesori.add(profesor);
         ManagerUtilizatori.adaugaUtilizatori(profesor);
         int iddoizeze = id + 1;
@@ -69,7 +69,7 @@ public class ProfesorRegister {
         try {
             Main main = new Main();
             main.schimba("register-view.fxml");
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

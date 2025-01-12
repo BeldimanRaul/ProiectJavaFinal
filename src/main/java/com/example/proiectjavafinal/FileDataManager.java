@@ -44,7 +44,7 @@ public class FileDataManager {
                 String username = splituri[3];
                 String password = splituri[4];
                 int an=Integer.parseInt(splituri[5]);
-                profesori.add(new Profesor(id, nume, prenume, username, password,an));
+                profesori.add(new Profesor(username, password, nume, prenume, an));
             }
         }
         br.close();

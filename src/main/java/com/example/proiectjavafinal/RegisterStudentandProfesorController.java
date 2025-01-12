@@ -10,7 +10,7 @@ public class RegisterStudentandProfesorController {
         try {
             Main main = new Main();
             main.schimba("student-register.fxml");
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
 
         }
@@ -19,7 +19,7 @@ public class RegisterStudentandProfesorController {
         try {
             Main main = new Main();
             main.schimba("profesor-register.fxml");
-        } catch (IOException e) {
+        } catch (Exception e) {
            e.printStackTrace();
         }
     }
@@ -29,7 +29,7 @@ public class RegisterStudentandProfesorController {
         try {
             Main main = new Main();
             main.schimba("prima-pagina.fxml"); // Navigate back to the initial page
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

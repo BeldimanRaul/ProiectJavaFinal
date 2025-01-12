@@ -26,7 +26,9 @@ public class Curs {
 
     public void setProfesor(Profesor profesor) {
         this.profesor = profesor;
+        System.out.println("Profesor setat pentru curs: " + nume + " - " + profesor.getNume());
     }
+
 
     public int getId() {
         return id;

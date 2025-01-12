@@ -1,53 +1,27 @@
 package com.example.proiectjavafinal;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextInputDialog;
 
-import java.awt.*;
-import java.io.IOException;
 import java.util.List;
-import java.util.Scanner;
 
 public class ProfesorDashboardController {
 
     private Profesor profesor;
     private ManagerCursuri managerCursuri;
 
-    // Metodă pentru a seta managerul de cursuri
-    public void setManagerCursuri(ManagerCursuri managerCursuri) {
-        this.managerCursuri = managerCursuri;
-    }
-
     @FXML
     public void initialize() {
-        if (managerCursuri == null) {
-            managerCursuri = Main.getManagerCursuri(); // Preia managerul din clasa principală
-        }
-    }
+        profesor = ProfesorSession.getProfesorCurent();
+        managerCursuri = ManagerCursuri.getInstance();
 
-
-
-
-    @FXML
-    private void afiseazaCursuriSalvate() {
-        List<Curs> cursurii = managerCursuri.getCursuri();
-        StringBuilder message = new StringBuilder("Cursurile salvate sunt:\n");
-
-        for (Curs curs : cursurii) {
-            message.append("- ").append(curs.getNume()).append("\n");
-        }
-
-        if (cursurii.isEmpty()) {
-            message.append("Nu există cursuri salvate.");
-        }
-
-        showAlert(Alert.AlertType.INFORMATION, "Cursuri Salvate", message.toString());
+        System.out.println("Profesor curent: " + (profesor != null ? profesor.getId() : "null"));
+        System.out.println("Cursuri manager: " + managerCursuri.getCursuri());
     }
 
     @FXML
-    private void afiseazaCursPredat() {
+    private void afiseazaCursPredat    () {
         List<Curs> cursuri = managerCursuri.getCursuri();
         StringBuilder message = new StringBuilder("Cursurile predate de dumneavoastră sunt:\n");
         boolean existaCursuri = false;
@@ -150,42 +124,6 @@ public class ProfesorDashboardController {
         });
     }
 
-    @FXML
-    private void inscrieLaCursProfesor() {
-        TextInputDialog dialog = new TextInputDialog();
-        dialog.setTitle("Introdu ID-ul cursului");
-        dialog.setHeaderText(null);
-        dialog.setContentText("ID-ul cursului:");
-
-        dialog.showAndWait().ifPresent(idCursString -> {
-            try {
-                int cursID = Integer.parseInt(idCursString);
-                List<Curs> cursuri = managerCursuri.getCursuri();
-
-                for (Curs curs : cursuri) {
-                    if (curs.getId() == cursID) {
-                        if (curs.getProfesor() != null && curs.getProfesor().getId() != profesor.getId()) {
-                            showAlert(Alert.AlertType.ERROR, "Eroare", "Acest curs are deja un alt profesor asignat.");
-                            return;
-                        }
-
-                        if (curs.getAn() == profesor.getAn()) {
-                            curs.setProfesor(profesor);
-                            Profesor.getIdinscrierecursprof().add(curs.getId());
-                            showAlert(Alert.AlertType.INFORMATION, "Succes", "V-ați înscris cu succes la cursul " + curs.getNume());
-                        } else {
-                            showAlert(Alert.AlertType.ERROR, "Eroare", "Nu puteți preda acest curs deoarece este destinat altui an: " + curs.getAn());
-                        }
-                        return;
-                    }
-                }
-                showAlert(Alert.AlertType.ERROR, "Eroare", "Cursul cu ID-ul " + cursID + " nu a fost găsit.");
-            } catch (NumberFormatException e) {
-                showAlert(Alert.AlertType.ERROR, "Eroare", "ID-ul cursului trebuie să fie un număr.");
-            }
-        });
-    }
-
     private void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
@@ -193,7 +131,5 @@ public class ProfesorDashboardController {
         alert.setContentText(message);
         alert.showAndWait();
     }
-
-
-
 }
+

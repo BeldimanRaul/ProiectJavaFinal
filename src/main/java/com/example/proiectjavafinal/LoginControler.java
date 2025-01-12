@@ -7,71 +7,73 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 public class LoginControler {
-
 
     private static User utilizatorilogati = null;
 
-
-
     @FXML
     private TextField username;
+
     @FXML
     private PasswordField password;
+
     @FXML
     private Button loginButton;
+
     @FXML
     private Button registerButton;
+
     @FXML
     private Label loginGresit;
+
     @FXML
     private void handleBackButton(ActionEvent event) {
         try {
             Main main = new Main();
-            main.schimba("prima-pagina.fxml"); // Navigate back to the initial page
-        } catch (IOException e) {
+            main.schimba("prima-pagina.fxml");
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
     @FXML
-    public void logingui(ActionEvent actionEvent) throws IOException {
-          verificalogin();
+    public void logingui(ActionEvent actionEvent) {
+        try {
+            verificalogin();
+        } catch (Exception e) {
+            e.printStackTrace();
+            loginGresit.setText("Eroare în procesul de autentificare.");
+        }
     }
 
-    private void verificalogin() throws IOException {
-        String user=username.getText();
-        String pass=password.getText();
-        if(user.isEmpty() || pass.isEmpty()) {
-            loginGresit.setText("Nu ai introdus date !");
+    private void verificalogin() throws Exception {
+        String user = username.getText().trim();
+        String pass = password.getText().trim();
+
+        if (user.isEmpty() || pass.isEmpty()) {
+            loginGresit.setText("Nu ai introdus date!");
             return;
         }
-        String parolahaz=SecuritateParole.parolahashuita(pass);
-        if(studentautentificat(user,parolahaz)) {
-            loginGresit.setText("Autentificare reusita!");
-            Main main=new Main();
-           main.schimba("student-dashboard.fxml");
+
+        String parolahash = SecuritateParole.parolahashuita(pass);
+
+        Student student = autentificaStudent(user, parolahash);
+        if (student != null) {
+            StudentSession.setStudentCurent(student); // Setează studentul curent în sesiune
+            loginGresit.setText("Autentificare reușită!");
+            Main main = new Main();
+            main.schimba("student-dashboard.fxml");
+        } else {
+            loginGresit.setText("Autentificare nereușită! Username sau parola greșită.");
         }
-        else {
-            loginGresit.setText("Autentificare nereusita,username sau parola gresita!");
-
-        }
-
-
     }
 
-    private static boolean studentautentificat(String username, String password) {
-        for (User user : Consola.studentisinote.keySet()) {
-            if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
-               return true;
+    private Student autentificaStudent(String username, String password) {
+        for (Student student : Consola.studentisinote.keySet()) {
+            if (student.getUsername().equals(username) && student.getPassword().equals(password)) {
+                return student;
             }
         }
-        return false;
+        return null;
     }
-
 }

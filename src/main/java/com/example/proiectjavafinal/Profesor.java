@@ -3,48 +3,56 @@ package com.example.proiectjavafinal;
 import java.io.IOException;
 import java.util.*;
 
+
+
+
 public class Profesor extends User {
-    static int id;
-    String nume;
-    String prenume;
-   static Set<Integer>idinscrierecursprof;
-   static int an;
+    private String nume;
+    private String prenume;
+    private int an;
+    int id;
+    static Set<Integer>idinscrierecursprof;
     FileDisplay fd=new FileDisplay();
 
-
-
-    public Profesor(int id, String password, String username, String prenume, String nume,int an) {
-        super(username, password);
-        this.id = id;
-        this.prenume = prenume;
+    // Constructor
+    public Profesor(String username, String password, String nume, String prenume, int an) {
+        super(username, password); // Apelăm constructorul din clasa `User`
         this.nume = nume;
+        this.prenume = prenume;
         this.an = an;
+        this.id = IdGenerator.idProfesor();
         this.idinscrierecursprof = new HashSet<>();
-
-
-
-
-
     }
 
+    // Getteri și setteri pentru atributele specifice
+    public String getNume() {
+        return nume;
+    }
     public static Set<Integer> getIdinscrierecursprof() {
-        return idinscrierecursprof;
-    }
+        return idinscrierecursprof;}
 
-    public static int getAn() {
-        return an;
-    }
-
-    public static int getId() {
+    public int getId() {
         return id;
+    }
+
+    public void setNume(String nume) {
+        this.nume = nume;
     }
 
     public String getPrenume() {
         return prenume;
     }
 
-    public String getNume() {
-        return nume;
+    public void setPrenume(String prenume) {
+        this.prenume = prenume;
+    }
+
+    public int getAn() {
+        return an;
+    }
+
+    public void setAn(int an) {
+        this.an = an;
     }
 
     public void dashboardProfesor() throws IOException {
@@ -105,6 +113,7 @@ public class Profesor extends User {
         }
         System.out.println("Cursul cu ID-ul " + cursID + " nu a fost găsit.");
     }
+
 
 
     void afiseazacursPredat() {

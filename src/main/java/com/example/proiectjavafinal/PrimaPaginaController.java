@@ -20,7 +20,7 @@ public class PrimaPaginaController {
 
     @FXML
    
-    public void handleStudentButton(ActionEvent event) throws IOException {
+    public void handleStudentButton(ActionEvent event) throws Exception {
 
         Main main = new Main();
         main.schimba("hello-view.fxml");
@@ -39,7 +39,7 @@ public class PrimaPaginaController {
 
     @FXML
     ///pt login
-    public void handleProfesorButton(ActionEvent event) throws IOException {
+    public void handleProfesorButton(ActionEvent event) throws Exception {
 
         Main main = new Main();
         main.schimba("profesor-login.fxml");

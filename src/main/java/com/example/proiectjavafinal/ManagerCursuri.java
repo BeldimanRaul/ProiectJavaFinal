@@ -1,31 +1,27 @@
 package com.example.proiectjavafinal;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 
 public class ManagerCursuri {
-   private static List<Curs> cursurii=new ArrayList<>();
-    HashMap<Integer, ArrayList<Student>>grupareaStudDupaAn;
+    private static List<Curs> cursurii = new ArrayList<>();
 
-    public ManagerCursuri() {
-        this.cursurii = new ArrayList<>();
-    }
+    private static ManagerCursuri instance;
 
-    public static void adaugareCursuri(Curs curs) {
-        cursurii.add(curs);
-    }
-    public void stergereCursuri(Curs curs) {
-        cursurii.remove(curs);
-    }
+    ManagerCursuri() {}
 
-    public HashMap<Integer, ArrayList<Student>> getGrupareaStudDupaAn() {
-        return grupareaStudDupaAn;
+    public static synchronized ManagerCursuri getInstance() {
+        if (instance == null) {
+            instance = new ManagerCursuri();
+        }
+        return instance;
     }
 
     public static List<Curs> getCursuri() {
         return cursurii;
     }
 
+    public static void adaugareCursuri(Curs curs) {
+        cursurii.add(curs);
+    }
 }
