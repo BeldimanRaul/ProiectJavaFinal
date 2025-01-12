@@ -107,7 +107,7 @@ public class Profesor extends User {
     }
 
 
-    private void afiseazacursPredat() {
+    void afiseazacursPredat() {
         List<Curs> cursuri = ManagerCursuri.getCursuri();
         System.out.println("Cursurile predate de dumneavoastră sunt: ");
         boolean existaCursuri = false;
@@ -146,7 +146,7 @@ public class Profesor extends User {
     }
 
 
-    private void noteazastudent() throws IOException {
+    public void noteazastudent() throws IOException {
         Scanner sc = new Scanner(System.in);
         System.out.print("Introduceți ID-ul cursului: ");
         int idCurs = sc.nextInt();
@@ -167,9 +167,9 @@ public class Profesor extends User {
                         int nota = sc.nextInt();
                         sc.nextLine();
 
-                        curs.actualizeazaNota(student, nota); // Actualizăm nota studentului
+                        curs.actualizeazaNota(student, nota);
                         System.out.println("Nota a fost adăugată cu succes.");
-                        fd.displayNote(studentiSiNote.values()); // Salvăm notele în fișier
+                        fd.displayNote(studentiSiNote.values());
                         return;
                     }
                 }
