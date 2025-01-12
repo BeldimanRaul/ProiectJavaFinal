@@ -8,7 +8,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proiectjavafinal.ProfesorDashboardController">
    <top>
-      <AnchorPane prefHeight="75.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="75.0" prefWidth="600.0" style="-fx-background-color: #89cff0;" BorderPane.alignment="CENTER">
          <children>
             <Label layoutX="179.0" layoutY="22.0" text="Bun Venit Domn Profesor">
                <font>
@@ -19,7 +19,7 @@
          </children></AnchorPane>
    </top>
    <center>
-      <AnchorPane prefHeight="333.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="333.0" prefWidth="600.0" style="-fx-background-color: #89cff0;" BorderPane.alignment="CENTER">
          <children>
              <Button onAction="#afiseazaCursuriSalvate" text="T" />
             <Button layoutX="233.0" layoutY="14.0" mnemonicParsing="false" onAction="#afiseazaCursPredat" prefHeight="56.0" prefWidth="134.0" text="Afiseaza Curs" />

@@ -6,22 +6,24 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proiectjavafinal.StudentDashboardController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #89cff0;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proiectjavafinal.StudentDashboardController">
     <top>
-        <AnchorPane prefHeight="76.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
+        <AnchorPane prefHeight="76.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button layoutX="2.0" layoutY="2.0" mnemonicParsing="false" onAction="#handleBackButton" text="Inapoi" />
+         </children></AnchorPane>
     </top>
     <center>
-        <AnchorPane prefHeight="354.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+        <AnchorPane prefHeight="345.0" prefWidth="513.0" BorderPane.alignment="CENTER">
             <children>
-                <Button fx:id="vizualizeazaCursuriButton" layoutX="220.0" layoutY="39.0" mnemonicParsing="false" onAction="#vizualizeazaCursuri" prefHeight="26.0" prefWidth="160.0" text="Vizualizeaza Cursuri" />
-                <Button fx:id="vizualizeazaNoteButton" layoutX="219.0" layoutY="78.0" mnemonicParsing="false" onAction="#vizualizeazaNote" prefHeight="26.0" prefWidth="161.0" text="Vizualizeaza Note" />
-                <Button fx:id="vizualizeazaMediaButton" layoutX="219.0" layoutY="115.0" mnemonicParsing="false" onAction="#vizualizeazaMedia" prefHeight="26.0" prefWidth="162.0" text="Vizualizeaza Media" />
-                <Button fx:id="vizualizeazaRestanteButton" layoutX="218.0" layoutY="155.0" mnemonicParsing="false" onAction="#vizualizeazaRestante" prefHeight="26.0" prefWidth="163.0" text="Vizualizeaza Restante" />
-                <Button fx:id="inscrieLaCursButton" layoutX="218.0" layoutY="197.0" mnemonicParsing="false" onAction="#inscrieLaCurs" prefHeight="26.0" prefWidth="163.0" text="Inscrie-te la un curs" />
-                <Button fx:id="cursuriValabileButton" layoutX="218.0" layoutY="247.0" mnemonicParsing="false" onAction="#cursuriValabile" prefHeight="26.0" prefWidth="163.0" text="Vizualizeaza toate Cursurile" />
-                <TextField fx:id="cursIdField" layoutX="218.0" layoutY="287.0" prefHeight="26.0" prefWidth="163.0" promptText="Introdu ID-ul cursului" />
-                <TextArea fx:id="outputArea" layoutX="50.0" layoutY="330.0" prefHeight="100.0" prefWidth="500.0" />
-            <Button layoutY="1.0" mnemonicParsing="false" onAction="#handleBackButton" text="Inapoi" />
+                <Button fx:id="vizualizeazaCursuriButton" layoutX="220.0" layoutY="13.0" mnemonicParsing="false" onAction="#vizualizeazaCursuri" prefHeight="26.0" prefWidth="160.0" text="Vizualizeaza Cursuri" />
+                <Button fx:id="vizualizeazaNoteButton" layoutX="219.0" layoutY="55.0" mnemonicParsing="false" onAction="#vizualizeazaNote" prefHeight="26.0" prefWidth="161.0" text="Vizualizeaza Note" />
+                <Button fx:id="vizualizeazaMediaButton" layoutX="219.0" layoutY="98.0" mnemonicParsing="false" onAction="#vizualizeazaMedia" prefHeight="26.0" prefWidth="162.0" text="Vizualizeaza Media" />
+                <Button fx:id="vizualizeazaRestanteButton" layoutX="218.0" layoutY="140.0" mnemonicParsing="false" onAction="#vizualizeazaRestante" prefHeight="26.0" prefWidth="163.0" text="Vizualizeaza Restante" />
+                <Button fx:id="inscrieLaCursButton" layoutX="218.0" layoutY="182.0" mnemonicParsing="false" onAction="#inscrieLaCurs" prefHeight="26.0" prefWidth="163.0" text="Inscrie-te la un curs" />
+                <Button fx:id="cursuriValabileButton" layoutX="218.0" layoutY="223.0" mnemonicParsing="false" onAction="#cursuriValabile" prefHeight="26.0" prefWidth="163.0" text="Vizualizeaza toate Cursurile" />
+                <TextField fx:id="cursIdField" layoutX="215.0" layoutY="264.0" prefHeight="26.0" prefWidth="163.0" promptText="Introdu ID-ul cursului" />
+                <TextArea fx:id="outputArea" layoutX="44.0" layoutY="313.0" prefHeight="117.0" prefWidth="506.0" />
             </children>
         </AnchorPane>
     </center>
