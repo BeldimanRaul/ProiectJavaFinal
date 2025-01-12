@@ -15,7 +15,7 @@ import java.util.Map;
 
 public class LoginControler {
 
-    private static Map<Student, List<Nota>> studentisinote = new HashMap<>();
+
     private static User utilizatorilogati = null;
 
 
@@ -52,7 +52,7 @@ public class LoginControler {
             return;
         }
         String parolahaz=SecuritateParole.parolahashuita(pass);
-        if(studentautentificat(user,pass)) {
+        if(studentautentificat(user,parolahaz)) {
             loginGresit.setText("Autentificare reusita!");
         }
         else {
@@ -63,13 +63,11 @@ public class LoginControler {
     }
 
     private boolean studentautentificat(String username, String password) {
-        for (User user : studentisinote.keySet()) {
+        for (User user : Consola.studentisinote.keySet()) {
             if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
                return true;
             }
         }
         return false;
-    }
-    public void registergui(ActionEvent actionEvent) {
     }
 }
