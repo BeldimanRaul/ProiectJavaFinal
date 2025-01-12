@@ -54,7 +54,7 @@ public class ProfesorRegister {
         int iddoizeze = id + 1;
         messageLabel.setText("Profesor înregistrat cu succes! ID-ul tau este: " + iddoizeze);
 
-        // Debug statement
+
 
 
         try {

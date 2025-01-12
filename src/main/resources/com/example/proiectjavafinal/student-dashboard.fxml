@@ -21,6 +21,7 @@
                 <Button fx:id="cursuriValabileButton" layoutX="218.0" layoutY="247.0" mnemonicParsing="false" onAction="#cursuriValabile" prefHeight="26.0" prefWidth="163.0" text="Vizualizeaza toate Cursurile" />
                 <TextField fx:id="cursIdField" layoutX="218.0" layoutY="287.0" prefHeight="26.0" prefWidth="163.0" promptText="Introdu ID-ul cursului" />
                 <TextArea fx:id="outputArea" layoutX="50.0" layoutY="330.0" prefHeight="100.0" prefWidth="500.0" />
+            <Button layoutY="1.0" mnemonicParsing="false" onAction="#handleBackButton" text="Inapoi" />
             </children>
         </AnchorPane>
     </center>

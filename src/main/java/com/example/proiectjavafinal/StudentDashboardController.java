@@ -1,5 +1,6 @@
 package com.example.proiectjavafinal;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -224,6 +225,15 @@ public class StudentDashboardController {
         }
 
         outputArea.setText(output.toString());
+    }
+    @FXML
+    private void handleBackButton(ActionEvent event) {
+        try {
+            Main main = new Main();
+            main.schimba("prima-pagina.fxml");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void showAlert(Alert.AlertType alertType, String title, String message) {

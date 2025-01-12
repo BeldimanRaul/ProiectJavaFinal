@@ -1,17 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proiectjavafinal.ProfesorDashboardController">
    <top>
-      <AnchorPane prefHeight="75.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
+      <AnchorPane prefHeight="75.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="179.0" layoutY="22.0" text="Bun Venit Domn Profesor">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Button layoutY="10.0" mnemonicParsing="false" onAction="#handleBackButton" text="Inapoi" />
+         </children></AnchorPane>
    </top>
    <center>
       <AnchorPane prefHeight="333.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-             <Button onAction="#afiseazaCursuriSalvate" text="Afișează Cursuri Salvate" />
+             <Button onAction="#afiseazaCursuriSalvate" text="T" />
             <Button layoutX="233.0" layoutY="14.0" mnemonicParsing="false" onAction="#afiseazaCursPredat" prefHeight="56.0" prefWidth="134.0" text="Afiseaza Curs" />
             <Button layoutX="233.0" layoutY="84.0" mnemonicParsing="false" onAction="#afiseazaTotiStudentii" prefHeight="56.0" prefWidth="134.0" text="Afiseaza Studenti" />
             <Button layoutX="233.0" layoutY="156.0" mnemonicParsing="false" onAction="#noteazaStudent" prefHeight="56.0" prefWidth="134.0" text="Noteaza Student" />
