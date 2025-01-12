@@ -23,6 +23,11 @@ public class Curs {
         this.nota = new HashMap<>();
     }
 
+
+    public void setProfesor(Profesor profesor) {
+        this.profesor = profesor;
+    }
+
     public int getId() {
         return id;
     }
@@ -111,4 +116,6 @@ public class Curs {
                 ", idProfesor=" + idProfesor +
                 '}';
     }
+
+
 }

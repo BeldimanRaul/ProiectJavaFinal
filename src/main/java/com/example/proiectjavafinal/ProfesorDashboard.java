@@ -5,7 +5,9 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.List;
@@ -13,7 +15,11 @@ import java.util.Optional;
 
 public class ProfesorDashboard {
 
-    private int profesorId; // ID-ul profesorului conectat
+    private int profesorId;
+    private Profesor profesor;
+    @FXML
+    private TextField cursIDField;
+    private Stage dialogStage;
 
     public void setProfesorId(int id) {
         this.profesorId = id;
@@ -147,5 +153,9 @@ public class ProfesorDashboard {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+
+    public void predalacurs(ActionEvent actionEvent) {
     }
 }

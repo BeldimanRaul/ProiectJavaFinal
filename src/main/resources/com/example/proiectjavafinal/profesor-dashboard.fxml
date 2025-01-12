@@ -14,12 +14,14 @@
             </font>
         </Label>
 
-        <!-- Butoane funcționale -->
+
         <Button layoutX="200.0" layoutY="100.0" mnemonicParsing="false" onAction="#handleAfiseazaCursuriPredate" prefHeight="50.0" prefWidth="200.0" text="Afișează cursuri predate" />
 
         <Button layoutX="200.0" layoutY="168.0" mnemonicParsing="false" onAction="#afiseazaTotiStudentii" prefHeight="50.0" prefWidth="200.0" text="Afișează studenți la curs" />
 
         <Button layoutX="200.0" layoutY="303.0" mnemonicParsing="false" onAction="#noteazaStudent" prefHeight="50.0" prefWidth="200.0" style="-fx-font-size: 14px; -fx-background-color: #e74c3c; -fx-text-fill: white; -fx-border-radius: 5; -fx-background-radius: 5;" text="Notează student" />
-      <Button layoutX="200.0" layoutY="230.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="Preda un curs" />
+      <Button layoutX="200.0" layoutY="230.0" mnemonicParsing="false" onAction="#predalacurs" prefHeight="50.0" prefWidth="200.0" text="Preda un curs" />
+        <Label text="ID Curs:" />
+        <Button onAction="#predalacurs" text="Inscrie" />
     </children>
 </AnchorPane>

@@ -7,23 +7,32 @@ public class Profesor extends User {
     int id;
     String nume;
     String prenume;
-    private Set<Integer> idinscrierecursprof;
+   Set<Integer>idinscrierecursprof;
+   int an;
     FileDisplay fd=new FileDisplay();
 
 
 
-    public Profesor(int id, String password, String username, String prenume, String nume) {
+    public Profesor(int id, String password, String username, String prenume, String nume,int an) {
         super(username, password);
         this.id = id;
         this.prenume = prenume;
         this.nume = nume;
+        this.an = an;
         this.idinscrierecursprof = new HashSet<>();
+
+
+
 
 
     }
 
     public Set<Integer> getIdinscrierecursprof() {
         return idinscrierecursprof;
+    }
+
+    public int getAn() {
+        return an;
     }
 
     public int getId() {
@@ -45,7 +54,8 @@ public class Profesor extends User {
             System.out.println("1. Afișează cursurile predate");
             System.out.println("2. Afișează lista de studenți pentru un curs selectat");
             System.out.println("3. Notează un student la un curs");
-            System.out.println("4. Logout");
+            System.out.println("4.Preda la un curs");
+            System.out.println("5. Logout");
             System.out.println("Selectați opțiunea dorită:");
             int optiune = sc.nextInt();
             sc.nextLine();
@@ -60,68 +70,114 @@ public class Profesor extends User {
                     noteazastudent();
                     break;
                 case 4:
+                    inscrieLaCursProfesor();
+                        break;
+                case 5:
                     System.out.println("Te-ai delogat. La revedere!");
                     return;
             }
         }
     }
-
-
-    private void afiseazacursPredat() {
-        List<Curs> cursurii = ManagerCursuri.getCursuri();
-        System.out.println("Cursurile predate de dvs sunt: ");
-        for (Curs curs : cursurii) {
-            if (curs.getIdProfesor() == this.getId()) {
-                System.out.println(curs.getNume());
-            }
-        }
-    }
-
-    private void afiseazatotistudentii() {
-        List<Curs> cursurii = ManagerCursuri.getCursuri();
-        System.out.println("specifica id ul cursului");
+    public void inscrieLaCursProfesor() {
         Scanner sc = new Scanner(System.in);
-        int idCurs = sc.nextInt();
+        System.out.print("Introduceți ID-ul cursului la care doriți să vă înscrieți: ");
+        int cursID = sc.nextInt();
         sc.nextLine();
-        for (Curs curs : cursurii) {
-            if (curs.getId() == idCurs && curs.getIdProfesor() == this.getId()) {
-                System.out.println("Lista studentilor de la cursul " + curs.getNume() + " este: ");
-                for (Student student : curs.getStudenti()) {
-                    System.out.println(student.getNume() + " " + student.getPrenume());
+
+        List<Curs> cursuri = ManagerCursuri.getCursuri();
+
+        for (Curs curs : cursuri) {
+            if (curs.getId() == cursID) {
+                if (curs.getProfesor() != null && curs.getProfesor().getId() != this.id) {
+                    System.out.println("Acest curs are deja un alt profesor asignat.");
+                    return;
+                }
+
+                if (curs.getAn() == this.getAn()) {
+                    curs.setProfesor(this);
+                    idinscrierecursprof.add(curs.getId());
+                    System.out.println("V-ați înscris cu succes la cursul " + curs.getNume());
+                } else {
+                    System.out.println("Nu puteți preda acest curs deoarece este destinat altui an: " + curs.getAn());
                 }
                 return;
             }
         }
-        System.out.println("Cursul nu a fost gasit :(");
+        System.out.println("Cursul cu ID-ul " + cursID + " nu a fost găsit.");
     }
 
-    private void noteazastudent() throws IOException {
-        List<Curs> cursurii = ManagerCursuri.getCursuri();
-        Map<Student, List<Nota>> studentisinote = Consola.studentisinote;
-        System.out.println("Introdu id ul cursului:");
 
+    private void afiseazacursPredat() {
+        List<Curs> cursuri = ManagerCursuri.getCursuri();
+        System.out.println("Cursurile predate de dumneavoastră sunt: ");
+        boolean existaCursuri = false;
+
+        for (Curs curs : cursuri) {
+            if (curs.getProfesor() != null && curs.getProfesor().getId() == this.id) {
+                System.out.println("- " + curs.getNume());
+                existaCursuri = true;
+            }
+        }
+
+        if (!existaCursuri) {
+            System.out.println("Nu predați niciun curs în acest moment.");
+        }
+    }
+
+
+    private void afiseazatotistudentii() {
         Scanner sc = new Scanner(System.in);
-        int idCurs=sc.nextInt();
-        sc.nextLine();
-        for(Curs curs : cursurii) {
-            if (curs.getId() == idCurs&&curs.getIdProfesor() == this.getId()) {
-                System.out.println("Introdu id student: ");
-                int idStudent=sc.nextInt();
+        System.out.print("Introduceți ID-ul cursului: ");
+        int idCurs = sc.nextInt();
+        sc.nextLine(); // Consumăm newline-ul rămas
+
+        List<Curs> cursuri = ManagerCursuri.getCursuri();
+
+        for (Curs curs : cursuri) {
+            if (curs.getId() == idCurs && curs.getProfesor() != null && curs.getProfesor().getId() == this.id) {
+                System.out.println("Lista studenților de la cursul " + curs.getNume() + ": ");
+                for (Student student : curs.getStudenti()) {
+                    System.out.println("- " + student.getNume() + " " + student.getPrenume());
+                }
+                return;
+            }
+        }
+        System.out.println("Cursul nu a fost găsit sau nu este predat de dumneavoastră.");
+    }
+
+
+    private void noteazastudent() throws IOException {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Introduceți ID-ul cursului: ");
+        int idCurs = sc.nextInt();
+        sc.nextLine(); // Consumăm newline-ul rămas
+
+        List<Curs> cursuri = ManagerCursuri.getCursuri();
+        Map<Student, List<Nota>> studentiSiNote = Consola.studentisinote;
+
+        for (Curs curs : cursuri) {
+            if (curs.getId() == idCurs && curs.getProfesor() != null && curs.getProfesor().getId() == this.id) {
+                System.out.print("Introduceți ID-ul studentului: ");
+                int idStudent = sc.nextInt();
                 sc.nextLine();
+
                 for (Student student : curs.getStudenti()) {
                     if (student.getId() == idStudent) {
-                        System.out.println("Pune nota: ");
-                        int nota=sc.nextInt();
+                        System.out.print("Introduceți nota: ");
+                        int nota = sc.nextInt();
                         sc.nextLine();
-                        curs.actualizeazaNota(student,nota);
-                        System.out.println("Nota adaugata cu succes (vezi note.txt)");
-                        fd.displayNote(studentisinote.values());
 
+                        curs.actualizeazaNota(student, nota); // Actualizăm nota studentului
+                        System.out.println("Nota a fost adăugată cu succes.");
+                        fd.displayNote(studentiSiNote.values()); // Salvăm notele în fișier
+                        return;
                     }
-                } System.out.println("Studentul nu a fost găsit la acest curs.");
+                }
+                System.out.println("Studentul nu a fost găsit la acest curs.");
                 return;
-            }System.out.println("Cursul nu a fost găsit sau nu este predat de dumneavoastră.");
+            }
         }
+        System.out.println("Cursul nu a fost găsit sau nu este predat de dumneavoastră.");
     }
 
     @Override

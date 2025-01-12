@@ -48,7 +48,7 @@ public class ProfesorRegister {
         }
 
         int id = IdGenerator.idProfesor();
-        Profesor profesor = new Profesor(id, parolahaz, username, prenume, nume);
+        Profesor profesor = new Profesor(id, parolahaz, username, prenume, nume,an);
         Consola.profesori.add(profesor);
         ManagerUtilizatori.adaugaUtilizatori(profesor);
         int iddoizeze = id + 1;

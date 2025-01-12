@@ -20,19 +20,22 @@ public class Consola {
 
 
         // Creare obiecte de test pentru profesori și studenți
-        Profesor profesor = new Profesor(1, "parola", "iongm", "Ion", "Popescu");
+        Profesor profesor = new Profesor(11111, "parola", "iongm", "Ion", "Popescu", 1);
         profesori.add(profesor);
-        Curs curs = new Curs(1, 1, "Curs introductiv în algebră și geometrie", "Matematică");
-        Curs curs2 = new Curs(1, 2, "Noțiuni de bază despre programare în Java", "Programare Java");
-        Curs curs3 = new Curs(1, 3, "Istoria artei în perioada Renașterii", "Istoria Artei");
-        Curs curs4 = new Curs(1, 4, "Bazele chimiei organice", "Chimie");
-        Curs curs5 = new Curs(1, 5, "Introducere în psihologia comportamentală", "Psihologie");
-        Curs curs6 = new Curs(1, 6, "Fizică aplicată pentru inginerie", "Fizică Aplicată");
+        Curs curs = new Curs(1, 133, "Curs introductiv în algebră și geometrie", "Matematică");
+        Curs curs2 = new Curs(1, 21, "Noțiuni de bază despre programare în Java", "Programare Java");
+        Curs curs3 = new Curs(2, 31, "Istoria artei în perioada Renașterii", "Istoria Artei");
+        Curs curs4 = new Curs(1, 41, "Bazele chimiei organice", "Chimie");
+        Curs curs5 = new Curs(1, 51, "Introducere în psihologia comportamentală", "Psihologie");
+        Curs curs6 = new Curs(1, 61, "Fizică aplicată pentru inginerie", "Fizică Aplicată");
 
 
         curs3.profesor = profesor;
         curs.profesor = profesor;
 
+        mg.adaugareCursuri(curs4);
+        mg.adaugareCursuri(curs5);
+        mg.adaugareCursuri(curs6);
         /// Creare studenți de test
         Student student1 = new Student(1111, "Ionescu", "Maria", 1, "LF4731", "stud1", "parola");
         Student student2 = new Student(2111, "Popescu", "George", 1, "LF4731", "stud2", "parola");
@@ -132,7 +135,7 @@ public class Consola {
         System.out.print("Password: ");
         String password = sc.nextLine().trim();
         String parolahaz = SecuritateParole.parolahashuita(password);
-        if (autentificareUser(optiune, username, password)) {
+        if (autentificareUser(optiune, username, parolahaz)) {
             System.out.println("Autentificare reușită!");
         } else {
             System.out.println("Login nereușit! Verificați username-ul și parola.");
@@ -176,6 +179,7 @@ public class Consola {
         }
         return false;
     }
+
     private static void register() {
         System.out.println("Tip utilizator: Student/Profesor");
         String userType = sc.nextLine().trim();
@@ -208,7 +212,7 @@ public class Consola {
         Student student = new Student(id, nume, prenume, an, "", username, parolahaz);
         ManagerUtilizatori.adaugaUtilizatori(student);
         studentisinote.put(student, new ArrayList<>());
-        int iddoizeze=id+1;
+        int iddoizeze = id + 1;
         System.out.println("Student înregistrat cu succes! ID-ul tau este: " + iddoizeze);
     }
 
@@ -217,13 +221,17 @@ public class Consola {
 
         String username = promptForInput("Username: ");
         String password = promptForInput("Password: ");
+        if (!ManagerUtilizatori.verificaUnicitateUsername(username)) {
+            System.out.println("Username-ul este deja folosit. Incercați altul.");
+            return;
+        }
         String parolahaz = SecuritateParole.parolahashuita(password);
         String nume = promptForInput("Nume: ");
         String prenume = promptForInput("Prenume: ");
         int an = promptForIntInput("În ce an predai? ");
 
         int id = IdGenerator.idProfesor();
-        Profesor profesor = new Profesor(id, nume, prenume, username, parolahaz);
+        Profesor profesor = new Profesor(id, parolahaz, username, prenume, nume, an);
         profesori.add(profesor);
         ManagerUtilizatori.adaugaUtilizatori(profesor);
         System.out.println("Profesor înregistrat cu succes! ID-ul tau este: " + id);
