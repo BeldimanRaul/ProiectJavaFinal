@@ -8,7 +8,7 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proiectjavafinal.PrimaPaginaController">
    <children>
       <Button fx:id="studentButton" layoutX="125.0" layoutY="168.0" mnemonicParsing="false" onAction="#handleStudentButton" prefHeight="67.0" prefWidth="122.0" text="Student" />
-      <Button layoutX="347.0" layoutY="168.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="122.0" text="Profesor" />
+      <Button layoutX="347.0" layoutY="168.0" mnemonicParsing="false" onAction="#handleProfesorButton" prefHeight="67.0" prefWidth="122.0" text="Profesor" />
       <Label layoutX="239.0" layoutY="271.0" prefHeight="30.0" prefWidth="122.0" text="Nu am cont">
          <font>
             <Font name="System Bold Italic" size="20.0" />

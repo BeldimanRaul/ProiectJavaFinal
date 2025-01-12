@@ -39,8 +39,8 @@ public class PrimaPaginaController {
     @FXML
     ///pt login
     public void handleProfesorButton(ActionEvent event) throws IOException {
-        // Handle profesor button click and navigate to the professor login page
+
         Main main = new Main();
-        main.schimba("login-view.fxml"); // Assuming "login-view.fxml" is the login page for professors
+        main.schimba("profesor-login.fxml");
     }
 }
