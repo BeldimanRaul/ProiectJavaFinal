@@ -4,11 +4,11 @@ import java.io.IOException;
 import java.util.*;
 
 public class Profesor extends User {
-    int id;
+    static int id;
     String nume;
     String prenume;
-   Set<Integer>idinscrierecursprof;
-   int an;
+   static Set<Integer>idinscrierecursprof;
+   static int an;
     FileDisplay fd=new FileDisplay();
 
 
@@ -27,15 +27,15 @@ public class Profesor extends User {
 
     }
 
-    public Set<Integer> getIdinscrierecursprof() {
+    public static Set<Integer> getIdinscrierecursprof() {
         return idinscrierecursprof;
     }
 
-    public int getAn() {
+    public static int getAn() {
         return an;
     }
 
-    public int getId() {
+    public static int getId() {
         return id;
     }
 

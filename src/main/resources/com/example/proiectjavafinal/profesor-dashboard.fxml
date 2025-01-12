@@ -2,26 +2,38 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proiectjavafinal.ProfesorDashboard">
     <children>
-
+        <!-- Titlu -->
         <Label layoutX="86.0" layoutY="22.0" prefHeight="58.0" prefWidth="427.0" style="-fx-text-fill: #2c3e50;" text="Bun venit, domnule profesor!">
             <font>
                 <Font name="System Bold" size="30.0" />
             </font>
         </Label>
 
-
+        <!-- Buton Afișează cursuri predate -->
         <Button layoutX="200.0" layoutY="100.0" mnemonicParsing="false" onAction="#handleAfiseazaCursuriPredate" prefHeight="50.0" prefWidth="200.0" text="Afișează cursuri predate" />
 
+        <!-- Buton Afișează studenți la curs -->
         <Button layoutX="200.0" layoutY="168.0" mnemonicParsing="false" onAction="#afiseazaTotiStudentii" prefHeight="50.0" prefWidth="200.0" text="Afișează studenți la curs" />
 
-        <Button layoutX="200.0" layoutY="303.0" mnemonicParsing="false" onAction="#noteazaStudent" prefHeight="50.0" prefWidth="200.0" style="-fx-font-size: 14px; -fx-background-color: #e74c3c; -fx-text-fill: white; -fx-border-radius: 5; -fx-background-radius: 5;" text="Notează student" />
-      <Button layoutX="200.0" layoutY="230.0" mnemonicParsing="false" onAction="#predalacurs" prefHeight="50.0" prefWidth="200.0" text="Preda un curs" />
-        <Label text="ID Curs:" />
-        <Button onAction="#predalacurs" text="Inscrie" />
+        <!-- Buton Notează student -->
+        <Button layoutX="200.0" layoutY="246.0" mnemonicParsing="false" onAction="#noteazaStudent" prefHeight="50.0" prefWidth="200.0" text="Notează student" />
+
+        <!-- Etichetă pentru ID curs -->
+        <Label layoutX="108.0" layoutY="333.0" prefHeight="26.0" prefWidth="106.0" text="Id Curs pt Inscriere :" />
+
+        <!-- Câmp text pentru ID curs -->
+        <TextField fx:id="idCursField" layoutX="236.0" layoutY="333.0" prefHeight="25.0" prefWidth="100.0" promptText="Introduceți ID-ul" />
+
+        <!-- Buton Înscrie -->
+        <Button layoutX="350.0" layoutY="333.0" mnemonicParsing="false" onAction="#predalacurs" prefHeight="25.0" prefWidth="100.0" text="Înscrie" />
+
+        <!-- Etichetă pentru mesaj de status -->
+        <Label fx:id="statusMessage" layoutX="150.0" layoutY="370.0" textFill="#e74c3c" />
     </children>
 </AnchorPane>

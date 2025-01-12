@@ -20,15 +20,19 @@ public class ProfesorDashboard {
     @FXML
     private TextField cursIDField;
     private Stage dialogStage;
+    public ProfesorDashboard(Profesor profesor) {
+        this.profesor = profesor;
+    }
 
-    public void setProfesorId(int id) {
-        this.profesorId = id;
+    public Profesor getProfesor() {
+        return profesor;
     }
 
     private int getId() {
         return profesorId;
 
     }
+
     @FXML
     public void handleAfiseazaCursuriPredate(ActionEvent actionEvent) {
         List<Curs> cursuri = ManagerCursuri.getCursuri();
@@ -80,6 +84,50 @@ public class ProfesorDashboard {
                 alerta("Eroare", "Cursul nu a fost găsit sau nu este predat de dvs.");
             } catch (NumberFormatException e) {
                 alerta("Eroare", "Introduceți un ID valid.");
+            }
+        });
+    }
+@FXML
+    public void predalacurs(ActionEvent actionEvent) {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("ID Curs");
+        dialog.setHeaderText("Introduceți ID-ul cursului:");
+        dialog.setContentText("ID Curs:");
+
+        Optional<String> result = dialog.showAndWait();
+        result.ifPresent(idCursStr -> {
+            try {
+                int idCurs = Integer.parseInt(idCursStr);
+                List<Curs> cursuri = ManagerCursuri.getCursuri();
+
+                boolean cursGasit = false;
+                for (Curs curs : cursuri) {
+                    if (curs.getId() == idCurs) {
+                        cursGasit = true;
+
+
+                        if (curs.getProfesor() != null && curs.getProfesor().getId() != Profesor.getId()) {
+                            System.out.println("Acest curs are deja un alt profesor asignat.");
+                            return;
+                        }
+
+
+                        if (curs.getAn() == Profesor.getAn()) {
+                            curs.setProfesor(this.getProfesor());
+                            Profesor.getIdinscrierecursprof().add(curs.getId()); // Adăugare în lista de cursuri predate
+                            System.out.println("V-ați înscris cu succes la cursul " + curs.getNume());
+                        } else {
+                            System.out.println("Nu puteți preda acest curs deoarece este destinat altui an: " + curs.getAn());
+                        }
+                        return;
+                    }
+                }
+
+                if (!cursGasit) {
+                    System.out.println("Cursul cu ID-ul " + idCurs + " nu a fost găsit.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("ID-ul cursului trebuie să fie un număr valid.");
             }
         });
     }
@@ -156,6 +204,4 @@ public class ProfesorDashboard {
     }
 
 
-    public void predalacurs(ActionEvent actionEvent) {
-    }
 }
