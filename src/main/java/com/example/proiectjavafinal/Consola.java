@@ -117,6 +117,7 @@ public class Consola {
     }
 
 
+
     private static void login() throws IOException {
         System.out.println("Selectati tipul de utilizator");
         System.out.println("1. Student");

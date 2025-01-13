@@ -14,9 +14,9 @@ public class Profesor extends User {
     static Set<Integer>idinscrierecursprof;
     FileDisplay fd=new FileDisplay();
 
-    // Constructor
+
     public Profesor(String username, String password, String nume, String prenume, int an) {
-        super(username, password); // Apelăm constructorul din clasa `User`
+        super(username, password);
         this.nume = nume;
         this.prenume = prenume;
         this.an = an;
@@ -24,7 +24,7 @@ public class Profesor extends User {
         this.idinscrierecursprof = new HashSet<>();
     }
 
-    // Getteri și setteri pentru atributele specifice
+
     public String getNume() {
         return nume;
     }

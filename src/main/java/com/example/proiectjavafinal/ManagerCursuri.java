@@ -9,7 +9,7 @@ public class ManagerCursuri {
     private static ManagerCursuri instance;
 
     ManagerCursuri() {}
-
+///sa se foloseasca aceiasi lista si pt gui si pt consola
     public static synchronized ManagerCursuri getInstance() {
         if (instance == null) {
             instance = new ManagerCursuri();

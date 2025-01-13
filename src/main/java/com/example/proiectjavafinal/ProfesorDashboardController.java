@@ -33,7 +33,7 @@ public class ProfesorDashboardController {
             message.append("Nu există cursuri salvate.");
         }
 
-        System.out.println(message.toString());
+        System.out.println(message);
     }
 
 

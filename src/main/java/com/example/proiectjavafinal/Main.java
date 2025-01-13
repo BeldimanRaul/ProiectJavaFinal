@@ -6,10 +6,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.util.concurrent.CopyOnWriteArrayList;
+
 public class Main extends Application {
 
     private static Stage stg;
     private static ManagerCursuri managerCursuri;
+
 
     public static ManagerCursuri getManagerCursuri() {
         if (managerCursuri == null) {
@@ -25,10 +28,10 @@ public class Main extends Application {
     }
 
     public static void test_cursuri() {
-        // Obține instanța ManagerCursuri
+
         managerCursuri = ManagerCursuri.getInstance();
 
-        // Inițializează datele de test
+
         Curs curs1 = new Curs(1, 133, "Curs introductiv în algebră și geometrie", "Matematică");
         Curs curs2 = new Curs(1, 21, "Noțiuni de bază despre programare în Java", "Programare Java");
         Curs curs3 = new Curs(2, 31, "Istoria artei în perioada Renașterii", "Istoria Artei");
@@ -54,28 +57,28 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        // Salvează referința la stage pentru utilizări ulterioare
+        /// Salvează referința la stage pentru utilizări ulterioare
         stg = primaryStage;
 
-        // Încarcă prima pagină (FXML)
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("prima-pagina.fxml"));
         Parent root = loader.load();
 
-        // Configurează scena principală
+
         primaryStage.setTitle("Aplicație Educațională");
         primaryStage.setScene(new Scene(root, 600, 400));
         primaryStage.show();
 
-        // Configurează controller-ul
+
         PrimaPaginaController controller = loader.getController();
         controller.setManagerCursuri(managerCursuri);
     }
 
     public static void main(String[] args) {
-        // Inițializează datele de test
+        /// Inițializează datele de test
         test_cursuri();
 
-        // Lansează aplicația
+
         launch(args);
     }
 }

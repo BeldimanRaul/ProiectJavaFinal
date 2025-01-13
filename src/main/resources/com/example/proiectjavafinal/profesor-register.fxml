@@ -50,7 +50,7 @@
       <TextField fx:id="numeField" layoutX="239.0" layoutY="165.0" />
       <TextField fx:id="prenumeField" layoutX="239.0" layoutY="200.0" />
       <TextField fx:id="anField" layoutX="239.0" layoutY="245.0" />
-      <Label fx:id="messageLabel" layoutX="10.0" layoutY="356.0" prefHeight="24.0" prefWidth="569.0" textAlignment="CENTER">
+      <Label fx:id="messageLabel" layoutX="92.0" layoutY="11.0" prefHeight="24.0" prefWidth="465.0" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>

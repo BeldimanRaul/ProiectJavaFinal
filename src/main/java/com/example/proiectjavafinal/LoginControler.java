@@ -59,7 +59,7 @@ public class LoginControler {
 
         Student student = autentificaStudent(user, parolahash);
         if (student != null) {
-            StudentSession.setStudentCurent(student); // Setează studentul curent în sesiune
+            StudentSession.setStudentCurent(student);
             loginGresit.setText("Autentificare reușită!");
             Main main = new Main();
             main.schimba("student-dashboard.fxml");
