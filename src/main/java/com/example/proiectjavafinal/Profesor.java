@@ -159,7 +159,7 @@ public class Profesor extends User {
         Scanner sc = new Scanner(System.in);
         System.out.print("Introduceți ID-ul cursului: ");
         int idCurs = sc.nextInt();
-        sc.nextLine(); // Consumăm newline-ul rămas
+        sc.nextLine();
 
         List<Curs> cursuri = ManagerCursuri.getCursuri();
         Map<Student, List<Nota>> studentiSiNote = Consola.studentisinote;

@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextInputDialog;
 
+import java.io.IOException;
 import java.util.List;
 
 public class ProfesorDashboardController {
@@ -139,7 +140,15 @@ public class ProfesorDashboardController {
                 showAlert(Alert.AlertType.ERROR, "Eroare", "ID-ul cursului trebuie să fie un număr.");
             }
         });
+        FileDisplay fd=new FileDisplay();
+        try {
+            fd.displayNote(Consola.studentisinote.values());
+        } catch (IOException e) {
+            e.printStackTrace();
+
+        }
     }
+
     @FXML
     private void handleBackButton(ActionEvent event) {
         try {

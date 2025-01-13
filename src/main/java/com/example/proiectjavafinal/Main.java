@@ -75,7 +75,7 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-        /// Inițializează datele de test
+        /// Inițializeaza datele de test
         test_cursuri();
 
 
